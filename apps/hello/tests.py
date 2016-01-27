@@ -9,9 +9,9 @@ client = Client()
 
 
 class ProfileMethodTests(TestCase):
+    fixtures = ['initial_data.json']
 
     def setUp(self):
-        Profile.objects.create(name=u"Владимир", last_name=u"Отопков")
         Profile.objects.create(name=u"Василий", last_name=u"Петров")
         # get main page
         self.response = self.client.get(reverse('hello:index'))
@@ -87,6 +87,7 @@ class ProfileMethodTests(TestCase):
 class ProfileNoDataMethodTests(TestCase):
 
     def setUp(self):
+        Profile.objects.all().delete()
         # get main page
         self.response = self.client.get(reverse('hello:index'))
 
