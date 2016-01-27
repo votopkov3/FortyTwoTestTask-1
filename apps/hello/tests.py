@@ -60,17 +60,26 @@ class ProfileMethodTests(TestCase):
         self.assertEqual(profile, 2)
 
     def test_admin(self):
+        """
+        Test getting admin page
+        """
         response = self.client.get(reverse('admin:index'))
         self.assertEqual(response.status_code, 200)
 
     def test_admin_login(self):
+        """
+        Testing admin login
+        """
         admin = {'name': 'admin',
                  'password': 'admin'}
         response = self.client.post(reverse('admin:index'), admin)
         self.assertEqual(response.status_code, 200)
 
     def test_index_html(self):
-        response = self.client.get(reverse('task:index'))
+        """
+        Testing valid html on the page
+        """
+        response = self.client.get(reverse('hello:index'))
         self.assertTrue('<h1>42 Coffee Cups Test Assignment</h1>'
                         in response.content)
 
@@ -79,7 +88,7 @@ class ProfileNoDataMethodTests(TestCase):
 
     def setUp(self):
         # get main page
-        self.response = self.client.get(reverse('task:index'))
+        self.response = self.client.get(reverse('hello:index'))
 
     def test_enter_main_page(self):
         """
