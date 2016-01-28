@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 import json
 from django.core.urlresolvers import reverse
-from django.test import Client
+from django.test import Client, RequestFactory
 from django.test import TestCase
-from models import Profile
+from apps.hello.middleware import SaveHttpRequestMiddleware
+from models import Profile, Requests
 from django.utils.encoding import smart_unicode
 
 client = Client()
@@ -122,6 +123,7 @@ class ProfileNoDataMethodTests(TestCase):
 class SaveHttpRequestTests(TestCase):
 
     def setUp(self):
+        Requests.objects.all().delete()
         Requests.objects.create(request='request_1')
         Requests.objects.create(request='request_2')
 
