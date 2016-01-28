@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-{% block head %}
+{% block extra_head %}
     <meta name="keywords" content="">
     <meta name="description" content="">
     <title>Main</title>
 {% endblock %}
 {% block content %}
+    {% if profile %}
     <div class="container">
     <div id="test_name" class="col-xs-8 col-xs-offset-2 text-center"><h1>42 Coffee Cups Test Assignment</h1></div>
         <div class="row">
@@ -32,4 +33,7 @@
                 </div>
             </div>
         </div>
+    {% else %}
+        <div id="test_name" class="col-xs-8 col-xs-offset-2 text-center"><h1>No data in DB</h1></div>
+    {% endif %}
 {% endblock %}
