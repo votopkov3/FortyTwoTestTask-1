@@ -6,8 +6,15 @@ from django.test import Client, RequestFactory
 from django.test import TestCase
 from apps.hello.forms import ProfileForm
 from apps.hello.middleware import SaveHttpRequestMiddleware
-from models import Profile, Requests
+from models import Profile, Requests, SavedSignals
 from django.utils.encoding import smart_unicode
+from apps.hello.templatetags.hello_tags import edit_link
+from django.core.management import call_command
+from django.utils.six import StringIO
+import subprocess
+from django.template import Template, Context
+from django.utils import timezone as t
+
 
 client = Client()
 
@@ -334,3 +341,130 @@ class EditProfileTests(TestCase):
                       str(form['jabber'].errors))
         self.assertIn(u'This field is required',
                       str(form['skype'].errors))
+
+
+class CommandTests(TestCase):
+    fixtures = ['initial_data.json']
+
+    def test_command_output(self):
+        """
+        Testing command
+        """
+        req = Requests(request='request',
+                       pub_date=t.now() + t.timedelta(hours=3),
+                       path='/'
+                       )
+        req.save()
+        out = StringIO()  # flake8: noqa
+        call_command('model_list', stderr=out)
+        self.assertIn('apps.hello.models.Requests',
+                      out.getvalue())
+
+    def test_model_list_script(self):
+        """
+        Testing command by executing models_lish.sh
+        """
+        out = subprocess.Popen("./model_list.sh",
+                               stderr=subprocess.PIPE,
+                               shell=True)
+
+
+class SignalsTests(TestCase):
+    fixtures = ['initial_data.json']
+
+    def setUp(self):
+        User.objects.create_user('signal', ' ', 'signal')
+
+    def test_count_SavedSignals(self):
+        """
+        Must be 61 entries
+        """
+        self.assertEqual(SavedSignals.objects.all().count(), 61)
+
+    def test_signals_create_entry(self):
+        """
+        Test entry about user create
+        """
+        # test status about user
+        self.assertEqual(SavedSignals.objects.last().status, 'Create')
+
+    def test_signals_update_entry(self):
+        """
+        Test entry about user update
+        """
+        # get user
+        user = User.objects.get(username='signal')
+        # update username
+        user.username = 'update_signal'
+        # save
+        user.save()
+        # test status of entry about user
+        self.assertEqual(SavedSignals.objects.last().status, 'Update')
+
+    def test_signals_delete_entry(self):
+        """
+        Test entry about user delete
+        """
+        user = User.objects.get(username='signal')
+        # delete user
+        user.delete()
+        # test if user is deleted
+        self.assertEqual(SavedSignals.objects.last().status, 'Delete')
+
+    def test_signals_not_work_on_not_allowed_model(self):
+        """
+        Test signal not work on not allowed model
+        """
+        SavedSignals.objects.create(title='Title', status="Status")
+        # signal not working if SavedSignals created/updated/deleted
+        # get entry about creating SavedSignals
+        signal = SavedSignals.objects.last()
+        # test if SavedSignals entry has not got create/update/delete
+        # status
+        self.assertEqual(signal.status, "Status")
+
+
+class TagTests(TestCase):
+    fixtures = ['initial_data.json']
+
+    def test_tag(self):
+        """
+        Testing custom tag
+        """
+        profile = Profile.objects.first()
+        template = Template("{% load hello_tags %}"
+                            "{% edit_link profile %}")
+        rendered = template.render(Context({'profile': profile}))
+        self.assertIn(edit_link(profile),
+                      rendered)
+
+    def test_tag_add_another_object(self):
+        """
+        Give request object to tag
+        """
+        Requests(request='request',
+                 pub_date=t.now() + t.timedelta(hours=3),
+                 path='/'
+                 ).save()
+        req = Requests.objects.first()
+        template = Template("{% load hello_tags %}"
+                            "{% edit_link request %}")
+        rendered = template.render(Context({'request': req}))
+        self.assertIn(edit_link(req),
+                      rendered)
+
+    def test_tag_on_the_page(self):
+        """
+        Test tag on the index page
+        """
+        # login
+        self.client.login(username='admin', password='admin')
+        response = self.client.get(reverse('hello:index'))
+        self.assertIn('/admin/hello/profile/', response.content)
+
+    def test_tag_on_the_page_not_login_user(self):
+        """
+        Test tag on the page not login user
+        """
+        response = self.client.get(reverse('hello:index'))
+        self.assertNotIn('/admin/hello/profile/', response.content)
