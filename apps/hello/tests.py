@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 import json
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.test import Client, RequestFactory
 from django.test import TestCase
+from apps.hello.forms import ProfileForm
 from apps.hello.middleware import SaveHttpRequestMiddleware
 from models import Profile, Requests
 from django.utils.encoding import smart_unicode
@@ -211,6 +213,12 @@ class SaveHttpRequestNoDataTests(TestCase):
 class EditProfileTests(TestCase):
     fixtures = ['initial_data.json']
 
+    def setUp(self):
+        Profile.objects.create(
+            name=u"Василий",
+            last_name=u"Петров",
+            user=User.objects.get(id=1))
+
     def test_edit_profile_html(self):
         """
         Test html on the edit profile page
@@ -229,6 +237,9 @@ class EditProfileTests(TestCase):
                         in response.content)
 
     def test_entering_edit_profile(self):
+        """
+        Test enter page to edit data
+        """
         # test login required
         test_login_req_response = client.get(
             reverse('hello:edit_profile')

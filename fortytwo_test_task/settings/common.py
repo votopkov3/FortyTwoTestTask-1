@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.admin.widgets',
 
     'south',
     'apps.hello',
@@ -129,3 +130,8 @@ TEMPLATE_DIRS = (
 
 # Turn off south during test
 SOUTH_TESTS_MIGRATE = False
+
+
+LOGIN_REDIRECT_URL = '/'
+
+LOGIN_URL = '/login/'

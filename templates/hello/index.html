@@ -1,43 +1,72 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load staticfiles %}
-{% block head %}
+{% block extra_head %}
     <meta name="keywords" content="">
     <meta name="description" content="">
+   <link rel="stylesheet" href="{% static 'bootstrap-3.3.5-dist/css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <script type="text/javascript" src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
     <title>Main</title>
 {% endblock %}
 {% block content %}
+    <div class="indicator"><img src="{% static 'images/indicator.gif' %}"> </div>
     <div class="container">
-    <div id="test_name" class="col-xs-8 col-xs-offset-2 text-center"><h1>42 Coffee Cups Test Assignment</h1></div>
+        <div id="test_name" class="col-xs-8 col-xs-offset-2 text-center"><h1>42 Coffee Cups Test Assignment</h1></div>
         <div class="row">
-            <div class="col-xs-12">
-                <div class="row">
-                    <div class="col-xs-6">
-                        <div class="row">
-                            <div class="col-xs-12 field">{{ profile.name }}</div>
-                            <div class="col-xs-12 field">{{ profile.last_name }}</div>
-                            <div class="col-xs-12 field">{{ profile.date_of_birth }}</div>
-                            <div class="col-xs-12 field"></div>
-                            <div class="col-xs-10 field bio-field"><span class="content-title">Bio:</span>{{ profile.bio|linebreaks }}</div>
+            <div class="col-xs-2 pull-right">
+                <div class="authenticated-div">
+                    {% if user.is_authenticated %}
+                        <div class="header_link"><a href='{% url 'hello:edit_profile' %}'>Edit</a></div>
+                        <div class="header_link">
+                            <a class="header_link" href='{% url 'hello:logout' %}'>Logout</a>
                         </div>
-                    </div>
-                    <div class="col-xs-6 ">
-                        <div class="row">
-                            <div class="col-xs-12 field"><span class="content-title">Contacts</span></div>
-                            <div class="col-xs-12 field"><span class="content-title">Email:</span>{{ profile.email }}</div>
-                            <div class="col-xs-12 field"><span class="content-title">Jabber:</span>{{ profile.jabber }}</div>
-                            <div class="col-xs-12 field"><span class="content-title">Skype:</span>{{ profile.skype }}</div>
-                            <div class="col-xs-12 field"><span class="content-title">Other contacts:</span>{{ profile.other_contacts|linebreaks }}</div>
+                    {% else %}
+                        <a  href='{% url 'hello:login' %}'>Login</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-11 main-div">
+            <div class="row">
+                <div class='logged_in_greeting col-xs-12'>
+                    <div class='row'>
+                        <div class='logged_in_greeting_title col-xs-10'>
+                            <div class="user-data">
+                                <div class="col-xs-6 left-column">
+                                    <div class="field">{{ profile.name }}</div>
+                                    <div class="field">{{ profile.last_name }}</div>
+                                    <div class="field">{{ profile.date_of_birth }}</div>
+                                    <div class="div_image_preview">
+                                        {% if profile.photo  %}
+                                            <img id="image_preview" width="200"  src="{{ profile.photo.url }}">
+                                            {% else %}
+                                            <img id="image_preview" width="200"  src="{% static 'images/no-avatar.jpeg' %}">
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 right_column">
+                                    <div class="field">Email: {{ profile.email }}</div>
+                                    <div class="field">Jabber: {{ profile.jabber }}</div>
+                                    <div class="field">Skype: {{ profile.skype }}</div>
+                                    <span>Other_contacts:</span>
+                                    <div class="field">{{ profile.other_contacts|linebreaks }}</div>
+                                    <span id="bio_title">Bio:</span>
+                                    <div>{{ profile.bio|linebreaks }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="row">
+                                <div class="col-xs-12 hr"></div>
+                                <div class="col-xs-3">
+                                    <a href="{% url 'hello:request_list' %}">requests</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-             <div class="col-xs-12">
-                    <div class="row">
-                        <div class="col-xs-12 hr"></div>
-                        <div class="col-xs-3">
-                            <a id="requests" href="{% url 'hello:request_list' %}">requests</a>
-                        </div>
-                    </div>
-                </div>
         </div>
+    </div>
 {% endblock %}
