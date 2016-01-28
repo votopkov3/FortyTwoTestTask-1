@@ -206,3 +206,120 @@ class SaveHttpRequestNoDataTests(TestCase):
                               content_type='application/json',
                               HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEquals(response.status_code, 200)
+
+
+class EditProfileTests(TestCase):
+    fixtures = ['initial_data.json']
+
+    def test_edit_profile_html(self):
+        """
+        Test html on the edit profile page
+        """
+        # login
+        self.client.login(username='admin', password='admin')
+        # get edit profile page
+        response = self.client.get(reverse('hello:edit_profile'))
+        # test title on the page
+        self.assertTrue('<h1>42 Coffee Cups Test Assignment</h1>'
+                        in response.content)
+        # test form on the page
+        self.assertTrue('<form action="/update_profile/" method="post"'
+                        ' id="update-profile-form" '
+                        'enctype="multipart/form-data">'
+                        in response.content)
+
+    def test_entering_edit_profile(self):
+        # test login required
+        test_login_req_response = client.get(
+            reverse('hello:edit_profile')
+        )
+        self.assertEqual(test_login_req_response.status_code, 302)
+        # login
+        self.client.login(username='admin', password='admin')
+        # get edit page with login user
+        response = self.client.get(reverse('hello:edit_profile'))
+        self.assertEqual(response.status_code, 200)
+        # test if form is on the page (Save - submit button)
+        self.assertContains(response, 'Save')
+
+    def test_send_post_data_update_profile(self):
+        """
+        Testing update profile
+        """
+        form_data = {
+            'id': 2,
+            'name': 'admin',
+            'last_name': 'admin',
+            'date_of_birth': '1993-11-29',
+            'email': 'mail@mail.ua',
+            'jabber': 'jabber@jabber.ua',
+            'skype': 'skype',
+        }
+        # test login required
+        test_login_req_response = self.client.post(
+            reverse('hello:update_profile'), form_data
+        )
+        self.assertEqual(test_login_req_response.status_code, 302)
+        # login
+        self.client.login(username='admin', password='admin')
+        # test method (get not allowed)
+        test_method_response = self.client.get(
+            reverse('hello:update_profile')
+        )
+        self.assertEqual(test_method_response.status_code, 405)
+        # update Vasiliy Petrov
+        self.client.post(reverse('hello:update_profile'), form_data)
+        # get Vasiliy Petrov profile
+        profile = Profile.objects.get(id=2)
+        # test if it is updated
+        self.assertEqual(profile.name, 'admin')
+        self.assertEqual(profile.email, 'mail@mail.ua')
+
+    def test_send_unvalid_post_data_update_profile(self):
+        """
+        Testing not update profile unvalid data
+        """
+        form_data = {
+            'id': 2,
+            'name': 'ad',
+            'last_name': 'admin' * 21,
+            'date_of_birth': '1993-1121',
+            'email': '123',
+            'jabber': '123',
+            'skype': '12',
+        }
+        form = ProfileForm(data=form_data)
+        # test if form is not valid
+        self.assertFalse(form.is_valid())
+        self.assertIn(u'Ensure this value has at least 3 characters',
+                      str(form['name'].errors))
+        self.assertIn(u'Ensure this value has at most 100 characters',
+                      str(form['last_name'].errors))
+        self.assertIn(u'Enter a valid date',
+                      str(form['date_of_birth'].errors))
+        self.assertIn(u'Enter a valid email address',
+                      str(form['email'].errors))
+        self.assertIn(u'Enter a valid email address',
+                      str(form['jabber'].errors))
+        self.assertIn(u'Ensure this value has at least 3 characters',
+                      str(form['skype'].errors))
+
+    def test_send_no_post_data_update_profile(self):
+        """
+        Testing not update profile unvalid data
+        """
+        form = ProfileForm(data={})
+        self.assertIn(u'This field is required',
+                      str(form['id'].errors))
+        self.assertIn(u'This field is required',
+                      str(form['name'].errors))
+        self.assertIn(u'This field is required',
+                      str(form['last_name'].errors))
+        self.assertIn(u'This field is required',
+                      str(form['date_of_birth'].errors))
+        self.assertIn(u'This field is required',
+                      str(form['email'].errors))
+        self.assertIn(u'This field is required',
+                      str(form['jabber'].errors))
+        self.assertIn(u'This field is required',
+                      str(form['skype'].errors))
