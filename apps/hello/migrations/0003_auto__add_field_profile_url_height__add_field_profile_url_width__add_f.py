@@ -11,6 +11,7 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
 
         call_command("loaddata", "initial_data.json")
+
         # Adding field 'Profile.url_height'
         db.add_column(u'hello_profile', 'url_height',
                       self.gf('django.db.models.fields.PositiveIntegerField')(default=200),
