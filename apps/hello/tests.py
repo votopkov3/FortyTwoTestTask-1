@@ -80,6 +80,7 @@ class ProfileMethodTests(TestCase):
         Testing valid html on the page
         """
         response = self.client.get(reverse('hello:index'))
+        self.assertTemplateUsed(response, 'hello/index.html')
         self.assertTrue('<h1>42 Coffee Cups Test Assignment</h1>'
                         in response.content)
 
