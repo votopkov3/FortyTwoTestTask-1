@@ -1,1 +1,104 @@
-[{"pk": 1, "model": "auth.permission", "fields": {"codename": "add_logentry", "name": "Can add log entry", "content_type": 1}}, {"pk": 2, "model": "auth.permission", "fields": {"codename": "change_logentry", "name": "Can change log entry", "content_type": 1}}, {"pk": 3, "model": "auth.permission", "fields": {"codename": "delete_logentry", "name": "Can delete log entry", "content_type": 1}}, {"pk": 4, "model": "auth.permission", "fields": {"codename": "add_permission", "name": "Can add permission", "content_type": 2}}, {"pk": 5, "model": "auth.permission", "fields": {"codename": "change_permission", "name": "Can change permission", "content_type": 2}}, {"pk": 6, "model": "auth.permission", "fields": {"codename": "delete_permission", "name": "Can delete permission", "content_type": 2}}, {"pk": 7, "model": "auth.permission", "fields": {"codename": "add_group", "name": "Can add group", "content_type": 3}}, {"pk": 8, "model": "auth.permission", "fields": {"codename": "change_group", "name": "Can change group", "content_type": 3}}, {"pk": 9, "model": "auth.permission", "fields": {"codename": "delete_group", "name": "Can delete group", "content_type": 3}}, {"pk": 10, "model": "auth.permission", "fields": {"codename": "add_user", "name": "Can add user", "content_type": 4}}, {"pk": 11, "model": "auth.permission", "fields": {"codename": "change_user", "name": "Can change user", "content_type": 4}}, {"pk": 12, "model": "auth.permission", "fields": {"codename": "delete_user", "name": "Can delete user", "content_type": 4}}, {"pk": 13, "model": "auth.permission", "fields": {"codename": "add_contenttype", "name": "Can add content type", "content_type": 5}}, {"pk": 14, "model": "auth.permission", "fields": {"codename": "change_contenttype", "name": "Can change content type", "content_type": 5}}, {"pk": 15, "model": "auth.permission", "fields": {"codename": "delete_contenttype", "name": "Can delete content type", "content_type": 5}}, {"pk": 16, "model": "auth.permission", "fields": {"codename": "add_session", "name": "Can add session", "content_type": 6}}, {"pk": 17, "model": "auth.permission", "fields": {"codename": "change_session", "name": "Can change session", "content_type": 6}}, {"pk": 18, "model": "auth.permission", "fields": {"codename": "delete_session", "name": "Can delete session", "content_type": 6}}, {"pk": 19, "model": "auth.permission", "fields": {"codename": "add_migrationhistory", "name": "Can add migration history", "content_type": 7}}, {"pk": 20, "model": "auth.permission", "fields": {"codename": "change_migrationhistory", "name": "Can change migration history", "content_type": 7}}, {"pk": 21, "model": "auth.permission", "fields": {"codename": "delete_migrationhistory", "name": "Can delete migration history", "content_type": 7}}, {"pk": 22, "model": "auth.permission", "fields": {"codename": "add_profile", "name": "Can add Profile", "content_type": 8}}, {"pk": 23, "model": "auth.permission", "fields": {"codename": "change_profile", "name": "Can change Profile", "content_type": 8}}, {"pk": 24, "model": "auth.permission", "fields": {"codename": "delete_profile", "name": "Can delete Profile", "content_type": 8}}, {"pk": 25, "model": "auth.permission", "fields": {"codename": "add_requests", "name": "Can add requests", "content_type": 9}}, {"pk": 26, "model": "auth.permission", "fields": {"codename": "change_requests", "name": "Can change requests", "content_type": 9}}, {"pk": 27, "model": "auth.permission", "fields": {"codename": "delete_requests", "name": "Can delete requests", "content_type": 9}}, {"pk": 1, "model": "auth.user", "fields": {"username": "admin", "first_name": "", "last_name": "", "is_active": true, "is_superuser": true, "is_staff": true, "last_login": "2016-01-27T21:01:38.052Z", "groups": [], "user_permissions": [], "password": "pbkdf2_sha256$12000$bAMZW2JrwHcc$1T6EAdKCVuzSDU7pn4waRu4u4IU5R0MQSKDcJNsMYhg=", "email": "", "date_joined": "2016-01-27T21:01:15.612Z"}}, {"pk": "9hirms1e2kzs75ptii3dh1gtcy8uijo1", "model": "sessions.session", "fields": {"expire_date": "2016-02-10T21:01:38.161Z", "session_data": "ZTJjMGJjYjAzNzk2NGJjZjJkZTdhYzZmZWIzYzgzMDIyZjg5MThjYTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0="}}, {"pk": 1, "model": "south.migrationhistory", "fields": {"applied": "2016-01-27T21:01:28.353Z", "app_name": "hello", "migration": "0001_initial"}}, {"pk": 2, "model": "south.migrationhistory", "fields": {"applied": "2016-01-28T08:50:05.590Z", "app_name": "hello", "migration": "0002_auto__add_requests"}}, {"pk": 1, "model": "hello.profile", "fields": {"bio": "\u041c\u0435\u043d\u044f \u0437\u043e\u0432\u0443\u0442 \u0412\u043b\u0430\u0434\u0438\u043c\u0438\u0440 \u041e\u0442\u043e\u043f\u043a\u043e\u0432. \u042f \u0436\u0438\u0432\u0443 \u0412 \u0411\u043e\u0440\u0438\u0441\u043f\u043e\u043b\u0435. \u0423\u0447\u0443\u0441\u044c \u043d\u0430 4-\u043e\u043c \u043a\u0443\u0440\u0441\u0435 \u0410\u043a\u0430\u0434\u0435\u043c\u0438\u0438 \u0430\u0434\u0432\u043e\u043a\u0430\u0442\u0443\u0440\u044b \u0423\u043a\u0440\u0430\u0438\u043d\u044b.", "last_name": "\u041e\u0442\u043e\u043f\u043a\u043e\u0432", "name": "\u0412\u043b\u0430\u0434\u0438\u043c\u0438\u0440", "other_contacts": "", "date_of_birth": "1993-11-29", "skype": "gashik_3", "jabber": "_smith_@khavr.com", "email": "votopkov.webmaster@gmail.com"}}, {"pk": 1, "model": "admin.logentry", "fields": {"action_flag": 1, "action_time": "2016-01-27T21:06:09.411Z", "object_repr": "\u041e\u0442\u043e\u043f\u043a\u043e\u0432", "object_id": "1", "change_message": "", "user": 1, "content_type": 8}}]
+[
+{
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "admin", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": true, 
+        "is_staff": true, 
+        "last_login": "2016-01-27T21:01:38.052Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$bAMZW2JrwHcc$1T6EAdKCVuzSDU7pn4waRu4u4IU5R0MQSKDcJNsMYhg=", 
+        "email": "", 
+        "date_joined": "2016-01-27T21:01:15.612Z"
+    }
+},
+{
+    "pk": "11b0xjdel0fr89kpg55snp5caw5kgeuh", 
+    "model": "sessions.session", 
+    "fields": {
+        "expire_date": "2016-02-11T10:59:50.117Z", 
+        "session_data": "Y2JhZWQwMTJkNWZiNWNlYTAwYWFhYThiNTkzMDE2ZGE1NjdhZTE0Yjp7fQ=="
+    }
+},
+{
+    "pk": "x25p0w0kizkqr6n4of640f6yazciqb0m", 
+    "model": "sessions.session", 
+    "fields": {
+        "expire_date": "2016-02-11T12:47:34.198Z", 
+        "session_data": "ZTJjMGJjYjAzNzk2NGJjZjJkZTdhYzZmZWIzYzgzMDIyZjg5MThjYTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0="
+    }
+},
+{
+    "pk": 1, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2016-01-27T21:01:28.353Z", 
+        "app_name": "hello", 
+        "migration": "0001_initial"
+    }
+},
+{
+    "pk": 2, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2016-01-28T08:50:05.590Z", 
+        "app_name": "hello", 
+        "migration": "0002_auto__add_requests"
+    }
+},
+{
+    "pk": 3, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2016-01-28T10:48:03.527Z", 
+        "app_name": "hello", 
+        "migration": "0003_auto__add_field_profile_url_height__add_field_profile_url_width__add_f"
+    }
+},
+{
+    "pk": 4, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2016-01-28T14:01:08.513Z", 
+        "app_name": "hello", 
+        "migration": "0004_auto__add_savedsignals"
+    }
+},
+{
+    "pk": 1, 
+    "model": "hello.profile", 
+    "fields": {
+        "bio": "\u041c\u0435\u043d\u044f \u0437\u043e\u0432\u0443\u0442 \u0412\u043b\u0430\u0434\u0438\u043c\u0438\u0440 \u041e\u0442\u043e\u043f\u043a\u043e\u0432. \u042f \u0436\u0438\u0432\u0443 \u0412 \u0411\u043e\u0440\u0438\u0441\u043f\u043e\u043b\u0435. \u0423\u0447\u0443\u0441\u044c \u043d\u0430 4-\u043e\u043c \u043a\u0443\u0440\u0441\u0435 \u0410\u043a\u0430\u0434\u0435\u043c\u0438\u0438 \u0430\u0434\u0432\u043e\u043a\u0430\u0442\u0443\u0440\u044b \u0423\u043a\u0440\u0430\u0438\u043d\u044b.", 
+        "last_name": "\u041e\u0442\u043e\u043f\u043a\u043e\u0432", 
+        "name": "\u0412\u043b\u0430\u0434\u0438\u043c\u0438\u0440", 
+        "other_contacts": "", 
+        "date_of_birth": "1993-11-11", 
+        "skype": "gashik_3", 
+        "jabber": "_smith_@khavr.com", 
+        "email": "votopkov.webmaster@gmail.com"
+    }
+},
+{
+    "pk": 1, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2016-01-27T21:06:09.411Z", 
+        "object_repr": "\u041e\u0442\u043e\u043f\u043a\u043e\u0432", 
+        "object_id": "1", 
+        "change_message": "", 
+        "user": [
+            "admin"
+        ], 
+        "content_type": [
+            "hello", 
+            "profile"
+        ]
+    }
+}
+]
