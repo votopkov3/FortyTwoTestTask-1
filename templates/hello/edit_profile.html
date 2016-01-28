@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block extra_head %}
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.theme.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.structure.min.css' %}" />
+    <script type="text/javascript" src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery_upload_plugin.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.validate.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.ui.core.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-ui-datepicker.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
+    <title>Main</title>
+{% endblock %}
+{% block content %}
+    <div class="indicator"><img src="{% static 'images/indicator.gif' %}"> </div>
+    <div class="container">
+        <div id="test_name" class="col-xs-8 col-xs-offset-2 text-center"><h1>42 Coffee Cups Test Assignment</h1></div>
+        <div class="row">
+            <div class="col-xs-2 pull-right">
+                <div class="authenticated-div col-xs-2 col-xs-offset-2">
+                    <div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-11 main-div">
+                <div class="row">
+                    <div class='logged_in_greeting col-xs-12'>
+                        <div class='row'>
+                            <div class='logged_in_greeting_title col-xs-10'>
+                                    <form action="{% url 'hello:update_profile' %}" method="post" id="update-profile-form" enctype="multipart/form-data">
+                                        {{ user_form.id }}
+                                        <div class="col-xs-6 left-column">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                <label >{{ user_form.name.label }}</label>
+                                                {{ user_form.name }}
+                                            </div>
+                                            <div class="form-group">
+                                                <label >{{ user_form.last_name.label }}</label>
+                                                {{ user_form.last_name }}
+                                            </div>
+                                            <div class="form-group">
+                                                <label >{{ user_form.date_of_birth.label }}</label>
+                                                {{ user_form.date_of_birth }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ user_form.photo }}
+                                            </div>
+                                            <div class="div_image_preview" {% if profile.photo  %} {% else %} img="no-img" {% endif %}>
+                                                {% if profile.photo  %}
+                                                    <img id="image_preview" width="200"  src="{{ profile.photo.url }}">
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 right_column">
+                                            <div class="form-group">
+                                                <label >{{ user_form.email.label }}</label>
+                                                {{ user_form.email }}
+                                            </div>
+                                            <div class="form-group">
+                                                <label >{{ user_form.jabber.label }}</label>
+                                                {{ user_form.jabber }}
+                                            </div>
+                                            <div class="form-group">
+                                                <label >{{ user_form.skype.label }}</label>
+                                                {{ user_form.skype }}
+                                            </div>
+                                            <div class="form-group">
+                                                <label >{{ user_form.other_contacts.label }}</label>
+                                                {{ user_form.other_contacts }}
+                                            </div>
+                                            <div class="form-group">
+                                                <label >{{ user_form.bio.label }}</label>
+                                                {{ user_form.bio }}
+                                            </div>
+                                        </div>
+                                        <input class="btn-group btn" type="submit" value="Save">
+                                        <a class="btn-group btn"  href="{% url 'hello:index' %}">Cancel</a>
+                                    </form>
+                                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
