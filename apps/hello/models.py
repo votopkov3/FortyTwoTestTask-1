@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.utils import timezone
 from django.db import models
 
 
@@ -18,3 +19,17 @@ class Profile(models.Model):
 
     def __unicode__(self):
         return self.last_name
+
+
+class Requests(models.Model):
+    title = models.CharField(max_length=250, default='Http_request')
+    request = models.TextField()
+    path = models.CharField(max_length=250, blank=True, null=True)
+    pub_date = models.DateTimeField(default=timezone.now,
+                                    blank=True, null=True)
+
+    class Meta:
+        ordering = ['-pub_date']
+
+    def __unicode__(self):
+        return self.title
