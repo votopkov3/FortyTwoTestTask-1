@@ -27,7 +27,7 @@
                                     {% endfor %}
                                 </ul>
                             {% endif %}
-                            <form id="login_form" action="{% url 'django.contrib.auth.views.login' %}" method="post">
+                            <form id="login_form" action="{% url 'hello:login' %}" method="post">
                                 {% csrf_token %}
                                 <div class="form-group">
                                 {{ form.username.label }}
