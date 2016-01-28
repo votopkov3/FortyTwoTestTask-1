@@ -5,11 +5,11 @@ from south.v2 import SchemaMigration
 from django.db import models
 from django.core.management import call_command
 
+
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        from django.core.management import call_command
-    call_command("loaddata", "initial_data.json")
+        call_command("loaddata", "initial_data.json")
 
 
     def backwards(self, orm):
