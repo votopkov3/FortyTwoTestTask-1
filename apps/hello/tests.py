@@ -123,7 +123,6 @@ class ProfileNoDataMethodTests(TestCase):
 class SaveHttpRequestTests(TestCase):
 
     def setUp(self):
-        Requests.objects.all().delete()
         Requests.objects.create(request='request_1')
         Requests.objects.create(request='request_2')
 
