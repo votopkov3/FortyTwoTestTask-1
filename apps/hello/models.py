@@ -50,3 +50,11 @@ class Requests(models.Model):
 
     def __unicode__(self):
         return self.title
+
+
+class SavedSignals(models.Model):
+    title = models.CharField(max_length=250)
+    status = models.CharField(max_length=250)
+
+    def __unicode__(self):
+        return self.title + " - " + str(self.id)
