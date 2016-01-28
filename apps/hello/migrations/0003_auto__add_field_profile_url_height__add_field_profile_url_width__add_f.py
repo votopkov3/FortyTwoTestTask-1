@@ -3,7 +3,6 @@ from south.utils import datetime_utils as datetime
 from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
-from django.core.management import call_command
 
 
 class Migration(SchemaMigration):
@@ -33,8 +32,6 @@ class Migration(SchemaMigration):
 
         # Changing field 'Requests.pub_date'
         db.alter_column(u'hello_requests', 'pub_date', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, null=True))
-
-        call_command("loaddata", "initial_data.json")
 
     def backwards(self, orm):
         # Deleting field 'Profile.url_height'
