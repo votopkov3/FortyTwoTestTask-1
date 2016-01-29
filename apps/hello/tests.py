@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+import datetime
 from django.core.urlresolvers import reverse
 from django.test import Client, RequestFactory
 from django.test import TestCase
@@ -123,8 +124,20 @@ class ProfileNoDataMethodTests(TestCase):
 class SaveHttpRequestTests(TestCase):
 
     def setUp(self):
-        Requests.objects.create(request='request_1')
-        Requests.objects.create(request='request_2')
+        Requests.objects.create(
+            request='request_1',
+            pub_date=datetime.datetime.now(
+
+            ) + datetime.timedelta(hours=2),
+            path='/'
+        )
+        Requests.objects.create(
+            request='request_2',
+            pub_date=datetime.datetime.now(
+
+            ) + datetime.timedelta(hours=2),
+            path='/'
+        )
 
     def test_request_list(self):
         """
@@ -142,16 +155,22 @@ class SaveHttpRequestTests(TestCase):
         # create new 10 requests will be 12 requests in db
         i = 0
         while i < 10:
-            Requests.objects.create(request='test_request')
+            Requests.objects.create(
+                request='request_1',
+                pub_date=datetime.datetime.now(
+
+                ) + datetime.timedelta(hours=2),
+                path='/'
+            )
             i += 1
         # get requests
         response = client.get(reverse('hello:request_list_ajax'),
                               content_type='application/json',
                               HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         # get first request
-        request = Requests.objects.get(request='request_1')
+        request = Requests.objects.get(id=1)
         # get second request
-        request_2 = Requests.objects.get(request='request_2')
+        request_2 = Requests.objects.get(id=2)
         # test getting request list
         self.assertEquals(response.status_code, 200)
         # test first request in response content
@@ -179,7 +198,8 @@ class SaveHttpRequestTests(TestCase):
         """
         # create client and savehttpr... instance
         self.save_http = SaveHttpRequestMiddleware()
-        self.new_request = RequestFactory().get(reverse('hello:index'))
+        self.new_request = RequestFactory().get(reverse(
+            'hello:index'))
         # save request to DB
         self.save_http.process_request(request=self.new_request)
         # test saving request to DB
@@ -197,6 +217,38 @@ class SaveHttpRequestNoDataTests(TestCase):
         # test entering the page
         self.assertEquals(response.status_code, 200)
 
+    def test_request_context(self):
+        """
+        1 request have to be in response hello:request_list
+        """
+        # get request_list
+        response = client.get(reverse('hello:request_list'))
+        # test entering the page
+        self.assertEquals(str(response.context['requests']),
+                          '[<Requests: Http_request>]')
+
+    def test_request_content(self):
+        """
+        last request have to be in content
+        """
+        # get request_list
+        response = client.get(reverse('hello:request_list'))
+        # test entering the page
+        self.assertContains(response, 'last_request=')
+
+    def test_no_data_on_the_page(self):
+        """
+        Test shop tip that to requests in db
+        """
+        # delete all requests
+        Requests.objects.all().delete()
+
+        # get request_list (make ajax to not create request by middleware)
+        response = client.get(reverse('hello:request_list'),
+                              content_type='application/json',
+                              HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertContains(response, 'No requests in DB')
+
     def test_request_list_ajax(self):
         """
         Testing request list view function
@@ -206,3 +258,4 @@ class SaveHttpRequestNoDataTests(TestCase):
                               content_type='application/json',
                               HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEquals(response.status_code, 200)
+
