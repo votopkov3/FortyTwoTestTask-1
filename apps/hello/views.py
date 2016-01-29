@@ -26,7 +26,9 @@ def edit_profile(request):
 
 
 def request_list(request):
-    return render(request, 'hello/request_list.html')
+    requests = Requests.objects.all()[:10]
+    context = {'requests': requests}
+    return render(request, 'hello/request_list.html', context)
 
 
 def request_list_ajax(request):
