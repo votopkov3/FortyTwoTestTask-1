@@ -209,6 +209,38 @@ class SaveHttpRequestNoDataTests(TestCase):
                               HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEquals(response.status_code, 200)
 
+    def test_request_context(self):
+        """
+        1 request have to be in response hello:request_list
+        """
+        # get request_list
+        response = client.get(reverse('hello:request_list'))
+        # test entering the page
+        self.assertEquals(str(response.context['requests']),
+                          '[<Requests: Http_request>]')
+
+    def test_request_content(self):
+        """
+        last request have to be in content
+        """
+        # get request_list
+        response = client.get(reverse('hello:request_list'))
+        # test entering the page
+        self.assertContains(response, 'last_request=')
+
+    def test_no_data_on_the_page(self):
+        """
+        Test shop tip that to requests in db
+        """
+        # delete all requests
+        Requests.objects.all().delete()
+
+        # get request_list (make ajax to not create request by middleware)
+        response = client.get(reverse('hello:request_list'),
+                              content_type='application/json',
+                              HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertContains(response, 'No requests in DB')
+
 
 class EditProfileTests(TestCase):
     fixtures = ['initial_data.json']
