@@ -1,35 +1,90 @@
 [
 {
     "pk": 1, 
-    "model": "auth.user", 
+    "model": "contenttypes.contenttype", 
     "fields": {
-        "username": "admin", 
-        "first_name": "", 
-        "last_name": "", 
-        "is_active": true, 
-        "is_superuser": true, 
-        "is_staff": true, 
-        "last_login": "2016-01-27T21:01:38.052Z", 
-        "groups": [], 
-        "user_permissions": [], 
-        "password": "pbkdf2_sha256$12000$bAMZW2JrwHcc$1T6EAdKCVuzSDU7pn4waRu4u4IU5R0MQSKDcJNsMYhg=", 
-        "email": "", 
-        "date_joined": "2016-01-27T21:01:15.612Z"
+        "model": "logentry", 
+        "name": "log entry", 
+        "app_label": "admin"
     }
 },
 {
-    "pk": "11b0xjdel0fr89kpg55snp5caw5kgeuh", 
-    "model": "sessions.session", 
+    "pk": 2, 
+    "model": "contenttypes.contenttype", 
     "fields": {
-        "expire_date": "2016-02-11T10:59:50.117Z", 
-        "session_data": "Y2JhZWQwMTJkNWZiNWNlYTAwYWFhYThiNTkzMDE2ZGE1NjdhZTE0Yjp7fQ=="
+        "model": "permission", 
+        "name": "permission", 
+        "app_label": "auth"
     }
 },
 {
-    "pk": "x25p0w0kizkqr6n4of640f6yazciqb0m", 
+    "pk": 3, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "group", 
+        "name": "group", 
+        "app_label": "auth"
+    }
+},
+{
+    "pk": 4, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "user", 
+        "name": "user", 
+        "app_label": "auth"
+    }
+},
+{
+    "pk": 5, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "contenttype", 
+        "name": "content type", 
+        "app_label": "contenttypes"
+    }
+},
+{
+    "pk": 6, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "session", 
+        "name": "session", 
+        "app_label": "sessions"
+    }
+},
+{
+    "pk": 7, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "migrationhistory", 
+        "name": "migration history", 
+        "app_label": "south"
+    }
+},
+{
+    "pk": 8, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "profile", 
+        "name": "Profile", 
+        "app_label": "hello"
+    }
+},
+{
+    "pk": 9, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "requests", 
+        "name": "requests", 
+        "app_label": "hello"
+    }
+},
+{
+    "pk": "jf2kde1tp49pnctbmhlc3dkyx0uddwgz", 
     "model": "sessions.session", 
     "fields": {
-        "expire_date": "2016-02-11T12:47:34.198Z", 
+        "expire_date": "2016-02-12T16:27:18.101Z", 
         "session_data": "ZTJjMGJjYjAzNzk2NGJjZjJkZTdhYzZmZWIzYzgzMDIyZjg5MThjYTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0="
     }
 },
@@ -37,7 +92,7 @@
     "pk": 1, 
     "model": "south.migrationhistory", 
     "fields": {
-        "applied": "2016-01-27T21:01:28.353Z", 
+        "applied": "2016-01-29T16:26:23.898Z", 
         "app_name": "hello", 
         "migration": "0001_initial"
     }
@@ -46,38 +101,20 @@
     "pk": 2, 
     "model": "south.migrationhistory", 
     "fields": {
-        "applied": "2016-01-28T08:50:05.590Z", 
+        "applied": "2016-01-29T16:26:24.125Z", 
         "app_name": "hello", 
         "migration": "0002_auto__add_requests"
-    }
-},
-{
-    "pk": 3, 
-    "model": "south.migrationhistory", 
-    "fields": {
-        "applied": "2016-01-28T10:48:03.527Z", 
-        "app_name": "hello", 
-        "migration": "0003_auto__add_field_profile_url_height__add_field_profile_url_width__add_f"
-    }
-},
-{
-    "pk": 4, 
-    "model": "south.migrationhistory", 
-    "fields": {
-        "applied": "2016-01-28T14:01:08.513Z", 
-        "app_name": "hello", 
-        "migration": "0004_auto__add_savedsignals"
     }
 },
 {
     "pk": 1, 
     "model": "hello.profile", 
     "fields": {
-        "bio": "\u041c\u0435\u043d\u044f \u0437\u043e\u0432\u0443\u0442 \u0412\u043b\u0430\u0434\u0438\u043c\u0438\u0440 \u041e\u0442\u043e\u043f\u043a\u043e\u0432. \u042f \u0436\u0438\u0432\u0443 \u0412 \u0411\u043e\u0440\u0438\u0441\u043f\u043e\u043b\u0435. \u0423\u0447\u0443\u0441\u044c \u043d\u0430 4-\u043e\u043c \u043a\u0443\u0440\u0441\u0435 \u0410\u043a\u0430\u0434\u0435\u043c\u0438\u0438 \u0430\u0434\u0432\u043e\u043a\u0430\u0442\u0443\u0440\u044b \u0423\u043a\u0440\u0430\u0438\u043d\u044b.", 
+        "bio": "\u041c\u0435\u043d\u044f \u0437\u043e\u0432\u0443\u0442 \u0412\u043b\u0430\u0434\u0438\u043c\u0438\u0440 \u041e\u0442\u043e\u043f\u043a\u043e\u0432. \u0423\u0447\u0443\u0441\u044c \u0432 \u0410\u043a\u0430\u0434\u0435\u043c\u0438\u0438 \u0430\u0434\u0432\u043e\u043a\u0430\u0442\u0443\u0440\u044b \u0423\u043a\u0440\u0430\u0438\u043d\u044b. \u0416\u0438\u0432\u0443 \u0432 \u0411\u043e\u0440\u0438\u0441\u043f\u043e\u043b\u0435.", 
         "last_name": "\u041e\u0442\u043e\u043f\u043a\u043e\u0432", 
         "name": "\u0412\u043b\u0430\u0434\u0438\u043c\u0438\u0440", 
         "other_contacts": "", 
-        "date_of_birth": "1993-11-11", 
+        "date_of_birth": "1993-11-29", 
         "skype": "gashik_3", 
         "jabber": "_smith_@khavr.com", 
         "email": "votopkov.webmaster@gmail.com"
@@ -85,10 +122,442 @@
 },
 {
     "pk": 1, 
+    "model": "hello.requests", 
+    "fields": {
+        "pub_date": "2016-01-29T19:27:15.608Z", 
+        "path": "http://127.0.0.1:8000/admin/hello/profile/", 
+        "request": "<WSGIRequest\npath:/admin/hello/profile/,\nGET:<QueryDict: {}>,\nPOST:<QueryDict: {}>,\nCOOKIES:{'csrftoken': 'eOcvHyEWb8CL3MTYLBRenT5B57nAvhZE',\n 'sessionid': '6wagou9bw72csnv7nchyv0sihl1yx71z'},\nMETA:{'CLUTTER_IM_MODULE': 'xim',\n 'COMPIZ_BIN_PATH': '/usr/bin/',\n 'COMPIZ_CONFIG_PROFILE': 'ubuntu',\n 'COMP_WORDBREAKS': ' \\t\\n\"\\'><;|&(:',\n 'CONTENT_LENGTH': '',\n 'CONTENT_TYPE': 'text/plain',\n 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-57pGUEMBLr',\n 'DEFAULTS_PATH': '/usr/share/gconf/ubuntu.default.path',\n 'DESKTOP_SESSION': 'ubuntu',\n 'DISPLAY': ':0',\n 'DJANGO_SETTINGS_MODULE': 'fortytwo_test_task.settings',\n 'GATEWAY_INTERFACE': 'CGI/1.1',\n 'GDMSESSION': 'ubuntu',\n 'GDM_LANG': 'ru',\n 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/jetbrains-pycharm.desktop',\n 'GIO_LAUNCHED_DESKTOP_FILE_PID': '4326',\n 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated',\n 'GNOME_KEYRING_CONTROL': '/run/user/1000/keyring-4n5l3F',\n 'GNOME_KEYRING_PID': '1852',\n 'GPG_AGENT_INFO': '/run/user/1000/keyring-4n5l3F/gpg:0:1',\n 'GTK_IM_MODULE': 'ibus',\n 'GTK_MODULES': 'overlay-scrollbar:unity-gtk-module',\n 'HOME': '/home/smith',\n 'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',\n 'HTTP_ACCEPT_ENCODING': 'gzip, deflate, sdch',\n 'HTTP_ACCEPT_LANGUAGE': 'ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4',\n 'HTTP_CACHE_CONTROL': 'max-age=0',\n 'HTTP_CONNECTION': 'keep-alive',\n 'HTTP_COOKIE': 'sessionid=6wagou9bw72csnv7nchyv0sihl1yx71z; csrftoken=eOcvHyEWb8CL3MTYLBRenT5B57nAvhZE',\n 'HTTP_HOST': '127.0.0.1:8000',\n 'HTTP_REFERER': 'http://127.0.0.1:8000/admin/hello/profile/add/',\n 'HTTP_UPGRADE_INSECURE_REQUESTS': '1',\n 'HTTP_USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/48.0.2564.82 Chrome/48.0.2564.82 Safari/537.36',\n 'IM_CONFIG_PHASE': '1',\n 'INSTANCE': '',\n 'JAVA_HOME': '/usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java',\n 'JOB': 'dbus',\n 'LANG': 'ru_UA.UTF-8',\n 'LANGUAGE': 'ru_UA:ru',\n 'LD_LIBRARY_PATH': '/home/smith/\\xd0\\x97\\xd0\\xb0\\xd0\\xb3\\xd1\\x80\\xd1\\x83\\xd0\\xb7\\xd0\\xba\\xd0\\xb8/pycharm-4.5.4/bin:',\n 'LESSCLOSE': '/usr/bin/lesspipe %s %s',\n 'LESSOPEN': '| /usr/bin/lesspipe %s',\n 'LOGNAME': 'smith',\n 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:',\n 'MANDATORY_PATH': '/usr/share/gconf/ubuntu.mandatory.path',\n 'NLSPATH': '/usr/dt/lib/nls/msg/%L/%N.cat',\n 'PATH': '/home/smith/.virtualenvs/42cc/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games',\n 'PATH_INFO': u'/admin/hello/profile/',\n 'PS1': '(42cc)\\\\[\\\\e]0;\\\\u@\\\\h: \\\\w\\\\a\\\\]${debian_chroot:+($debian_chroot)}\\\\u@\\\\h:\\\\w\\\\$ ',\n 'PWD': '/home/smith/test/FortyTwoTestTask-1',\n 'QT4_IM_MODULE': 'xim',\n 'QT_IM_MODULE': 'ibus',\n 'QT_QPA_PLATFORMTHEME': 'appmenu-qt5',\n 'QUERY_STRING': '',\n 'REMOTE_ADDR': '127.0.0.1',\n 'REMOTE_HOST': '',\n 'REQUEST_METHOD': 'GET',\n 'RUN_MAIN': 'true',\n 'SCRIPT_NAME': u'',\n 'SELINUX_INIT': 'YES',\n 'SERVER_NAME': 'localhost',\n 'SERVER_PORT': '8000',\n 'SERVER_PROTOCOL': 'HTTP/1.1',\n 'SERVER_SOFTWARE': 'WSGIServer/0.1 Python/2.7.6',\n 'SESSION': 'ubuntu',\n 'SESSIONTYPE': 'gnome-session',\n 'SESSION_MANAGER': 'local/smith-G31M-S2L:@/tmp/.ICE-unix/2017,unix/smith-G31M-S2L:/tmp/.ICE-unix/2017',\n 'SHELL': '/bin/bash',\n 'SHLVL': '1',\n 'SSH_AUTH_SOCK': '/run/user/1000/keyring-4n5l3F/ssh',\n 'TERM': 'xterm-256color',\n 'TEXTDOMAIN': 'im-config',\n 'TEXTDOMAINDIR': '/usr/share/locale/',\n 'TZ': 'UTC',\n 'UPSTART_SESSION': 'unix:abstract=/com/ubuntu/upstart-session/1000/1856',\n 'USER': 'smith',\n 'VIRTUALENVWRAPPER_HOOK_DIR': '/home/smith/.virtualenvs',\n 'VIRTUALENVWRAPPER_PROJECT_FILENAME': '.project',\n 'VIRTUALENVWRAPPER_SCRIPT': '/usr/local/bin/virtualenvwrapper.sh',\n 'VIRTUALENVWRAPPER_WORKON_CD': '1',\n 'VIRTUAL_ENV': '/home/smith/.virtualenvs/42cc',\n 'WORKON_HOME': '/home/smith/.virtualenvs',\n 'XAUTHORITY': '/home/smith/.Xauthority',\n 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/usr/share/upstart/xdg:/etc/xdg',\n 'XDG_CURRENT_DESKTOP': 'Unity',\n 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/',\n 'XDG_GREETER_DATA_DIR': '/var/lib/lightdm-data/smith',\n 'XDG_MENU_PREFIX': 'gnome-',\n 'XDG_RUNTIME_DIR': '/run/user/1000',\n 'XDG_SEAT': 'seat0',\n 'XDG_SEAT_PATH': '/org/freedesktop/DisplayManager/Seat0',\n 'XDG_SESSION_ID': 'c2',\n 'XDG_SESSION_PATH': '/org/freedesktop/DisplayManager/Session0',\n 'XDG_VTNR': '7',\n 'XFILESEARCHPATH': '/usr/dt/app-defaults/%L/Dt',\n 'XMODIFIERS': '@im=ibus',\n '_': '/home/smith/.virtualenvs/42cc/bin/python',\n 'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7ff8e5cec1e0>,\n 'wsgi.file_wrapper': <class wsgiref.util.FileWrapper at 0x7ff8e30a7a78>,\n 'wsgi.input': <socket._fileobject object at 0x7ff8e1c531d0>,\n 'wsgi.multiprocess': False,\n 'wsgi.multithread': True,\n 'wsgi.run_once': False,\n 'wsgi.url_scheme': 'http',\n 'wsgi.version': (1, 0)}>", 
+        "title": "Http_request"
+    }
+},
+{
+    "pk": 2, 
+    "model": "hello.requests", 
+    "fields": {
+        "pub_date": "2016-01-29T19:27:17.314Z", 
+        "path": "http://127.0.0.1:8000/admin/hello/profile/", 
+        "request": "<WSGIRequest\npath:/admin/hello/profile/,\nGET:<QueryDict: {}>,\nPOST:<QueryDict: {u'username': [u'admin'], u'csrfmiddlewaretoken': [u'eOcvHyEWb8CL3MTYLBRenT5B57nAvhZE'], u'password': [u'admin'], u'this_is_the_login_form': [u'1'], u'next': [u'/admin/hello/profile/']}>,\nCOOKIES:{'csrftoken': 'eOcvHyEWb8CL3MTYLBRenT5B57nAvhZE',\n 'sessionid': 'u7zfo5qmmqdjxmqzfxu66vvigyklnj46'},\nMETA:{'CLUTTER_IM_MODULE': 'xim',\n 'COMPIZ_BIN_PATH': '/usr/bin/',\n 'COMPIZ_CONFIG_PROFILE': 'ubuntu',\n 'COMP_WORDBREAKS': ' \\t\\n\"\\'><;|&(:',\n 'CONTENT_LENGTH': '142',\n 'CONTENT_TYPE': 'application/x-www-form-urlencoded',\n 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-57pGUEMBLr',\n 'DEFAULTS_PATH': '/usr/share/gconf/ubuntu.default.path',\n 'DESKTOP_SESSION': 'ubuntu',\n 'DISPLAY': ':0',\n 'DJANGO_SETTINGS_MODULE': 'fortytwo_test_task.settings',\n 'GATEWAY_INTERFACE': 'CGI/1.1',\n 'GDMSESSION': 'ubuntu',\n 'GDM_LANG': 'ru',\n 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/jetbrains-pycharm.desktop',\n 'GIO_LAUNCHED_DESKTOP_FILE_PID': '4326',\n 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated',\n 'GNOME_KEYRING_CONTROL': '/run/user/1000/keyring-4n5l3F',\n 'GNOME_KEYRING_PID': '1852',\n 'GPG_AGENT_INFO': '/run/user/1000/keyring-4n5l3F/gpg:0:1',\n 'GTK_IM_MODULE': 'ibus',\n 'GTK_MODULES': 'overlay-scrollbar:unity-gtk-module',\n 'HOME': '/home/smith',\n 'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',\n 'HTTP_ACCEPT_ENCODING': 'gzip, deflate',\n 'HTTP_ACCEPT_LANGUAGE': 'ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4',\n 'HTTP_CACHE_CONTROL': 'max-age=0',\n 'HTTP_CONNECTION': 'keep-alive',\n 'HTTP_COOKIE': 'csrftoken=eOcvHyEWb8CL3MTYLBRenT5B57nAvhZE; sessionid=u7zfo5qmmqdjxmqzfxu66vvigyklnj46',\n 'HTTP_HOST': '127.0.0.1:8000',\n 'HTTP_ORIGIN': 'http://127.0.0.1:8000',\n 'HTTP_REFERER': 'http://127.0.0.1:8000/admin/hello/profile/',\n 'HTTP_UPGRADE_INSECURE_REQUESTS': '1',\n 'HTTP_USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/48.0.2564.82 Chrome/48.0.2564.82 Safari/537.36',\n 'IM_CONFIG_PHASE': '1',\n 'INSTANCE': '',\n 'JAVA_HOME': '/usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java',\n 'JOB': 'dbus',\n 'LANG': 'ru_UA.UTF-8',\n 'LANGUAGE': 'ru_UA:ru',\n 'LD_LIBRARY_PATH': '/home/smith/\\xd0\\x97\\xd0\\xb0\\xd0\\xb3\\xd1\\x80\\xd1\\x83\\xd0\\xb7\\xd0\\xba\\xd0\\xb8/pycharm-4.5.4/bin:',\n 'LESSCLOSE': '/usr/bin/lesspipe %s %s',\n 'LESSOPEN': '| /usr/bin/lesspipe %s',\n 'LOGNAME': 'smith',\n 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:',\n 'MANDATORY_PATH': '/usr/share/gconf/ubuntu.mandatory.path',\n 'NLSPATH': '/usr/dt/lib/nls/msg/%L/%N.cat',\n 'PATH': '/home/smith/.virtualenvs/42cc/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games',\n 'PATH_INFO': u'/admin/hello/profile/',\n 'PS1': '(42cc)\\\\[\\\\e]0;\\\\u@\\\\h: \\\\w\\\\a\\\\]${debian_chroot:+($debian_chroot)}\\\\u@\\\\h:\\\\w\\\\$ ',\n 'PWD': '/home/smith/test/FortyTwoTestTask-1',\n 'QT4_IM_MODULE': 'xim',\n 'QT_IM_MODULE': 'ibus',\n 'QT_QPA_PLATFORMTHEME': 'appmenu-qt5',\n 'QUERY_STRING': '',\n 'REMOTE_ADDR': '127.0.0.1',\n 'REMOTE_HOST': '',\n 'REQUEST_METHOD': 'POST',\n 'RUN_MAIN': 'true',\n 'SCRIPT_NAME': u'',\n 'SELINUX_INIT': 'YES',\n 'SERVER_NAME': 'localhost',\n 'SERVER_PORT': '8000',\n 'SERVER_PROTOCOL': 'HTTP/1.1',\n 'SERVER_SOFTWARE': 'WSGIServer/0.1 Python/2.7.6',\n 'SESSION': 'ubuntu',\n 'SESSIONTYPE': 'gnome-session',\n 'SESSION_MANAGER': 'local/smith-G31M-S2L:@/tmp/.ICE-unix/2017,unix/smith-G31M-S2L:/tmp/.ICE-unix/2017',\n 'SHELL': '/bin/bash',\n 'SHLVL': '1',\n 'SSH_AUTH_SOCK': '/run/user/1000/keyring-4n5l3F/ssh',\n 'TERM': 'xterm-256color',\n 'TEXTDOMAIN': 'im-config',\n 'TEXTDOMAINDIR': '/usr/share/locale/',\n 'TZ': 'UTC',\n 'UPSTART_SESSION': 'unix:abstract=/com/ubuntu/upstart-session/1000/1856',\n 'USER': 'smith',\n 'VIRTUALENVWRAPPER_HOOK_DIR': '/home/smith/.virtualenvs',\n 'VIRTUALENVWRAPPER_PROJECT_FILENAME': '.project',\n 'VIRTUALENVWRAPPER_SCRIPT': '/usr/local/bin/virtualenvwrapper.sh',\n 'VIRTUALENVWRAPPER_WORKON_CD': '1',\n 'VIRTUAL_ENV': '/home/smith/.virtualenvs/42cc',\n 'WORKON_HOME': '/home/smith/.virtualenvs',\n 'XAUTHORITY': '/home/smith/.Xauthority',\n 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/usr/share/upstart/xdg:/etc/xdg',\n 'XDG_CURRENT_DESKTOP': 'Unity',\n 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/',\n 'XDG_GREETER_DATA_DIR': '/var/lib/lightdm-data/smith',\n 'XDG_MENU_PREFIX': 'gnome-',\n 'XDG_RUNTIME_DIR': '/run/user/1000',\n 'XDG_SEAT': 'seat0',\n 'XDG_SEAT_PATH': '/org/freedesktop/DisplayManager/Seat0',\n 'XDG_SESSION_ID': 'c2',\n 'XDG_SESSION_PATH': '/org/freedesktop/DisplayManager/Session0',\n 'XDG_VTNR': '7',\n 'XFILESEARCHPATH': '/usr/dt/app-defaults/%L/Dt',\n 'XMODIFIERS': '@im=ibus',\n '_': '/home/smith/.virtualenvs/42cc/bin/python',\n 'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7ff8e5cec1e0>,\n 'wsgi.file_wrapper': <class wsgiref.util.FileWrapper at 0x7ff8e30a7a78>,\n 'wsgi.input': <socket._fileobject object at 0x7ff8e1c534d0>,\n 'wsgi.multiprocess': False,\n 'wsgi.multithread': True,\n 'wsgi.run_once': False,\n 'wsgi.url_scheme': 'http',\n 'wsgi.version': (1, 0)}>", 
+        "title": "Http_request"
+    }
+},
+{
+    "pk": 3, 
+    "model": "hello.requests", 
+    "fields": {
+        "pub_date": "2016-01-29T19:27:18.230Z", 
+        "path": "http://127.0.0.1:8000/admin/hello/profile/", 
+        "request": "<WSGIRequest\npath:/admin/hello/profile/,\nGET:<QueryDict: {}>,\nPOST:<QueryDict: {}>,\nCOOKIES:{'csrftoken': 'fXBJqxr4fFe4uBXdNQbH7A2wsfNWe9ZA',\n 'sessionid': 'jf2kde1tp49pnctbmhlc3dkyx0uddwgz'},\nMETA:{'CLUTTER_IM_MODULE': 'xim',\n 'COMPIZ_BIN_PATH': '/usr/bin/',\n 'COMPIZ_CONFIG_PROFILE': 'ubuntu',\n 'COMP_WORDBREAKS': ' \\t\\n\"\\'><;|&(:',\n 'CONTENT_LENGTH': '',\n 'CONTENT_TYPE': 'text/plain',\n 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-57pGUEMBLr',\n 'DEFAULTS_PATH': '/usr/share/gconf/ubuntu.default.path',\n 'DESKTOP_SESSION': 'ubuntu',\n 'DISPLAY': ':0',\n 'DJANGO_SETTINGS_MODULE': 'fortytwo_test_task.settings',\n 'GATEWAY_INTERFACE': 'CGI/1.1',\n 'GDMSESSION': 'ubuntu',\n 'GDM_LANG': 'ru',\n 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/jetbrains-pycharm.desktop',\n 'GIO_LAUNCHED_DESKTOP_FILE_PID': '4326',\n 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated',\n 'GNOME_KEYRING_CONTROL': '/run/user/1000/keyring-4n5l3F',\n 'GNOME_KEYRING_PID': '1852',\n 'GPG_AGENT_INFO': '/run/user/1000/keyring-4n5l3F/gpg:0:1',\n 'GTK_IM_MODULE': 'ibus',\n 'GTK_MODULES': 'overlay-scrollbar:unity-gtk-module',\n 'HOME': '/home/smith',\n 'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',\n 'HTTP_ACCEPT_ENCODING': 'gzip, deflate, sdch',\n 'HTTP_ACCEPT_LANGUAGE': 'ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4',\n 'HTTP_CACHE_CONTROL': 'max-age=0',\n 'HTTP_CONNECTION': 'keep-alive',\n 'HTTP_COOKIE': 'csrftoken=fXBJqxr4fFe4uBXdNQbH7A2wsfNWe9ZA; sessionid=jf2kde1tp49pnctbmhlc3dkyx0uddwgz',\n 'HTTP_HOST': '127.0.0.1:8000',\n 'HTTP_REFERER': 'http://127.0.0.1:8000/admin/hello/profile/',\n 'HTTP_UPGRADE_INSECURE_REQUESTS': '1',\n 'HTTP_USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/48.0.2564.82 Chrome/48.0.2564.82 Safari/537.36',\n 'IM_CONFIG_PHASE': '1',\n 'INSTANCE': '',\n 'JAVA_HOME': '/usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java',\n 'JOB': 'dbus',\n 'LANG': 'ru_UA.UTF-8',\n 'LANGUAGE': 'ru_UA:ru',\n 'LD_LIBRARY_PATH': '/home/smith/\\xd0\\x97\\xd0\\xb0\\xd0\\xb3\\xd1\\x80\\xd1\\x83\\xd0\\xb7\\xd0\\xba\\xd0\\xb8/pycharm-4.5.4/bin:',\n 'LESSCLOSE': '/usr/bin/lesspipe %s %s',\n 'LESSOPEN': '| /usr/bin/lesspipe %s',\n 'LOGNAME': 'smith',\n 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:',\n 'MANDATORY_PATH': '/usr/share/gconf/ubuntu.mandatory.path',\n 'NLSPATH': '/usr/dt/lib/nls/msg/%L/%N.cat',\n 'PATH': '/home/smith/.virtualenvs/42cc/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games',\n 'PATH_INFO': u'/admin/hello/profile/',\n 'PS1': '(42cc)\\\\[\\\\e]0;\\\\u@\\\\h: \\\\w\\\\a\\\\]${debian_chroot:+($debian_chroot)}\\\\u@\\\\h:\\\\w\\\\$ ',\n 'PWD': '/home/smith/test/FortyTwoTestTask-1',\n 'QT4_IM_MODULE': 'xim',\n 'QT_IM_MODULE': 'ibus',\n 'QT_QPA_PLATFORMTHEME': 'appmenu-qt5',\n 'QUERY_STRING': '',\n 'REMOTE_ADDR': '127.0.0.1',\n 'REMOTE_HOST': '',\n 'REQUEST_METHOD': 'GET',\n 'RUN_MAIN': 'true',\n 'SCRIPT_NAME': u'',\n 'SELINUX_INIT': 'YES',\n 'SERVER_NAME': 'localhost',\n 'SERVER_PORT': '8000',\n 'SERVER_PROTOCOL': 'HTTP/1.1',\n 'SERVER_SOFTWARE': 'WSGIServer/0.1 Python/2.7.6',\n 'SESSION': 'ubuntu',\n 'SESSIONTYPE': 'gnome-session',\n 'SESSION_MANAGER': 'local/smith-G31M-S2L:@/tmp/.ICE-unix/2017,unix/smith-G31M-S2L:/tmp/.ICE-unix/2017',\n 'SHELL': '/bin/bash',\n 'SHLVL': '1',\n 'SSH_AUTH_SOCK': '/run/user/1000/keyring-4n5l3F/ssh',\n 'TERM': 'xterm-256color',\n 'TEXTDOMAIN': 'im-config',\n 'TEXTDOMAINDIR': '/usr/share/locale/',\n 'TZ': 'UTC',\n 'UPSTART_SESSION': 'unix:abstract=/com/ubuntu/upstart-session/1000/1856',\n 'USER': 'smith',\n 'VIRTUALENVWRAPPER_HOOK_DIR': '/home/smith/.virtualenvs',\n 'VIRTUALENVWRAPPER_PROJECT_FILENAME': '.project',\n 'VIRTUALENVWRAPPER_SCRIPT': '/usr/local/bin/virtualenvwrapper.sh',\n 'VIRTUALENVWRAPPER_WORKON_CD': '1',\n 'VIRTUAL_ENV': '/home/smith/.virtualenvs/42cc',\n 'WORKON_HOME': '/home/smith/.virtualenvs',\n 'XAUTHORITY': '/home/smith/.Xauthority',\n 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/usr/share/upstart/xdg:/etc/xdg',\n 'XDG_CURRENT_DESKTOP': 'Unity',\n 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/',\n 'XDG_GREETER_DATA_DIR': '/var/lib/lightdm-data/smith',\n 'XDG_MENU_PREFIX': 'gnome-',\n 'XDG_RUNTIME_DIR': '/run/user/1000',\n 'XDG_SEAT': 'seat0',\n 'XDG_SEAT_PATH': '/org/freedesktop/DisplayManager/Seat0',\n 'XDG_SESSION_ID': 'c2',\n 'XDG_SESSION_PATH': '/org/freedesktop/DisplayManager/Session0',\n 'XDG_VTNR': '7',\n 'XFILESEARCHPATH': '/usr/dt/app-defaults/%L/Dt',\n 'XMODIFIERS': '@im=ibus',\n '_': '/home/smith/.virtualenvs/42cc/bin/python',\n 'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7ff8e5cec1e0>,\n 'wsgi.file_wrapper': <class wsgiref.util.FileWrapper at 0x7ff8e30a7a78>,\n 'wsgi.input': <socket._fileobject object at 0x7ff8e1c535d0>,\n 'wsgi.multiprocess': False,\n 'wsgi.multithread': True,\n 'wsgi.run_once': False,\n 'wsgi.url_scheme': 'http',\n 'wsgi.version': (1, 0)}>", 
+        "title": "Http_request"
+    }
+},
+{
+    "pk": 4, 
+    "model": "hello.requests", 
+    "fields": {
+        "pub_date": "2016-01-29T19:27:18.415Z", 
+        "path": "http://127.0.0.1:8000/admin/jsi18n/", 
+        "request": "<WSGIRequest\npath:/admin/jsi18n/,\nGET:<QueryDict: {}>,\nPOST:<QueryDict: {}>,\nCOOKIES:{'csrftoken': 'fXBJqxr4fFe4uBXdNQbH7A2wsfNWe9ZA',\n 'sessionid': 'jf2kde1tp49pnctbmhlc3dkyx0uddwgz'},\nMETA:{'CLUTTER_IM_MODULE': 'xim',\n 'COMPIZ_BIN_PATH': '/usr/bin/',\n 'COMPIZ_CONFIG_PROFILE': 'ubuntu',\n 'COMP_WORDBREAKS': ' \\t\\n\"\\'><;|&(:',\n 'CONTENT_LENGTH': '',\n 'CONTENT_TYPE': 'text/plain',\n 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-57pGUEMBLr',\n 'DEFAULTS_PATH': '/usr/share/gconf/ubuntu.default.path',\n 'DESKTOP_SESSION': 'ubuntu',\n 'DISPLAY': ':0',\n 'DJANGO_SETTINGS_MODULE': 'fortytwo_test_task.settings',\n 'GATEWAY_INTERFACE': 'CGI/1.1',\n 'GDMSESSION': 'ubuntu',\n 'GDM_LANG': 'ru',\n 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/jetbrains-pycharm.desktop',\n 'GIO_LAUNCHED_DESKTOP_FILE_PID': '4326',\n 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated',\n 'GNOME_KEYRING_CONTROL': '/run/user/1000/keyring-4n5l3F',\n 'GNOME_KEYRING_PID': '1852',\n 'GPG_AGENT_INFO': '/run/user/1000/keyring-4n5l3F/gpg:0:1',\n 'GTK_IM_MODULE': 'ibus',\n 'GTK_MODULES': 'overlay-scrollbar:unity-gtk-module',\n 'HOME': '/home/smith',\n 'HTTP_ACCEPT': '*/*',\n 'HTTP_ACCEPT_ENCODING': 'gzip, deflate, sdch',\n 'HTTP_ACCEPT_LANGUAGE': 'ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4',\n 'HTTP_CONNECTION': 'keep-alive',\n 'HTTP_COOKIE': 'sessionid=jf2kde1tp49pnctbmhlc3dkyx0uddwgz; csrftoken=fXBJqxr4fFe4uBXdNQbH7A2wsfNWe9ZA',\n 'HTTP_HOST': '127.0.0.1:8000',\n 'HTTP_REFERER': 'http://127.0.0.1:8000/admin/hello/profile/',\n 'HTTP_USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/48.0.2564.82 Chrome/48.0.2564.82 Safari/537.36',\n 'IM_CONFIG_PHASE': '1',\n 'INSTANCE': '',\n 'JAVA_HOME': '/usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java',\n 'JOB': 'dbus',\n 'LANG': 'ru_UA.UTF-8',\n 'LANGUAGE': 'ru_UA:ru',\n 'LD_LIBRARY_PATH': '/home/smith/\\xd0\\x97\\xd0\\xb0\\xd0\\xb3\\xd1\\x80\\xd1\\x83\\xd0\\xb7\\xd0\\xba\\xd0\\xb8/pycharm-4.5.4/bin:',\n 'LESSCLOSE': '/usr/bin/lesspipe %s %s',\n 'LESSOPEN': '| /usr/bin/lesspipe %s',\n 'LOGNAME': 'smith',\n 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:',\n 'MANDATORY_PATH': '/usr/share/gconf/ubuntu.mandatory.path',\n 'NLSPATH': '/usr/dt/lib/nls/msg/%L/%N.cat',\n 'PATH': '/home/smith/.virtualenvs/42cc/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games',\n 'PATH_INFO': u'/admin/jsi18n/',\n 'PS1': '(42cc)\\\\[\\\\e]0;\\\\u@\\\\h: \\\\w\\\\a\\\\]${debian_chroot:+($debian_chroot)}\\\\u@\\\\h:\\\\w\\\\$ ',\n 'PWD': '/home/smith/test/FortyTwoTestTask-1',\n 'QT4_IM_MODULE': 'xim',\n 'QT_IM_MODULE': 'ibus',\n 'QT_QPA_PLATFORMTHEME': 'appmenu-qt5',\n 'QUERY_STRING': '',\n 'REMOTE_ADDR': '127.0.0.1',\n 'REMOTE_HOST': '',\n 'REQUEST_METHOD': 'GET',\n 'RUN_MAIN': 'true',\n 'SCRIPT_NAME': u'',\n 'SELINUX_INIT': 'YES',\n 'SERVER_NAME': 'localhost',\n 'SERVER_PORT': '8000',\n 'SERVER_PROTOCOL': 'HTTP/1.1',\n 'SERVER_SOFTWARE': 'WSGIServer/0.1 Python/2.7.6',\n 'SESSION': 'ubuntu',\n 'SESSIONTYPE': 'gnome-session',\n 'SESSION_MANAGER': 'local/smith-G31M-S2L:@/tmp/.ICE-unix/2017,unix/smith-G31M-S2L:/tmp/.ICE-unix/2017',\n 'SHELL': '/bin/bash',\n 'SHLVL': '1',\n 'SSH_AUTH_SOCK': '/run/user/1000/keyring-4n5l3F/ssh',\n 'TERM': 'xterm-256color',\n 'TEXTDOMAIN': 'im-config',\n 'TEXTDOMAINDIR': '/usr/share/locale/',\n 'TZ': 'UTC',\n 'UPSTART_SESSION': 'unix:abstract=/com/ubuntu/upstart-session/1000/1856',\n 'USER': 'smith',\n 'VIRTUALENVWRAPPER_HOOK_DIR': '/home/smith/.virtualenvs',\n 'VIRTUALENVWRAPPER_PROJECT_FILENAME': '.project',\n 'VIRTUALENVWRAPPER_SCRIPT': '/usr/local/bin/virtualenvwrapper.sh',\n 'VIRTUALENVWRAPPER_WORKON_CD': '1',\n 'VIRTUAL_ENV': '/home/smith/.virtualenvs/42cc',\n 'WORKON_HOME': '/home/smith/.virtualenvs',\n 'XAUTHORITY': '/home/smith/.Xauthority',\n 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/usr/share/upstart/xdg:/etc/xdg',\n 'XDG_CURRENT_DESKTOP': 'Unity',\n 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/',\n 'XDG_GREETER_DATA_DIR': '/var/lib/lightdm-data/smith',\n 'XDG_MENU_PREFIX': 'gnome-',\n 'XDG_RUNTIME_DIR': '/run/user/1000',\n 'XDG_SEAT': 'seat0',\n 'XDG_SEAT_PATH': '/org/freedesktop/DisplayManager/Seat0',\n 'XDG_SESSION_ID': 'c2',\n 'XDG_SESSION_PATH': '/org/freedesktop/DisplayManager/Session0',\n 'XDG_VTNR': '7',\n 'XFILESEARCHPATH': '/usr/dt/app-defaults/%L/Dt',\n 'XMODIFIERS': '@im=ibus',\n '_': '/home/smith/.virtualenvs/42cc/bin/python',\n 'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7ff8e5cec1e0>,\n 'wsgi.file_wrapper': <class wsgiref.util.FileWrapper at 0x7ff8e30a7a78>,\n 'wsgi.input': <socket._fileobject object at 0x7ff8e1c536d0>,\n 'wsgi.multiprocess': False,\n 'wsgi.multithread': True,\n 'wsgi.run_once': False,\n 'wsgi.url_scheme': 'http',\n 'wsgi.version': (1, 0)}>", 
+        "title": "Http_request"
+    }
+},
+{
+    "pk": 5, 
+    "model": "hello.requests", 
+    "fields": {
+        "pub_date": "2016-01-29T19:27:20.001Z", 
+        "path": "http://127.0.0.1:8000/admin/hello/profile/add/", 
+        "request": "<WSGIRequest\npath:/admin/hello/profile/add/,\nGET:<QueryDict: {}>,\nPOST:<QueryDict: {}>,\nCOOKIES:{'csrftoken': 'fXBJqxr4fFe4uBXdNQbH7A2wsfNWe9ZA',\n 'sessionid': 'jf2kde1tp49pnctbmhlc3dkyx0uddwgz'},\nMETA:{'CLUTTER_IM_MODULE': 'xim',\n 'COMPIZ_BIN_PATH': '/usr/bin/',\n 'COMPIZ_CONFIG_PROFILE': 'ubuntu',\n 'COMP_WORDBREAKS': ' \\t\\n\"\\'><;|&(:',\n 'CONTENT_LENGTH': '',\n 'CONTENT_TYPE': 'text/plain',\n 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-57pGUEMBLr',\n 'DEFAULTS_PATH': '/usr/share/gconf/ubuntu.default.path',\n 'DESKTOP_SESSION': 'ubuntu',\n 'DISPLAY': ':0',\n 'DJANGO_SETTINGS_MODULE': 'fortytwo_test_task.settings',\n 'GATEWAY_INTERFACE': 'CGI/1.1',\n 'GDMSESSION': 'ubuntu',\n 'GDM_LANG': 'ru',\n 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/jetbrains-pycharm.desktop',\n 'GIO_LAUNCHED_DESKTOP_FILE_PID': '4326',\n 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated',\n 'GNOME_KEYRING_CONTROL': '/run/user/1000/keyring-4n5l3F',\n 'GNOME_KEYRING_PID': '1852',\n 'GPG_AGENT_INFO': '/run/user/1000/keyring-4n5l3F/gpg:0:1',\n 'GTK_IM_MODULE': 'ibus',\n 'GTK_MODULES': 'overlay-scrollbar:unity-gtk-module',\n 'HOME': '/home/smith',\n 'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',\n 'HTTP_ACCEPT_ENCODING': 'gzip, deflate, sdch',\n 'HTTP_ACCEPT_LANGUAGE': 'ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4',\n 'HTTP_CONNECTION': 'keep-alive',\n 'HTTP_COOKIE': 'sessionid=jf2kde1tp49pnctbmhlc3dkyx0uddwgz; csrftoken=fXBJqxr4fFe4uBXdNQbH7A2wsfNWe9ZA',\n 'HTTP_HOST': '127.0.0.1:8000',\n 'HTTP_REFERER': 'http://127.0.0.1:8000/admin/hello/profile/',\n 'HTTP_UPGRADE_INSECURE_REQUESTS': '1',\n 'HTTP_USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/48.0.2564.82 Chrome/48.0.2564.82 Safari/537.36',\n 'IM_CONFIG_PHASE': '1',\n 'INSTANCE': '',\n 'JAVA_HOME': '/usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java',\n 'JOB': 'dbus',\n 'LANG': 'ru_UA.UTF-8',\n 'LANGUAGE': 'ru_UA:ru',\n 'LD_LIBRARY_PATH': '/home/smith/\\xd0\\x97\\xd0\\xb0\\xd0\\xb3\\xd1\\x80\\xd1\\x83\\xd0\\xb7\\xd0\\xba\\xd0\\xb8/pycharm-4.5.4/bin:',\n 'LESSCLOSE': '/usr/bin/lesspipe %s %s',\n 'LESSOPEN': '| /usr/bin/lesspipe %s',\n 'LOGNAME': 'smith',\n 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:',\n 'MANDATORY_PATH': '/usr/share/gconf/ubuntu.mandatory.path',\n 'NLSPATH': '/usr/dt/lib/nls/msg/%L/%N.cat',\n 'PATH': '/home/smith/.virtualenvs/42cc/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games',\n 'PATH_INFO': u'/admin/hello/profile/add/',\n 'PS1': '(42cc)\\\\[\\\\e]0;\\\\u@\\\\h: \\\\w\\\\a\\\\]${debian_chroot:+($debian_chroot)}\\\\u@\\\\h:\\\\w\\\\$ ',\n 'PWD': '/home/smith/test/FortyTwoTestTask-1',\n 'QT4_IM_MODULE': 'xim',\n 'QT_IM_MODULE': 'ibus',\n 'QT_QPA_PLATFORMTHEME': 'appmenu-qt5',\n 'QUERY_STRING': '',\n 'REMOTE_ADDR': '127.0.0.1',\n 'REMOTE_HOST': '',\n 'REQUEST_METHOD': 'GET',\n 'RUN_MAIN': 'true',\n 'SCRIPT_NAME': u'',\n 'SELINUX_INIT': 'YES',\n 'SERVER_NAME': 'localhost',\n 'SERVER_PORT': '8000',\n 'SERVER_PROTOCOL': 'HTTP/1.1',\n 'SERVER_SOFTWARE': 'WSGIServer/0.1 Python/2.7.6',\n 'SESSION': 'ubuntu',\n 'SESSIONTYPE': 'gnome-session',\n 'SESSION_MANAGER': 'local/smith-G31M-S2L:@/tmp/.ICE-unix/2017,unix/smith-G31M-S2L:/tmp/.ICE-unix/2017',\n 'SHELL': '/bin/bash',\n 'SHLVL': '1',\n 'SSH_AUTH_SOCK': '/run/user/1000/keyring-4n5l3F/ssh',\n 'TERM': 'xterm-256color',\n 'TEXTDOMAIN': 'im-config',\n 'TEXTDOMAINDIR': '/usr/share/locale/',\n 'TZ': 'UTC',\n 'UPSTART_SESSION': 'unix:abstract=/com/ubuntu/upstart-session/1000/1856',\n 'USER': 'smith',\n 'VIRTUALENVWRAPPER_HOOK_DIR': '/home/smith/.virtualenvs',\n 'VIRTUALENVWRAPPER_PROJECT_FILENAME': '.project',\n 'VIRTUALENVWRAPPER_SCRIPT': '/usr/local/bin/virtualenvwrapper.sh',\n 'VIRTUALENVWRAPPER_WORKON_CD': '1',\n 'VIRTUAL_ENV': '/home/smith/.virtualenvs/42cc',\n 'WORKON_HOME': '/home/smith/.virtualenvs',\n 'XAUTHORITY': '/home/smith/.Xauthority',\n 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/usr/share/upstart/xdg:/etc/xdg',\n 'XDG_CURRENT_DESKTOP': 'Unity',\n 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/',\n 'XDG_GREETER_DATA_DIR': '/var/lib/lightdm-data/smith',\n 'XDG_MENU_PREFIX': 'gnome-',\n 'XDG_RUNTIME_DIR': '/run/user/1000',\n 'XDG_SEAT': 'seat0',\n 'XDG_SEAT_PATH': '/org/freedesktop/DisplayManager/Seat0',\n 'XDG_SESSION_ID': 'c2',\n 'XDG_SESSION_PATH': '/org/freedesktop/DisplayManager/Session0',\n 'XDG_VTNR': '7',\n 'XFILESEARCHPATH': '/usr/dt/app-defaults/%L/Dt',\n 'XMODIFIERS': '@im=ibus',\n '_': '/home/smith/.virtualenvs/42cc/bin/python',\n 'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7ff8e5cec1e0>,\n 'wsgi.file_wrapper': <class wsgiref.util.FileWrapper at 0x7ff8e30a7a78>,\n 'wsgi.input': <socket._fileobject object at 0x7ff8e1c53750>,\n 'wsgi.multiprocess': False,\n 'wsgi.multithread': True,\n 'wsgi.run_once': False,\n 'wsgi.url_scheme': 'http',\n 'wsgi.version': (1, 0)}>", 
+        "title": "Http_request"
+    }
+},
+{
+    "pk": 6, 
+    "model": "hello.requests", 
+    "fields": {
+        "pub_date": "2016-01-29T19:27:20.204Z", 
+        "path": "http://127.0.0.1:8000/admin/jsi18n/", 
+        "request": "<WSGIRequest\npath:/admin/jsi18n/,\nGET:<QueryDict: {}>,\nPOST:<QueryDict: {}>,\nCOOKIES:{'csrftoken': 'fXBJqxr4fFe4uBXdNQbH7A2wsfNWe9ZA',\n 'sessionid': 'jf2kde1tp49pnctbmhlc3dkyx0uddwgz'},\nMETA:{'CLUTTER_IM_MODULE': 'xim',\n 'COMPIZ_BIN_PATH': '/usr/bin/',\n 'COMPIZ_CONFIG_PROFILE': 'ubuntu',\n 'COMP_WORDBREAKS': ' \\t\\n\"\\'><;|&(:',\n 'CONTENT_LENGTH': '',\n 'CONTENT_TYPE': 'text/plain',\n 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-57pGUEMBLr',\n 'DEFAULTS_PATH': '/usr/share/gconf/ubuntu.default.path',\n 'DESKTOP_SESSION': 'ubuntu',\n 'DISPLAY': ':0',\n 'DJANGO_SETTINGS_MODULE': 'fortytwo_test_task.settings',\n 'GATEWAY_INTERFACE': 'CGI/1.1',\n 'GDMSESSION': 'ubuntu',\n 'GDM_LANG': 'ru',\n 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/jetbrains-pycharm.desktop',\n 'GIO_LAUNCHED_DESKTOP_FILE_PID': '4326',\n 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated',\n 'GNOME_KEYRING_CONTROL': '/run/user/1000/keyring-4n5l3F',\n 'GNOME_KEYRING_PID': '1852',\n 'GPG_AGENT_INFO': '/run/user/1000/keyring-4n5l3F/gpg:0:1',\n 'GTK_IM_MODULE': 'ibus',\n 'GTK_MODULES': 'overlay-scrollbar:unity-gtk-module',\n 'HOME': '/home/smith',\n 'HTTP_ACCEPT': '*/*',\n 'HTTP_ACCEPT_ENCODING': 'gzip, deflate, sdch',\n 'HTTP_ACCEPT_LANGUAGE': 'ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4',\n 'HTTP_CONNECTION': 'keep-alive',\n 'HTTP_COOKIE': 'sessionid=jf2kde1tp49pnctbmhlc3dkyx0uddwgz; csrftoken=fXBJqxr4fFe4uBXdNQbH7A2wsfNWe9ZA',\n 'HTTP_HOST': '127.0.0.1:8000',\n 'HTTP_REFERER': 'http://127.0.0.1:8000/admin/hello/profile/add/',\n 'HTTP_USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/48.0.2564.82 Chrome/48.0.2564.82 Safari/537.36',\n 'IM_CONFIG_PHASE': '1',\n 'INSTANCE': '',\n 'JAVA_HOME': '/usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java',\n 'JOB': 'dbus',\n 'LANG': 'ru_UA.UTF-8',\n 'LANGUAGE': 'ru_UA:ru',\n 'LD_LIBRARY_PATH': '/home/smith/\\xd0\\x97\\xd0\\xb0\\xd0\\xb3\\xd1\\x80\\xd1\\x83\\xd0\\xb7\\xd0\\xba\\xd0\\xb8/pycharm-4.5.4/bin:',\n 'LESSCLOSE': '/usr/bin/lesspipe %s %s',\n 'LESSOPEN': '| /usr/bin/lesspipe %s',\n 'LOGNAME': 'smith',\n 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:',\n 'MANDATORY_PATH': '/usr/share/gconf/ubuntu.mandatory.path',\n 'NLSPATH': '/usr/dt/lib/nls/msg/%L/%N.cat',\n 'PATH': '/home/smith/.virtualenvs/42cc/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games',\n 'PATH_INFO': u'/admin/jsi18n/',\n 'PS1': '(42cc)\\\\[\\\\e]0;\\\\u@\\\\h: \\\\w\\\\a\\\\]${debian_chroot:+($debian_chroot)}\\\\u@\\\\h:\\\\w\\\\$ ',\n 'PWD': '/home/smith/test/FortyTwoTestTask-1',\n 'QT4_IM_MODULE': 'xim',\n 'QT_IM_MODULE': 'ibus',\n 'QT_QPA_PLATFORMTHEME': 'appmenu-qt5',\n 'QUERY_STRING': '',\n 'REMOTE_ADDR': '127.0.0.1',\n 'REMOTE_HOST': '',\n 'REQUEST_METHOD': 'GET',\n 'RUN_MAIN': 'true',\n 'SCRIPT_NAME': u'',\n 'SELINUX_INIT': 'YES',\n 'SERVER_NAME': 'localhost',\n 'SERVER_PORT': '8000',\n 'SERVER_PROTOCOL': 'HTTP/1.1',\n 'SERVER_SOFTWARE': 'WSGIServer/0.1 Python/2.7.6',\n 'SESSION': 'ubuntu',\n 'SESSIONTYPE': 'gnome-session',\n 'SESSION_MANAGER': 'local/smith-G31M-S2L:@/tmp/.ICE-unix/2017,unix/smith-G31M-S2L:/tmp/.ICE-unix/2017',\n 'SHELL': '/bin/bash',\n 'SHLVL': '1',\n 'SSH_AUTH_SOCK': '/run/user/1000/keyring-4n5l3F/ssh',\n 'TERM': 'xterm-256color',\n 'TEXTDOMAIN': 'im-config',\n 'TEXTDOMAINDIR': '/usr/share/locale/',\n 'TZ': 'UTC',\n 'UPSTART_SESSION': 'unix:abstract=/com/ubuntu/upstart-session/1000/1856',\n 'USER': 'smith',\n 'VIRTUALENVWRAPPER_HOOK_DIR': '/home/smith/.virtualenvs',\n 'VIRTUALENVWRAPPER_PROJECT_FILENAME': '.project',\n 'VIRTUALENVWRAPPER_SCRIPT': '/usr/local/bin/virtualenvwrapper.sh',\n 'VIRTUALENVWRAPPER_WORKON_CD': '1',\n 'VIRTUAL_ENV': '/home/smith/.virtualenvs/42cc',\n 'WORKON_HOME': '/home/smith/.virtualenvs',\n 'XAUTHORITY': '/home/smith/.Xauthority',\n 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/usr/share/upstart/xdg:/etc/xdg',\n 'XDG_CURRENT_DESKTOP': 'Unity',\n 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/',\n 'XDG_GREETER_DATA_DIR': '/var/lib/lightdm-data/smith',\n 'XDG_MENU_PREFIX': 'gnome-',\n 'XDG_RUNTIME_DIR': '/run/user/1000',\n 'XDG_SEAT': 'seat0',\n 'XDG_SEAT_PATH': '/org/freedesktop/DisplayManager/Seat0',\n 'XDG_SESSION_ID': 'c2',\n 'XDG_SESSION_PATH': '/org/freedesktop/DisplayManager/Session0',\n 'XDG_VTNR': '7',\n 'XFILESEARCHPATH': '/usr/dt/app-defaults/%L/Dt',\n 'XMODIFIERS': '@im=ibus',\n '_': '/home/smith/.virtualenvs/42cc/bin/python',\n 'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7ff8e5cec1e0>,\n 'wsgi.file_wrapper': <class wsgiref.util.FileWrapper at 0x7ff8e30a7a78>,\n 'wsgi.input': <socket._fileobject object at 0x7ff8e0193550>,\n 'wsgi.multiprocess': False,\n 'wsgi.multithread': True,\n 'wsgi.run_once': False,\n 'wsgi.url_scheme': 'http',\n 'wsgi.version': (1, 0)}>", 
+        "title": "Http_request"
+    }
+},
+{
+    "pk": 7, 
+    "model": "hello.requests", 
+    "fields": {
+        "pub_date": "2016-01-29T19:27:56.827Z", 
+        "path": "http://127.0.0.1:8000/admin/hello/profile/add/", 
+        "request": "<WSGIRequest\npath:/admin/hello/profile/add/,\nGET:<QueryDict: {}>,\nPOST:<QueryDict: {u'bio': [u'\\u041c\\u0435\\u043d\\u044f \\u0437\\u043e\\u0432\\u0443\\u0442 \\u0412\\u043b\\u0430\\u0434\\u0438\\u043c\\u0438\\u0440 \\u041e\\u0442\\u043e\\u043f\\u043a\\u043e\\u0432. \\u0423\\u0447\\u0443\\u0441\\u044c \\u0432 \\u0410\\u043a\\u0430\\u0434\\u0435\\u043c\\u0438\\u0438 \\u0430\\u0434\\u0432\\u043e\\u043a\\u0430\\u0442\\u0443\\u0440\\u044b \\u0423\\u043a\\u0440\\u0430\\u0438\\u043d\\u044b. \\u0416\\u0438\\u0432\\u0443 \\u0432 \\u0411\\u043e\\u0440\\u0438\\u0441\\u043f\\u043e\\u043b\\u0435.'], u'last_name': [u'\\u041e\\u0442\\u043e\\u043f\\u043a\\u043e\\u0432'], u'name': [u'\\u0412\\u043b\\u0430\\u0434\\u0438\\u043c\\u0438\\u0440'], u'other_contacts': [u''], u'date_of_birth': [u'1993-11-29'], u'skype': [u'gashik_3'], u'csrfmiddlewaretoken': [u'fXBJqxr4fFe4uBXdNQbH7A2wsfNWe9ZA'], u'jabber': [u'_smith_@khavr.com'], u'email': [u'votopkov.webmaster@gmail.com'], u'_save': [u'Save']}>,\nCOOKIES:{'csrftoken': 'fXBJqxr4fFe4uBXdNQbH7A2wsfNWe9ZA',\n 'sessionid': 'jf2kde1tp49pnctbmhlc3dkyx0uddwgz'},\nMETA:{'CLUTTER_IM_MODULE': 'xim',\n 'COMPIZ_BIN_PATH': '/usr/bin/',\n 'COMPIZ_CONFIG_PROFILE': 'ubuntu',\n 'COMP_WORDBREAKS': ' \\t\\n\"\\'><;|&(:',\n 'CONTENT_LENGTH': '1278',\n 'CONTENT_TYPE': 'multipart/form-data; boundary=----WebKitFormBoundaryepCN3PaFDxmV2q3w',\n 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-57pGUEMBLr',\n 'DEFAULTS_PATH': '/usr/share/gconf/ubuntu.default.path',\n 'DESKTOP_SESSION': 'ubuntu',\n 'DISPLAY': ':0',\n 'DJANGO_SETTINGS_MODULE': 'fortytwo_test_task.settings',\n 'GATEWAY_INTERFACE': 'CGI/1.1',\n 'GDMSESSION': 'ubuntu',\n 'GDM_LANG': 'ru',\n 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/jetbrains-pycharm.desktop',\n 'GIO_LAUNCHED_DESKTOP_FILE_PID': '4326',\n 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated',\n 'GNOME_KEYRING_CONTROL': '/run/user/1000/keyring-4n5l3F',\n 'GNOME_KEYRING_PID': '1852',\n 'GPG_AGENT_INFO': '/run/user/1000/keyring-4n5l3F/gpg:0:1',\n 'GTK_IM_MODULE': 'ibus',\n 'GTK_MODULES': 'overlay-scrollbar:unity-gtk-module',\n 'HOME': '/home/smith',\n 'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',\n 'HTTP_ACCEPT_ENCODING': 'gzip, deflate',\n 'HTTP_ACCEPT_LANGUAGE': 'ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4',\n 'HTTP_CACHE_CONTROL': 'max-age=0',\n 'HTTP_CONNECTION': 'keep-alive',\n 'HTTP_COOKIE': 'sessionid=jf2kde1tp49pnctbmhlc3dkyx0uddwgz; csrftoken=fXBJqxr4fFe4uBXdNQbH7A2wsfNWe9ZA',\n 'HTTP_HOST': '127.0.0.1:8000',\n 'HTTP_ORIGIN': 'http://127.0.0.1:8000',\n 'HTTP_REFERER': 'http://127.0.0.1:8000/admin/hello/profile/add/',\n 'HTTP_UPGRADE_INSECURE_REQUESTS': '1',\n 'HTTP_USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/48.0.2564.82 Chrome/48.0.2564.82 Safari/537.36',\n 'IM_CONFIG_PHASE': '1',\n 'INSTANCE': '',\n 'JAVA_HOME': '/usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java',\n 'JOB': 'dbus',\n 'LANG': 'ru_UA.UTF-8',\n 'LANGUAGE': 'ru_UA:ru',\n 'LD_LIBRARY_PATH': '/home/smith/\\xd0\\x97\\xd0\\xb0\\xd0\\xb3\\xd1\\x80\\xd1\\x83\\xd0\\xb7\\xd0\\xba\\xd0\\xb8/pycharm-4.5.4/bin:',\n 'LESSCLOSE': '/usr/bin/lesspipe %s %s',\n 'LESSOPEN': '| /usr/bin/lesspipe %s',\n 'LOGNAME': 'smith',\n 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:',\n 'MANDATORY_PATH': '/usr/share/gconf/ubuntu.mandatory.path',\n 'NLSPATH': '/usr/dt/lib/nls/msg/%L/%N.cat',\n 'PATH': '/home/smith/.virtualenvs/42cc/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games',\n 'PATH_INFO': u'/admin/hello/profile/add/',\n 'PS1': '(42cc)\\\\[\\\\e]0;\\\\u@\\\\h: \\\\w\\\\a\\\\]${debian_chroot:+($debian_chroot)}\\\\u@\\\\h:\\\\w\\\\$ ',\n 'PWD': '/home/smith/test/FortyTwoTestTask-1',\n 'QT4_IM_MODULE': 'xim',\n 'QT_IM_MODULE': 'ibus',\n 'QT_QPA_PLATFORMTHEME': 'appmenu-qt5',\n 'QUERY_STRING': '',\n 'REMOTE_ADDR': '127.0.0.1',\n 'REMOTE_HOST': '',\n 'REQUEST_METHOD': 'POST',\n 'RUN_MAIN': 'true',\n 'SCRIPT_NAME': u'',\n 'SELINUX_INIT': 'YES',\n 'SERVER_NAME': 'localhost',\n 'SERVER_PORT': '8000',\n 'SERVER_PROTOCOL': 'HTTP/1.1',\n 'SERVER_SOFTWARE': 'WSGIServer/0.1 Python/2.7.6',\n 'SESSION': 'ubuntu',\n 'SESSIONTYPE': 'gnome-session',\n 'SESSION_MANAGER': 'local/smith-G31M-S2L:@/tmp/.ICE-unix/2017,unix/smith-G31M-S2L:/tmp/.ICE-unix/2017',\n 'SHELL': '/bin/bash',\n 'SHLVL': '1',\n 'SSH_AUTH_SOCK': '/run/user/1000/keyring-4n5l3F/ssh',\n 'TERM': 'xterm-256color',\n 'TEXTDOMAIN': 'im-config',\n 'TEXTDOMAINDIR': '/usr/share/locale/',\n 'TZ': 'UTC',\n 'UPSTART_SESSION': 'unix:abstract=/com/ubuntu/upstart-session/1000/1856',\n 'USER': 'smith',\n 'VIRTUALENVWRAPPER_HOOK_DIR': '/home/smith/.virtualenvs',\n 'VIRTUALENVWRAPPER_PROJECT_FILENAME': '.project',\n 'VIRTUALENVWRAPPER_SCRIPT': '/usr/local/bin/virtualenvwrapper.sh',\n 'VIRTUALENVWRAPPER_WORKON_CD': '1',\n 'VIRTUAL_ENV': '/home/smith/.virtualenvs/42cc',\n 'WORKON_HOME': '/home/smith/.virtualenvs',\n 'XAUTHORITY': '/home/smith/.Xauthority',\n 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/usr/share/upstart/xdg:/etc/xdg',\n 'XDG_CURRENT_DESKTOP': 'Unity',\n 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/',\n 'XDG_GREETER_DATA_DIR': '/var/lib/lightdm-data/smith',\n 'XDG_MENU_PREFIX': 'gnome-',\n 'XDG_RUNTIME_DIR': '/run/user/1000',\n 'XDG_SEAT': 'seat0',\n 'XDG_SEAT_PATH': '/org/freedesktop/DisplayManager/Seat0',\n 'XDG_SESSION_ID': 'c2',\n 'XDG_SESSION_PATH': '/org/freedesktop/DisplayManager/Session0',\n 'XDG_VTNR': '7',\n 'XFILESEARCHPATH': '/usr/dt/app-defaults/%L/Dt',\n 'XMODIFIERS': '@im=ibus',\n '_': '/home/smith/.virtualenvs/42cc/bin/python',\n 'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7ff8e5cec1e0>,\n 'wsgi.file_wrapper': <class wsgiref.util.FileWrapper at 0x7ff8e30a7a78>,\n 'wsgi.input': <socket._fileobject object at 0x7ff8e1c538d0>,\n 'wsgi.multiprocess': False,\n 'wsgi.multithread': True,\n 'wsgi.run_once': False,\n 'wsgi.url_scheme': 'http',\n 'wsgi.version': (1, 0)}>", 
+        "title": "Http_request"
+    }
+},
+{
+    "pk": 8, 
+    "model": "hello.requests", 
+    "fields": {
+        "pub_date": "2016-01-29T19:27:57.193Z", 
+        "path": "http://127.0.0.1:8000/admin/hello/profile/", 
+        "request": "<WSGIRequest\npath:/admin/hello/profile/,\nGET:<QueryDict: {}>,\nPOST:<QueryDict: {}>,\nCOOKIES:{'csrftoken': 'fXBJqxr4fFe4uBXdNQbH7A2wsfNWe9ZA',\n 'messages': '0a1d2164ca895270be500e5acd84e832761f5d12$[[\"__json_message\",0,25,\"The Profile \\\\\"\\\\u041e\\\\u0442\\\\u043e\\\\u043f\\\\u043a\\\\u043e\\\\u0432\\\\\" was added successfully.\"]]',\n 'sessionid': 'jf2kde1tp49pnctbmhlc3dkyx0uddwgz'},\nMETA:{'CLUTTER_IM_MODULE': 'xim',\n 'COMPIZ_BIN_PATH': '/usr/bin/',\n 'COMPIZ_CONFIG_PROFILE': 'ubuntu',\n 'COMP_WORDBREAKS': ' \\t\\n\"\\'><;|&(:',\n 'CONTENT_LENGTH': '',\n 'CONTENT_TYPE': 'text/plain',\n 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-57pGUEMBLr',\n 'DEFAULTS_PATH': '/usr/share/gconf/ubuntu.default.path',\n 'DESKTOP_SESSION': 'ubuntu',\n 'DISPLAY': ':0',\n 'DJANGO_SETTINGS_MODULE': 'fortytwo_test_task.settings',\n 'GATEWAY_INTERFACE': 'CGI/1.1',\n 'GDMSESSION': 'ubuntu',\n 'GDM_LANG': 'ru',\n 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/jetbrains-pycharm.desktop',\n 'GIO_LAUNCHED_DESKTOP_FILE_PID': '4326',\n 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated',\n 'GNOME_KEYRING_CONTROL': '/run/user/1000/keyring-4n5l3F',\n 'GNOME_KEYRING_PID': '1852',\n 'GPG_AGENT_INFO': '/run/user/1000/keyring-4n5l3F/gpg:0:1',\n 'GTK_IM_MODULE': 'ibus',\n 'GTK_MODULES': 'overlay-scrollbar:unity-gtk-module',\n 'HOME': '/home/smith',\n 'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',\n 'HTTP_ACCEPT_ENCODING': 'gzip, deflate, sdch',\n 'HTTP_ACCEPT_LANGUAGE': 'ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4',\n 'HTTP_CACHE_CONTROL': 'max-age=0',\n 'HTTP_CONNECTION': 'keep-alive',\n 'HTTP_COOKIE': 'sessionid=jf2kde1tp49pnctbmhlc3dkyx0uddwgz; csrftoken=fXBJqxr4fFe4uBXdNQbH7A2wsfNWe9ZA; messages=\"0a1d2164ca895270be500e5acd84e832761f5d12$[[\\\\\"__json_message\\\\\"\\\\0540\\\\05425\\\\054\\\\\"The Profile \\\\\\\\\\\\\"\\\\\\\\u041e\\\\\\\\u0442\\\\\\\\u043e\\\\\\\\u043f\\\\\\\\u043a\\\\\\\\u043e\\\\\\\\u0432\\\\\\\\\\\\\" was added successfully.\\\\\"]]\"',\n 'HTTP_HOST': '127.0.0.1:8000',\n 'HTTP_REFERER': 'http://127.0.0.1:8000/admin/hello/profile/add/',\n 'HTTP_UPGRADE_INSECURE_REQUESTS': '1',\n 'HTTP_USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/48.0.2564.82 Chrome/48.0.2564.82 Safari/537.36',\n 'IM_CONFIG_PHASE': '1',\n 'INSTANCE': '',\n 'JAVA_HOME': '/usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java',\n 'JOB': 'dbus',\n 'LANG': 'ru_UA.UTF-8',\n 'LANGUAGE': 'ru_UA:ru',\n 'LD_LIBRARY_PATH': '/home/smith/\\xd0\\x97\\xd0\\xb0\\xd0\\xb3\\xd1\\x80\\xd1\\x83\\xd0\\xb7\\xd0\\xba\\xd0\\xb8/pycharm-4.5.4/bin:',\n 'LESSCLOSE': '/usr/bin/lesspipe %s %s',\n 'LESSOPEN': '| /usr/bin/lesspipe %s',\n 'LOGNAME': 'smith',\n 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:',\n 'MANDATORY_PATH': '/usr/share/gconf/ubuntu.mandatory.path',\n 'NLSPATH': '/usr/dt/lib/nls/msg/%L/%N.cat',\n 'PATH': '/home/smith/.virtualenvs/42cc/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games',\n 'PATH_INFO': u'/admin/hello/profile/',\n 'PS1': '(42cc)\\\\[\\\\e]0;\\\\u@\\\\h: \\\\w\\\\a\\\\]${debian_chroot:+($debian_chroot)}\\\\u@\\\\h:\\\\w\\\\$ ',\n 'PWD': '/home/smith/test/FortyTwoTestTask-1',\n 'QT4_IM_MODULE': 'xim',\n 'QT_IM_MODULE': 'ibus',\n 'QT_QPA_PLATFORMTHEME': 'appmenu-qt5',\n 'QUERY_STRING': '',\n 'REMOTE_ADDR': '127.0.0.1',\n 'REMOTE_HOST': '',\n 'REQUEST_METHOD': 'GET',\n 'RUN_MAIN': 'true',\n 'SCRIPT_NAME': u'',\n 'SELINUX_INIT': 'YES',\n 'SERVER_NAME': 'localhost',\n 'SERVER_PORT': '8000',\n 'SERVER_PROTOCOL': 'HTTP/1.1',\n 'SERVER_SOFTWARE': 'WSGIServer/0.1 Python/2.7.6',\n 'SESSION': 'ubuntu',\n 'SESSIONTYPE': 'gnome-session',\n 'SESSION_MANAGER': 'local/smith-G31M-S2L:@/tmp/.ICE-unix/2017,unix/smith-G31M-S2L:/tmp/.ICE-unix/2017',\n 'SHELL': '/bin/bash',\n 'SHLVL': '1',\n 'SSH_AUTH_SOCK': '/run/user/1000/keyring-4n5l3F/ssh',\n 'TERM': 'xterm-256color',\n 'TEXTDOMAIN': 'im-config',\n 'TEXTDOMAINDIR': '/usr/share/locale/',\n 'TZ': 'UTC',\n 'UPSTART_SESSION': 'unix:abstract=/com/ubuntu/upstart-session/1000/1856',\n 'USER': 'smith',\n 'VIRTUALENVWRAPPER_HOOK_DIR': '/home/smith/.virtualenvs',\n 'VIRTUALENVWRAPPER_PROJECT_FILENAME': '.project',\n 'VIRTUALENVWRAPPER_SCRIPT': '/usr/local/bin/virtualenvwrapper.sh',\n 'VIRTUALENVWRAPPER_WORKON_CD': '1',\n 'VIRTUAL_ENV': '/home/smith/.virtualenvs/42cc',\n 'WORKON_HOME': '/home/smith/.virtualenvs',\n 'XAUTHORITY': '/home/smith/.Xauthority',\n 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/usr/share/upstart/xdg:/etc/xdg',\n 'XDG_CURRENT_DESKTOP': 'Unity',\n 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/',\n 'XDG_GREETER_DATA_DIR': '/var/lib/lightdm-data/smith',\n 'XDG_MENU_PREFIX': 'gnome-',\n 'XDG_RUNTIME_DIR': '/run/user/1000',\n 'XDG_SEAT': 'seat0',\n 'XDG_SEAT_PATH': '/org/freedesktop/DisplayManager/Seat0',\n 'XDG_SESSION_ID': 'c2',\n 'XDG_SESSION_PATH': '/org/freedesktop/DisplayManager/Session0',\n 'XDG_VTNR': '7',\n 'XFILESEARCHPATH': '/usr/dt/app-defaults/%L/Dt',\n 'XMODIFIERS': '@im=ibus',\n '_': '/home/smith/.virtualenvs/42cc/bin/python',\n 'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7ff8e5cec1e0>,\n 'wsgi.file_wrapper': <class wsgiref.util.FileWrapper at 0x7ff8e30a7a78>,\n 'wsgi.input': <socket._fileobject object at 0x7ff8e010ea50>,\n 'wsgi.multiprocess': False,\n 'wsgi.multithread': True,\n 'wsgi.run_once': False,\n 'wsgi.url_scheme': 'http',\n 'wsgi.version': (1, 0)}>", 
+        "title": "Http_request"
+    }
+},
+{
+    "pk": 9, 
+    "model": "hello.requests", 
+    "fields": {
+        "pub_date": "2016-01-29T19:27:57.398Z", 
+        "path": "http://127.0.0.1:8000/admin/jsi18n/", 
+        "request": "<WSGIRequest\npath:/admin/jsi18n/,\nGET:<QueryDict: {}>,\nPOST:<QueryDict: {}>,\nCOOKIES:{'csrftoken': 'fXBJqxr4fFe4uBXdNQbH7A2wsfNWe9ZA',\n 'sessionid': 'jf2kde1tp49pnctbmhlc3dkyx0uddwgz'},\nMETA:{'CLUTTER_IM_MODULE': 'xim',\n 'COMPIZ_BIN_PATH': '/usr/bin/',\n 'COMPIZ_CONFIG_PROFILE': 'ubuntu',\n 'COMP_WORDBREAKS': ' \\t\\n\"\\'><;|&(:',\n 'CONTENT_LENGTH': '',\n 'CONTENT_TYPE': 'text/plain',\n 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-57pGUEMBLr',\n 'DEFAULTS_PATH': '/usr/share/gconf/ubuntu.default.path',\n 'DESKTOP_SESSION': 'ubuntu',\n 'DISPLAY': ':0',\n 'DJANGO_SETTINGS_MODULE': 'fortytwo_test_task.settings',\n 'GATEWAY_INTERFACE': 'CGI/1.1',\n 'GDMSESSION': 'ubuntu',\n 'GDM_LANG': 'ru',\n 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/jetbrains-pycharm.desktop',\n 'GIO_LAUNCHED_DESKTOP_FILE_PID': '4326',\n 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated',\n 'GNOME_KEYRING_CONTROL': '/run/user/1000/keyring-4n5l3F',\n 'GNOME_KEYRING_PID': '1852',\n 'GPG_AGENT_INFO': '/run/user/1000/keyring-4n5l3F/gpg:0:1',\n 'GTK_IM_MODULE': 'ibus',\n 'GTK_MODULES': 'overlay-scrollbar:unity-gtk-module',\n 'HOME': '/home/smith',\n 'HTTP_ACCEPT': '*/*',\n 'HTTP_ACCEPT_ENCODING': 'gzip, deflate, sdch',\n 'HTTP_ACCEPT_LANGUAGE': 'ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4',\n 'HTTP_CONNECTION': 'keep-alive',\n 'HTTP_COOKIE': 'sessionid=jf2kde1tp49pnctbmhlc3dkyx0uddwgz; csrftoken=fXBJqxr4fFe4uBXdNQbH7A2wsfNWe9ZA',\n 'HTTP_HOST': '127.0.0.1:8000',\n 'HTTP_REFERER': 'http://127.0.0.1:8000/admin/hello/profile/',\n 'HTTP_USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/48.0.2564.82 Chrome/48.0.2564.82 Safari/537.36',\n 'IM_CONFIG_PHASE': '1',\n 'INSTANCE': '',\n 'JAVA_HOME': '/usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java',\n 'JOB': 'dbus',\n 'LANG': 'ru_UA.UTF-8',\n 'LANGUAGE': 'ru_UA:ru',\n 'LD_LIBRARY_PATH': '/home/smith/\\xd0\\x97\\xd0\\xb0\\xd0\\xb3\\xd1\\x80\\xd1\\x83\\xd0\\xb7\\xd0\\xba\\xd0\\xb8/pycharm-4.5.4/bin:',\n 'LESSCLOSE': '/usr/bin/lesspipe %s %s',\n 'LESSOPEN': '| /usr/bin/lesspipe %s',\n 'LOGNAME': 'smith',\n 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:',\n 'MANDATORY_PATH': '/usr/share/gconf/ubuntu.mandatory.path',\n 'NLSPATH': '/usr/dt/lib/nls/msg/%L/%N.cat',\n 'PATH': '/home/smith/.virtualenvs/42cc/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games',\n 'PATH_INFO': u'/admin/jsi18n/',\n 'PS1': '(42cc)\\\\[\\\\e]0;\\\\u@\\\\h: \\\\w\\\\a\\\\]${debian_chroot:+($debian_chroot)}\\\\u@\\\\h:\\\\w\\\\$ ',\n 'PWD': '/home/smith/test/FortyTwoTestTask-1',\n 'QT4_IM_MODULE': 'xim',\n 'QT_IM_MODULE': 'ibus',\n 'QT_QPA_PLATFORMTHEME': 'appmenu-qt5',\n 'QUERY_STRING': '',\n 'REMOTE_ADDR': '127.0.0.1',\n 'REMOTE_HOST': '',\n 'REQUEST_METHOD': 'GET',\n 'RUN_MAIN': 'true',\n 'SCRIPT_NAME': u'',\n 'SELINUX_INIT': 'YES',\n 'SERVER_NAME': 'localhost',\n 'SERVER_PORT': '8000',\n 'SERVER_PROTOCOL': 'HTTP/1.1',\n 'SERVER_SOFTWARE': 'WSGIServer/0.1 Python/2.7.6',\n 'SESSION': 'ubuntu',\n 'SESSIONTYPE': 'gnome-session',\n 'SESSION_MANAGER': 'local/smith-G31M-S2L:@/tmp/.ICE-unix/2017,unix/smith-G31M-S2L:/tmp/.ICE-unix/2017',\n 'SHELL': '/bin/bash',\n 'SHLVL': '1',\n 'SSH_AUTH_SOCK': '/run/user/1000/keyring-4n5l3F/ssh',\n 'TERM': 'xterm-256color',\n 'TEXTDOMAIN': 'im-config',\n 'TEXTDOMAINDIR': '/usr/share/locale/',\n 'TZ': 'UTC',\n 'UPSTART_SESSION': 'unix:abstract=/com/ubuntu/upstart-session/1000/1856',\n 'USER': 'smith',\n 'VIRTUALENVWRAPPER_HOOK_DIR': '/home/smith/.virtualenvs',\n 'VIRTUALENVWRAPPER_PROJECT_FILENAME': '.project',\n 'VIRTUALENVWRAPPER_SCRIPT': '/usr/local/bin/virtualenvwrapper.sh',\n 'VIRTUALENVWRAPPER_WORKON_CD': '1',\n 'VIRTUAL_ENV': '/home/smith/.virtualenvs/42cc',\n 'WORKON_HOME': '/home/smith/.virtualenvs',\n 'XAUTHORITY': '/home/smith/.Xauthority',\n 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/usr/share/upstart/xdg:/etc/xdg',\n 'XDG_CURRENT_DESKTOP': 'Unity',\n 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/',\n 'XDG_GREETER_DATA_DIR': '/var/lib/lightdm-data/smith',\n 'XDG_MENU_PREFIX': 'gnome-',\n 'XDG_RUNTIME_DIR': '/run/user/1000',\n 'XDG_SEAT': 'seat0',\n 'XDG_SEAT_PATH': '/org/freedesktop/DisplayManager/Seat0',\n 'XDG_SESSION_ID': 'c2',\n 'XDG_SESSION_PATH': '/org/freedesktop/DisplayManager/Session0',\n 'XDG_VTNR': '7',\n 'XFILESEARCHPATH': '/usr/dt/app-defaults/%L/Dt',\n 'XMODIFIERS': '@im=ibus',\n '_': '/home/smith/.virtualenvs/42cc/bin/python',\n 'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7ff8e5cec1e0>,\n 'wsgi.file_wrapper': <class wsgiref.util.FileWrapper at 0x7ff8e30a7a78>,\n 'wsgi.input': <socket._fileobject object at 0x7ff8e010ebd0>,\n 'wsgi.multiprocess': False,\n 'wsgi.multithread': True,\n 'wsgi.run_once': False,\n 'wsgi.url_scheme': 'http',\n 'wsgi.version': (1, 0)}>", 
+        "title": "Http_request"
+    }
+},
+{
+    "pk": 1, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_logentry", 
+        "name": "Can add log entry", 
+        "content_type": [
+            "admin", 
+            "logentry"
+        ]
+    }
+},
+{
+    "pk": 2, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_logentry", 
+        "name": "Can change log entry", 
+        "content_type": [
+            "admin", 
+            "logentry"
+        ]
+    }
+},
+{
+    "pk": 3, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_logentry", 
+        "name": "Can delete log entry", 
+        "content_type": [
+            "admin", 
+            "logentry"
+        ]
+    }
+},
+{
+    "pk": 4, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_permission", 
+        "name": "Can add permission", 
+        "content_type": [
+            "auth", 
+            "permission"
+        ]
+    }
+},
+{
+    "pk": 5, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_permission", 
+        "name": "Can change permission", 
+        "content_type": [
+            "auth", 
+            "permission"
+        ]
+    }
+},
+{
+    "pk": 6, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_permission", 
+        "name": "Can delete permission", 
+        "content_type": [
+            "auth", 
+            "permission"
+        ]
+    }
+},
+{
+    "pk": 7, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_group", 
+        "name": "Can add group", 
+        "content_type": [
+            "auth", 
+            "group"
+        ]
+    }
+},
+{
+    "pk": 8, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_group", 
+        "name": "Can change group", 
+        "content_type": [
+            "auth", 
+            "group"
+        ]
+    }
+},
+{
+    "pk": 9, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_group", 
+        "name": "Can delete group", 
+        "content_type": [
+            "auth", 
+            "group"
+        ]
+    }
+},
+{
+    "pk": 10, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_user", 
+        "name": "Can add user", 
+        "content_type": [
+            "auth", 
+            "user"
+        ]
+    }
+},
+{
+    "pk": 11, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_user", 
+        "name": "Can change user", 
+        "content_type": [
+            "auth", 
+            "user"
+        ]
+    }
+},
+{
+    "pk": 12, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_user", 
+        "name": "Can delete user", 
+        "content_type": [
+            "auth", 
+            "user"
+        ]
+    }
+},
+{
+    "pk": 13, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_contenttype", 
+        "name": "Can add content type", 
+        "content_type": [
+            "contenttypes", 
+            "contenttype"
+        ]
+    }
+},
+{
+    "pk": 14, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_contenttype", 
+        "name": "Can change content type", 
+        "content_type": [
+            "contenttypes", 
+            "contenttype"
+        ]
+    }
+},
+{
+    "pk": 15, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_contenttype", 
+        "name": "Can delete content type", 
+        "content_type": [
+            "contenttypes", 
+            "contenttype"
+        ]
+    }
+},
+{
+    "pk": 16, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_session", 
+        "name": "Can add session", 
+        "content_type": [
+            "sessions", 
+            "session"
+        ]
+    }
+},
+{
+    "pk": 17, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_session", 
+        "name": "Can change session", 
+        "content_type": [
+            "sessions", 
+            "session"
+        ]
+    }
+},
+{
+    "pk": 18, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_session", 
+        "name": "Can delete session", 
+        "content_type": [
+            "sessions", 
+            "session"
+        ]
+    }
+},
+{
+    "pk": 19, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_migrationhistory", 
+        "name": "Can add migration history", 
+        "content_type": [
+            "south", 
+            "migrationhistory"
+        ]
+    }
+},
+{
+    "pk": 20, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_migrationhistory", 
+        "name": "Can change migration history", 
+        "content_type": [
+            "south", 
+            "migrationhistory"
+        ]
+    }
+},
+{
+    "pk": 21, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_migrationhistory", 
+        "name": "Can delete migration history", 
+        "content_type": [
+            "south", 
+            "migrationhistory"
+        ]
+    }
+},
+{
+    "pk": 22, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_profile", 
+        "name": "Can add Profile", 
+        "content_type": [
+            "hello", 
+            "profile"
+        ]
+    }
+},
+{
+    "pk": 23, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_profile", 
+        "name": "Can change Profile", 
+        "content_type": [
+            "hello", 
+            "profile"
+        ]
+    }
+},
+{
+    "pk": 24, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_profile", 
+        "name": "Can delete Profile", 
+        "content_type": [
+            "hello", 
+            "profile"
+        ]
+    }
+},
+{
+    "pk": 25, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_requests", 
+        "name": "Can add requests", 
+        "content_type": [
+            "hello", 
+            "requests"
+        ]
+    }
+},
+{
+    "pk": 26, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_requests", 
+        "name": "Can change requests", 
+        "content_type": [
+            "hello", 
+            "requests"
+        ]
+    }
+},
+{
+    "pk": 27, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_requests", 
+        "name": "Can delete requests", 
+        "content_type": [
+            "hello", 
+            "requests"
+        ]
+    }
+},
+{
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "admin", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": true, 
+        "is_staff": true, 
+        "last_login": "2016-01-29T16:27:17.992Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$cnystHDu8uxr$h+7dX+vkDHpAEjeDwh0S1PDBOxYkq20h6jwfEENW8TM=", 
+        "email": "", 
+        "date_joined": "2016-01-29T16:27:10.951Z"
+    }
+},
+{
+    "pk": 1, 
     "model": "admin.logentry", 
     "fields": {
         "action_flag": 1, 
-        "action_time": "2016-01-27T21:06:09.411Z", 
+        "action_time": "2016-01-29T16:27:57.063Z", 
         "object_repr": "\u041e\u0442\u043e\u043f\u043a\u043e\u0432", 
         "object_id": "1", 
         "change_message": "", 
