@@ -10,4 +10,11 @@ urlpatterns = patterns(
     url(r'^', include('apps.hello.urls', namespace="hello")),
     # url(r'^blog/', include('blog.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    )
+
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        url(r'^uploads/(?P<path>.*)$', 'django.views.static.serve', {
+            'document_root': settings.MEDIA_ROOT,
+        }),
+   )
