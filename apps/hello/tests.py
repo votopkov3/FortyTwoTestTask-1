@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import json
 from django.contrib.auth.models import User
+from django.core.files.storage import default_storage
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core.urlresolvers import reverse
 from django.test import Client, RequestFactory
 from django.test import TestCase
@@ -14,7 +16,8 @@ from django.utils.six import StringIO
 import subprocess
 from django.template import Template, Context
 from django.utils import timezone as t
-
+from PIL import Image, ImageOps
+from django.conf import settings
 
 client = Client()
 
@@ -23,7 +26,10 @@ class ProfileMethodTests(TestCase):
     fixtures = ['initial_data.json']
 
     def setUp(self):
-        Profile.objects.create(name=u"Василий", last_name=u"Петров")
+        user = User.objects.get(id=1)
+        Profile.objects.create(name=u"Василий",
+                               last_name=u"Петров",
+                               user=user)
         # get main page
         self.response = self.client.get(reverse('hello:index'))
 
@@ -373,6 +379,73 @@ class EditProfileTests(TestCase):
                       str(form['jabber'].errors))
         self.assertIn(u'This field is required',
                       str(form['skype'].errors))
+
+    def test_send_bad_image_format_cant_open(self):
+        """
+        Testing bad image fortmat
+        Save Profile method open image and scale it
+        """
+        self.assertRaises(IOError, lambda: Image.open('test_file.doc'))
+        # test if form is not valid
+
+    def test_send_valid_image_update_profile(self):
+        """
+        Testing valid image in profile form
+        """
+
+        profile = Profile.objects.get(id=1)
+        valid_file = open('image_for_test.jpg')
+
+        # test image width before put it in form
+        image_width = Image.open('image_for_test.jpg').width
+        self.assertEqual(image_width, 1200)
+
+        form_data = {
+            'id': 1,
+            'name': 'ad2s',
+            'last_name': 'admin',
+            'date_of_birth': '1993-11-21',
+            'email': 'smith@mail.ru',
+            'jabber': 'smith@jabber.ru',
+            'skype': 'sgsfdf',
+        }
+
+        valid_file_name = valid_file.name
+
+        # upload file
+        photo_file = {
+            'photo': SimpleUploadedFile(
+                valid_file_name, valid_file.read())}
+
+        valid_file.close()
+
+        # put data in form
+        form = ProfileForm(
+            data=form_data,
+            files=photo_file,
+            instance=profile
+        )
+        form.save()
+
+        # test if form is valid
+        self.assertEqual(form.is_valid(), True)
+
+        # saved image path
+        new_image = settings.BASE_DIR + \
+            settings.MEDIA_URL + "images/" + \
+            valid_file_name
+
+        # open saved image
+        profile_image = Image.open(new_image)
+
+        # test image width
+        self.assertEqual(profile_image.width, 200)
+
+        # test image height
+        self.assertEqual(profile_image.height, 200)
+
+        # delete image
+        default_storage.delete(new_image)
 
 
 class CommandTests(TestCase):

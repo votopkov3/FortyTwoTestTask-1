@@ -8,7 +8,7 @@ from django.utils import timezone
 class Profile(models.Model):
     url_height = models.PositiveIntegerField(editable=False, default=200)
     url_width = models.PositiveIntegerField(editable=False, default=200)
-    user = models.ForeignKey(User, default=1)
+    user = models.ForeignKey(User)
     name = models.CharField(max_length=250, default="Eneter your name")
     last_name = models.CharField(max_length=250,
                                  default="Eneter your last name")
