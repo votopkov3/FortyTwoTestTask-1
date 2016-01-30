@@ -8,6 +8,11 @@ from apps.hello.forms import ProfileForm
 from apps.hello.middleware import SaveHttpRequestMiddleware
 from models import Profile, Requests
 from django.utils.encoding import smart_unicode
+from PIL import Image
+from django.conf import settings
+from django.core.files.uploadedfile import SimpleUploadedFile
+from django.core.files.storage import default_storage
+
 
 client = Client()
 
@@ -391,3 +396,70 @@ class EditProfileTests(TestCase):
                       str(form['jabber'].errors))
         self.assertIn(u'This field is required',
                       str(form['skype'].errors))
+
+    def test_send_bad_image_format_cant_open(self):
+        """
+        Testing bad image fortmat
+        Save Profile method open image and scale it
+        """
+        self.assertRaises(IOError, lambda: Image.open('test_file.doc'))
+        # test if form is not valid
+
+    def test_send_valid_image_update_profile(self):
+        """
+        Testing valid image in profile form
+        """
+
+        profile = Profile.objects.get(id=1)
+        valid_file = open('image_for_test.jpg')
+
+        # test image width before put it in form
+        image_width = Image.open('image_for_test.jpg').width
+        self.assertEqual(image_width, 1200)
+
+        form_data = {
+            'id': 1,
+            'name': 'ad2s',
+            'last_name': 'admin',
+            'date_of_birth': '1993-11-21',
+            'email': 'smith@mail.ru',
+            'jabber': 'smith@jabber.ru',
+            'skype': 'sgsfdf',
+        }
+
+        valid_file_name = valid_file.name
+
+        # upload file
+        photo_file = {
+            'photo': SimpleUploadedFile(
+                valid_file_name, valid_file.read())}
+
+        valid_file.close()
+
+        # put data in form
+        form = ProfileForm(
+            data=form_data,
+            files=photo_file,
+            instance=profile
+        )
+        form.save()
+
+        # test if form is valid
+        self.assertEqual(form.is_valid(), True)
+
+        # saved image path
+        new_image = settings.BASE_DIR + \
+            settings.MEDIA_URL + "images/" + \
+            valid_file_name
+
+        # open saved image
+        profile_image = Image.open(new_image)
+
+        # test image width
+        self.assertEqual(profile_image.width, 200)
+
+        # test image height
+        self.assertEqual(profile_image.height, 200)
+
+        # delete image
+        default_storage.delete(new_image)
