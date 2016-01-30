@@ -1,6 +1,5 @@
 from django import forms
 from django.contrib.staticfiles.storage import staticfiles_storage
-from django.utils.safestring import mark_safe
 
 
 class DatePickerWidget(forms.DateInput):
@@ -21,6 +20,4 @@ class DatePickerWidget(forms.DateInput):
         rendered = super(DatePickerWidget, self).render(name,
                                                         value,
                                                         attrs=attrs)
-        return rendered + mark_safe(u'''<script type="text/javascript">
-            $('#id_%s').datepicker({%s});
-            </script>''' % (name, self.params,))
+        return rendered
