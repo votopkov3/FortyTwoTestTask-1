@@ -101,6 +101,29 @@ class ProfileMethodTests(TestCase):
         self.assertTrue('<h1>42 Coffee Cups Test Assignment</h1>'
                         in response.content)
 
+    def test_index_template(self):
+        """
+        Testing valid html on the page
+        """
+        response = self.client.get(reverse('hello:index'))
+        self.assertTemplateUsed(response, 'hello/index.html')
+
+    def test_request_list_template(self):
+        """
+        Testing valid html on the page
+        """
+        response = self.client.get(reverse('hello:request_list'))
+        self.assertTemplateUsed(response, 'hello/request_list.html')
+
+    def test_edit_profile_template(self):
+        """
+        Testing valid html on the page
+        """
+        # login required
+        self.client.login(username='admin', password='admin')
+        response = self.client.get(reverse('hello:edit_profile'))
+        self.assertTemplateUsed(response, 'hello/edit_profile.html')
+
 
 class ProfileNoDataMethodTests(TestCase):
 
@@ -432,8 +455,8 @@ class EditProfileTests(TestCase):
 
         # saved image path
         new_image = settings.BASE_DIR + \
-            settings.MEDIA_URL + "images/" + \
-            valid_file_name
+                    settings.MEDIA_URL + "images/" + \
+                    valid_file_name
 
         # open saved image
         profile_image = Image.open(new_image)
