@@ -21,6 +21,4 @@ class DatePickerWidget(forms.DateInput):
         rendered = super(DatePickerWidget, self).render(name,
                                                         value,
                                                         attrs=attrs)
-        return rendered + mark_safe(u'''<script type="text/javascript">
-            $('#id_%s').datepicker({%s});
-            </script>''' % (name, self.params,))
+        return rendered
