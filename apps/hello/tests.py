@@ -253,10 +253,17 @@ class SaveHttpRequestNoDataTests(TestCase):
         """
         last request have to be in content
         """
+        i = 1
+        while i < 10:
+            Requests.objects.create(
+                request='request_1',
+                path='/'
+            )
+            i += 1
         # get request_list
         response = client.get(reverse('hello:request_list'))
         # test entering the page
-        self.assertContains(response, 'last_request=')
+        self.assertContains(response, 'last_request="10"')
 
     def test_no_data_on_the_page(self):
         """
