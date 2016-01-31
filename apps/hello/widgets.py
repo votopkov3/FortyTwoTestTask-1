@@ -1,6 +1,5 @@
 from django import forms
 from django.contrib.staticfiles.storage import staticfiles_storage
-from django.utils.safestring import mark_safe
 
 
 class DatePickerWidget(forms.DateInput):
