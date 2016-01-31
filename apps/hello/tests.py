@@ -178,9 +178,9 @@ class SaveHttpRequestTests(TestCase):
         Testing the requests in the right order
         """
         # test count of requests in db
-        self.assertEqual(Requests.objects.all().count(), 2)
+        self.assertEqual(Requests.objects.all().count(), 12)
         # test if new request is the first
-        self.assertEqual(Requests.objects.first().id, 2)
+        self.assertEqual(Requests.objects.first().id, 12)
 
     def test_save_request(self):
         """
@@ -193,7 +193,7 @@ class SaveHttpRequestTests(TestCase):
         # save request to DB
         self.save_http.process_request(request=self.new_request)
         # test saving request to DB
-        self.assertEqual(Requests.objects.all().count(), 3)
+        self.assertEqual(Requests.objects.all().count(), 13)
 
 
 class SaveHttpRequestNoDataTests(TestCase):
@@ -209,30 +209,23 @@ class SaveHttpRequestNoDataTests(TestCase):
 
     def test_request_context(self):
         """
-        1 request have to be in response hello:request_list
+        11 request have to be in response hello:request_list
         """
         # get request_list
         response = client.get(reverse('hello:request_list'))
         # test entering the page
-        self.assertEquals(str(response.context['requests']),
-                          '[<Requests: Http_request>]')
+        req = Requests.objects.first()
+        self.assertIn(req,
+                      response.context['requests'])
 
     def test_request_content(self):
         """
         last request have to be in content
         """
-        i = 1
-        while i < 10:
-            Requests.objects.create(
-                request='request_1',
-                path='/'
-            )
-            i += 1
         # get request_list
         response = client.get(reverse('hello:request_list'))
-        print(response.content)
         # test entering the page
-        self.assertContains(response, 'last_request=10')
+        self.assertContains(response, 'last_request="11"')
 
     def test_no_data_on_the_page(self):
         """
@@ -255,4 +248,3 @@ class SaveHttpRequestNoDataTests(TestCase):
                               content_type='application/json',
                               HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEquals(response.status_code, 200)
-
