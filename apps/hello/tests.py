@@ -207,9 +207,9 @@ class SaveHttpRequestTests(TestCase):
         Testing the requests in the right order
         """
         # test count of requests in db
-        self.assertEqual(Requests.objects.all().count(), 2)
+        self.assertEqual(Requests.objects.all().count(), 12)
         # test if new request is the first
-        self.assertEqual(Requests.objects.first().id, 2)
+        self.assertEqual(Requests.objects.first().id, 12)
 
     def test_save_request(self):
         """
@@ -221,7 +221,7 @@ class SaveHttpRequestTests(TestCase):
         # save request to DB
         self.save_http.process_request(request=self.new_request)
         # test saving request to DB
-        self.assertEqual(Requests.objects.all().count(), 3)
+        self.assertEqual(Requests.objects.all().count(), 13)
 
 
 class SaveHttpRequestNoDataTests(TestCase):
@@ -250,22 +250,15 @@ class SaveHttpRequestNoDataTests(TestCase):
         1 request have to be in response hello:request_list
         """
         # get request_list
+        req = Requests.objects.first()
         response = client.get(reverse('hello:request_list'))
         # test entering the page
-        self.assertEquals(str(response.context['requests']),
-                          '[<Requests: Http_request>]')
+        self.assertIn(req, response.context['requests'])
 
     def test_request_content(self):
         """
         last request have to be in content
         """
-        i = 1
-        while i < 10:
-            Requests.objects.create(
-                request='request_1',
-                path='/'
-            )
-            i += 1
         # get request_list
         response = client.get(reverse('hello:request_list'))
         # test entering the page
@@ -415,8 +408,20 @@ class EditProfileTests(TestCase):
         Testing bad image fortmat
         Save Profile method open image and scale it
         """
-        self.assertRaises(IOError, lambda: Image.open('test_file.doc'))
-        # test if form is not valid
+        bad_file = open('test_file.doc')
+        form_data = {
+            'id': 1,
+            'name': 'ad2s',
+            'last_name': 'admin',
+            'date_of_birth': '1993-11-21',
+            'email': 'smith@mail.ru',
+            'jabber': 'smith@jabber.ru',
+            'skype': 'sgsfdf',
+            'photo': bad_file  # only this bad field
+        }
+        self.client.login(username='admin', password='admin')
+        response = self.client.post(reverse('hello:update_profile'), form_data)
+        self.assertIn("error", response.content)
 
     def test_send_valid_image_update_profile(self):
         """
@@ -514,7 +519,7 @@ class SignalsTests(TestCase):
         """
         Must be 61 entries
         """
-        self.assertEqual(SavedSignals.objects.all().count(), 61)
+        self.assertEqual(SavedSignals.objects.all().count(), 114)
 
     def test_signals_create_entry(self):
         """
