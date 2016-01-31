@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import json
-import datetime
 from django.core.urlresolvers import reverse
 from django.test import Client, RequestFactory
 from django.test import TestCase
@@ -126,16 +125,10 @@ class SaveHttpRequestTests(TestCase):
     def setUp(self):
         Requests.objects.create(
             request='request_1',
-            pub_date=datetime.datetime.now(
-
-            ) + datetime.timedelta(hours=2),
             path='/'
         )
         Requests.objects.create(
             request='request_2',
-            pub_date=datetime.datetime.now(
-
-            ) + datetime.timedelta(hours=2),
             path='/'
         )
 
@@ -157,9 +150,6 @@ class SaveHttpRequestTests(TestCase):
         while i < 10:
             Requests.objects.create(
                 request='request_1',
-                pub_date=datetime.datetime.now(
-
-                ) + datetime.timedelta(hours=2),
                 path='/'
             )
             i += 1
@@ -231,10 +221,18 @@ class SaveHttpRequestNoDataTests(TestCase):
         """
         last request have to be in content
         """
+        i = 1
+        while i < 10:
+            Requests.objects.create(
+                request='request_1',
+                path='/'
+            )
+            i += 1
         # get request_list
         response = client.get(reverse('hello:request_list'))
+        print(response.content)
         # test entering the page
-        self.assertContains(response, 'last_request=')
+        self.assertContains(response, 'last_request=10')
 
     def test_no_data_on_the_page(self):
         """
@@ -242,7 +240,6 @@ class SaveHttpRequestNoDataTests(TestCase):
         """
         # delete all requests
         Requests.objects.all().delete()
-
         # get request_list (make ajax to not create request by middleware)
         response = client.get(reverse('hello:request_list'),
                               content_type='application/json',
