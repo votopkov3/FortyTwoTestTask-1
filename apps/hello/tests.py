@@ -416,7 +416,6 @@ class EditProfileTests(TestCase):
         self.client.login(username='admin', password='admin')
         response = self.client.post(reverse('hello:update_profile'), form_data)
         self.assertIn("error", response.content)
-        # test if form is not valid
 
     def test_send_valid_image_update_profile(self):
         """
