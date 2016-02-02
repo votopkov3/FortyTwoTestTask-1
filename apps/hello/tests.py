@@ -517,9 +517,9 @@ class SignalsTests(TestCase):
 
     def test_count_SavedSignals(self):
         """
-        Must be 93 entries
+        Must be 113 entries
         """
-        self.assertEqual(SavedSignals.objects.all().count(), 93)
+        self.assertEqual(SavedSignals.objects.all().count(), 113)
 
     def test_signals_create_entry(self):
         """
@@ -567,19 +567,19 @@ class SignalsTests(TestCase):
         """
         Test signals count change
         """
-        self.assertEqual(SavedSignals.objects.all().count(), 93)
+        self.assertEqual(SavedSignals.objects.all().count(), 113)
         # create user to add new signal
         User.objects.create_user('create', ' ', 'create')
-        self.assertEqual(SavedSignals.objects.all().count(), 94)
+        self.assertEqual(SavedSignals.objects.all().count(), 114)
         # delete Saved Signals to add new signal
         SavedSignals.objects.last().delete()
         # one Saved signal delete and one added 94 -1 + 1
-        self.assertEqual(SavedSignals.objects.all().count(), 94)
+        self.assertEqual(SavedSignals.objects.all().count(), 114)
         # update Saved signals instance
         signal = SavedSignals.objects.last()
         signal.status = "asd"
         signal.save()
-        self.assertEqual(SavedSignals.objects.all().count(), 95)
+        self.assertEqual(SavedSignals.objects.all().count(), 115)
 
     def test_signals_create_for_its_own(self):
         """
