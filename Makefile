@@ -3,7 +3,7 @@ SETTINGS=fortytwo_test_task.settings
 
 test:
 	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=$(SETTINGS) $(MANAGE) test
-	flake8 --exclude '*migrations*, fortytwo_test_task, apps/hello/views.py' apps fortytwo_test_task
+	flake8 --exclude '*migrations*, fortytwo_test_task' apps fortytwo_test_task
 
 run:
 	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=$(SETTINGS) $(MANAGE) runserver
@@ -19,4 +19,4 @@ collectstatic:
 .PHONY: test syncdb migrate
 
 dumpdata:
-	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=$(SETTINGS) $(MANAGE) dumpdata --exclude hello.requests --exclude contenttypes > apps/hello/fixtures/initial_data.json
+	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=$(SETTINGS) $(MANAGE) dumpdata --exclude hello.requests --exclude hello.savedsignals --exclude contenttypes --natural --indent 4 > apps/hello/fixtures/initial_data.json

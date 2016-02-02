@@ -517,9 +517,9 @@ class SignalsTests(TestCase):
 
     def test_count_SavedSignals(self):
         """
-        Must be 61 entries
+        Must be 93 entries
         """
-        self.assertEqual(SavedSignals.objects.all().count(), 114)
+        self.assertEqual(SavedSignals.objects.all().count(), 93)
 
     def test_signals_create_entry(self):
         """
@@ -562,6 +562,62 @@ class SignalsTests(TestCase):
         # test if SavedSignals entry has not got create/update/delete
         # status
         self.assertEqual(signal.status, "Status")
+
+    def test_signals_count_change(self):
+        """
+        Test signals count change
+        """
+        self.assertEqual(SavedSignals.objects.all().count(), 93)
+        # create user to add new signal
+        User.objects.create_user('create', ' ', 'create')
+        self.assertEqual(SavedSignals.objects.all().count(), 94)
+        # delete Saved Signals to add new signal
+        SavedSignals.objects.last().delete()
+        # one Saved signal delete and one added 94 -1 + 1
+        self.assertEqual(SavedSignals.objects.all().count(), 94)
+        # update Saved signals instance
+        signal = SavedSignals.objects.last()
+        signal.status = "asd"
+        signal.save()
+        self.assertEqual(SavedSignals.objects.all().count(), 95)
+
+    def test_signals_create_for_its_own(self):
+        """
+        Create signal and test that signal create for
+        its own
+        """
+        # create User instance to create new Saved Signals
+        User.objects.create_user('create', ' ', 'create')
+        # get the last saved instance(User[create, create])
+        user_instance = SavedSignals.objects.last()
+        # test status and name of the saved signals
+        self.assertEqual(user_instance.status, 'Create')
+        self.assertEqual(user_instance.title, 'User')
+
+    def test_signals_update_for_its_own(self):
+        """
+        Create signal and test that signal create for
+        its own
+        """
+        last_signal = SavedSignals.objects.last()
+        last_signal.title = "asdsa"
+        last_signal.save()
+        # test status and name of the saved signals
+        signal = SavedSignals.objects.last()
+        self.assertEqual(signal.status, 'Update')
+        self.assertEqual(signal.title, 'SavedSignals')
+
+    def test_signals_delete_for_its_own(self):
+        """
+        Create signal and test that signal create for
+        its own
+        """
+        SavedSignals.objects.last().delete()
+        # test status and name of the saved signals
+        signal = SavedSignals.objects.last()
+        self.assertEqual(signal.status, 'Delete')
+        self.assertEqual(signal.title, 'SavedSignals')
+
 
 
 class TagTests(TestCase):

@@ -8,7 +8,6 @@ from django.views.decorators.http import require_POST
 from apps.hello.forms import ProfileForm
 from models import Profile
 from models import Requests
-import signals
 
 
 def main(request):
