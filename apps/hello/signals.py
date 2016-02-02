@@ -10,13 +10,12 @@ exclude_models_name = ['SavedSignals', 'ContentType',
 def post_save_signal(sender, created, **kwargs):
     if created and sender.__name__ not in exclude_models_name:
         SavedSignals.objects.create(title=sender.__name__, status='Create')
-    elif not created and sender.__name__ not in exclude_models_name:
+    elif not created:
         SavedSignals.objects.create(title=sender.__name__, status='Update')
     return None
 
 
 @receiver(post_delete)
 def post_delete_signal(sender, **kwargs):
-    if sender.__name__ not in exclude_models_name:
-        SavedSignals.objects.create(title=sender.__name__, status='Delete')
+    SavedSignals.objects.create(title=sender.__name__, status='Delete')
     return None
