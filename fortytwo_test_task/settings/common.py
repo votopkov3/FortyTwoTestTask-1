@@ -142,11 +142,27 @@ LOGIN_URL = '/login/'
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s"
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
     'handlers': {
         'applogfile': {
             'level':'DEBUG',
             'class':'logging.handlers.RotatingFileHandler',
             'filename': os.path.join(BASE_DIR, 'hello.log'),
+            'maxBytes': 1024*1024*15, # 15MB
+            'backupCount': 10,
+        },
+        'formerrors': {
+            'formatter': 'verbose',
+            'level':'INFO',
+            'class':'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(BASE_DIR, 'formerrors.log'),
             'maxBytes': 1024*1024*15, # 15MB
             'backupCount': 10,
         },
@@ -156,6 +172,11 @@ LOGGING = {
             'handlers': ['applogfile'],
             'propagate': True,
             'level': 'ERROR',
+        },
+        'apps.hello': {
+            'handlers': ['formerrors'],
+            'propagate': True,
+            'level': 'INFO',
         },
     }
 }
