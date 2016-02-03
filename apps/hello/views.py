@@ -12,6 +12,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 def main(request):
     profile = Profile.objects.first()
     user_form = ProfileForm(instance=profile)
