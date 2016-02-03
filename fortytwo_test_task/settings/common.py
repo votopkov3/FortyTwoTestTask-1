@@ -135,3 +135,24 @@ SOUTH_TESTS_MIGRATE = False
 LOGIN_REDIRECT_URL = '/'
 
 LOGIN_URL = '/login/'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'handlers': {
+        'applogfile': {
+            'level':'DEBUG',
+            'class':'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(BASE_DIR, 'hello.log'),
+            'maxBytes': 1024*1024*15, # 15MB
+            'backupCount': 10,
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['applogfile'],
+            'propagate': True,
+            'level': 'ERROR',
+        },
+    }
+}
