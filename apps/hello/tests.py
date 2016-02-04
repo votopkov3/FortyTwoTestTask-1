@@ -8,7 +8,7 @@ from django.test import Client, RequestFactory
 from django.test import TestCase
 from apps.hello.forms import ProfileForm
 from apps.hello.middleware import SaveHttpRequestMiddleware
-from models import Profile, Requests, SavedSignals
+from models import Profile, Requests, LogEntrry
 from django.utils.encoding import smart_unicode
 from apps.hello.templatetags.hello_tags import edit_link
 from django.core.management import call_command
@@ -532,18 +532,18 @@ class SignalsTests(TestCase):
     def setUp(self):
         User.objects.create_user('signal', ' ', 'signal')
 
-    def test_count_SavedSignals(self):
+    def test_count_LogEntrry(self):
         """
         Must be 113 entries
         """
-        self.assertEqual(SavedSignals.objects.all().count(), 113)
+        self.assertEqual(LogEntrry.objects.all().count(), 113)
 
     def test_signals_create_entry(self):
         """
         Test entry about user create
         """
         # test status about user
-        self.assertEqual(SavedSignals.objects.last().status, 'Create')
+        self.assertEqual(LogEntrry.objects.last().status, 'Create')
 
     def test_signals_update_entry(self):
         """
@@ -556,7 +556,7 @@ class SignalsTests(TestCase):
         # save
         user.save()
         # test status of entry about user
-        self.assertEqual(SavedSignals.objects.last().status, 'Update')
+        self.assertEqual(LogEntrry.objects.last().status, 'Update')
 
     def test_signals_delete_entry(self):
         """
@@ -566,17 +566,17 @@ class SignalsTests(TestCase):
         # delete user
         user.delete()
         # test if user is deleted
-        self.assertEqual(SavedSignals.objects.last().status, 'Delete')
+        self.assertEqual(LogEntrry.objects.last().status, 'Delete')
 
     def test_signals_not_work_on_not_allowed_model(self):
         """
         Test signal not work on not allowed model
         """
-        SavedSignals.objects.create(title='Title', status="Status")
-        # signal not working if SavedSignals created/updated/deleted
-        # get entry about creating SavedSignals
-        signal = SavedSignals.objects.last()
-        # test if SavedSignals entry has not got create/update/delete
+        LogEntrry.objects.create(title='Title', status="Status")
+        # signal not working if LogEntrry created/updated/deleted
+        # get entry about creating LogEntrry
+        signal = LogEntrry.objects.last()
+        # test if LogEntrry entry has not got create/update/delete
         # status
         self.assertEqual(signal.status, "Status")
 
@@ -584,19 +584,19 @@ class SignalsTests(TestCase):
         """
         Test signals count change
         """
-        self.assertEqual(SavedSignals.objects.all().count(), 113)
+        self.assertEqual(LogEntrry.objects.all().count(), 113)
         # create user to add new signal
         User.objects.create_user('create', ' ', 'create')
-        self.assertEqual(SavedSignals.objects.all().count(), 114)
+        self.assertEqual(LogEntrry.objects.all().count(), 114)
         # delete Saved Signals to add new signal
-        SavedSignals.objects.last().delete()
+        LogEntrry.objects.last().delete()
         # one Saved signal delete and one added 94 -1 + 1
-        self.assertEqual(SavedSignals.objects.all().count(), 114)
+        self.assertEqual(LogEntrry.objects.all().count(), 114)
         # update Saved signals instance
-        signal = SavedSignals.objects.last()
+        signal = LogEntrry.objects.last()
         signal.status = "asd"
         signal.save()
-        self.assertEqual(SavedSignals.objects.all().count(), 115)
+        self.assertEqual(LogEntrry.objects.all().count(), 115)
 
     def test_signals_create_for_its_own(self):
         """
@@ -606,7 +606,7 @@ class SignalsTests(TestCase):
         # create User instance to create new Saved Signals
         User.objects.create_user('create', ' ', 'create')
         # get the last saved instance(User[create, create])
-        user_instance = SavedSignals.objects.last()
+        user_instance = LogEntrry.objects.last()
         # test status and name of the saved signals
         self.assertEqual(user_instance.status, 'Create')
         self.assertEqual(user_instance.title, 'User')
@@ -616,24 +616,24 @@ class SignalsTests(TestCase):
         Create signal and test that signal create for
         its own
         """
-        last_signal = SavedSignals.objects.last()
+        last_signal = LogEntrry.objects.last()
         last_signal.title = "asdsa"
         last_signal.save()
         # test status and name of the saved signals
-        signal = SavedSignals.objects.last()
+        signal = LogEntrry.objects.last()
         self.assertEqual(signal.status, 'Update')
-        self.assertEqual(signal.title, 'SavedSignals')
+        self.assertEqual(signal.title, 'LogEntrry')
 
     def test_signals_delete_for_its_own(self):
         """
         Create signal and test that signal create for
         its own
         """
-        SavedSignals.objects.last().delete()
+        LogEntrry.objects.last().delete()
         # test status and name of the saved signals
-        signal = SavedSignals.objects.last()
+        signal = LogEntrry.objects.last()
         self.assertEqual(signal.status, 'Delete')
-        self.assertEqual(signal.title, 'SavedSignals')
+        self.assertEqual(signal.title, 'LogEntrry')
 
 
 

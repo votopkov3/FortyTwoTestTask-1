@@ -8,18 +8,18 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'SavedSignals'
-        db.create_table(u'hello_savedsignals', (
+        # Adding model 'LogEntrry'
+        db.create_table(u'hello_logentrry', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('title', self.gf('django.db.models.fields.CharField')(max_length=250)),
             ('status', self.gf('django.db.models.fields.CharField')(max_length=250)),
         ))
-        db.send_create_signal(u'hello', ['SavedSignals'])
+        db.send_create_signal(u'hello', ['LogEntrry'])
 
 
     def backwards(self, orm):
-        # Deleting model 'SavedSignals'
-        db.delete_table(u'hello_savedsignals')
+        # Deleting model 'LogEntrry'
+        db.delete_table(u'hello_logentrry')
 
 
     models = {
@@ -83,8 +83,8 @@ class Migration(SchemaMigration):
             'request': ('django.db.models.fields.TextField', [], {}),
             'title': ('django.db.models.fields.CharField', [], {'default': "'Http_request'", 'max_length': '250'})
         },
-        u'hello.savedsignals': {
-            'Meta': {'object_name': 'SavedSignals'},
+        u'hello.logentrry': {
+            'Meta': {'object_name': 'LogEntrry'},
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'status': ('django.db.models.fields.CharField', [], {'max_length': '250'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '250'})

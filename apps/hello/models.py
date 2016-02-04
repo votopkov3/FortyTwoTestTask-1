@@ -50,7 +50,7 @@ class Requests(models.Model):
         return self.title
 
 
-class SavedSignals(models.Model):
+class LogEntrry(models.Model):
     title = models.CharField(max_length=250)
     status = models.CharField(max_length=250)
 
