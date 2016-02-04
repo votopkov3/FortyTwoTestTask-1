@@ -144,7 +144,7 @@ LOGGING = {
     'disable_existing_loggers': True,
     'formatters': {
         'verbose': {
-            'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s"
+            'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] \n %(message)s \n"
         },
         'simple': {
             'format': '%(levelname)s %(message)s'
@@ -158,11 +158,11 @@ LOGGING = {
             'maxBytes': 1024*1024*15, # 15MB
             'backupCount': 10,
         },
-        'formerrors': {
+        'form': {
             'formatter': 'verbose',
             'level':'INFO',
             'class':'logging.handlers.RotatingFileHandler',
-            'filename': os.path.join(BASE_DIR, 'formerrors.log'),
+            'filename': os.path.join(BASE_DIR, 'form.log'),
             'maxBytes': 1024*1024*15, # 15MB
             'backupCount': 10,
         },
@@ -174,7 +174,7 @@ LOGGING = {
             'level': 'ERROR',
         },
         'apps.hello': {
-            'handlers': ['formerrors'],
+            'handlers': ['form'],
             'propagate': True,
             'level': 'INFO',
         },
