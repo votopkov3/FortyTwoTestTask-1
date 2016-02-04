@@ -46,7 +46,7 @@ $(document).ready(function() {
 
                     });
                     // replace last 10 request on new 10 requests
-                    $('.result').replaceWith('<div class="col-xs-12 result"><table class="table table-bordered text-center"><tr><th>ID</th><th>Date</th><th>Path</th></tr><tr>' + result + '</tr></table></div>');
+                    $('.result').replaceWith('<div class="col-xs-12 result"><table class="table table-bordered text-center"><tr><th>ID</th><th>Date</th><th>Path</th><th>Priority</th></tr><tr>' + result + '</tr></table></div>');
                 });
                 // load function every 3 seconds.
                 setTimeout(load_requests, 3000);

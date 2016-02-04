@@ -681,3 +681,63 @@ class TagTests(TestCase):
         """
         response = self.client.get(reverse('hello:index'))
         self.assertNotIn('/admin/hello/profile/', response.content)
+
+
+class RequestPriorityFieldTest(TestCase):
+    fixtures = ['initial_data.json']
+
+    def test_on_save_req_if_blank_priority(self):
+        # test if 10 requests in db
+        self.assertEqual(Requests.objects.count(), 10)
+        # create request with blank priority field
+        Requests.objects.create(request='test_request')
+        # test if new request has been created
+        self.assertEqual(Requests.objects.all().count(), 11)
+
+    def test_request_priority_field(self):
+        """
+        Test priority ordering
+        at first order by -pub_date, then priority
+        They all have default priority - 10
+        """
+        # I will make it the last by adding to it priority 1
+        # get request with id - 3
+        req = Requests.objects.get(id=3)
+        # get first request
+        req_first = Requests.objects.first()
+        # test if they are not equal
+        self.assertNotEqual(req.id, req_first.id)
+        # add to request with id-7 priority 1
+        req.priority = 1
+        # save it
+        req.save()
+        # get first request after
+        # adding priority to request with id-7
+        new_req_first = Requests.objects.first()
+        self.assertEqual(req.id, new_req_first.id)
+
+    def test_priority_on_request_list_page(self):
+        """
+        Test ordering by priority on the page
+        """
+        # add 10 new quests to get valid json response
+        i = 0
+        while i < 10:
+            if i == 5:
+                Requests.objects.create(request='test_request', priority=1)
+            else:
+                Requests.objects.create(request='test_request')
+            i += 1
+        # get list of requests
+        response = client.get(reverse('hello:request_list_ajax'),
+                              HTTP_X_REQUESTED_WITH='XMLHttpRequest',
+                              content_type='application/json',)
+        response_list = json.loads(response.content)
+        # Test if the first entry is entry with priority 1
+        self.assertEqual(response_list[0]['fields']['priority'], 1)
+        # Test if the second entry has default priority and
+        # after priority ordering by date
+        self.assertEqual(response_list[1]['fields']['priority'], 10)
+        # Test if the third entry has default priority and
+        # after priority ordering by date
+        self.assertEqual(response_list[2]['fields']['priority'], 10)
