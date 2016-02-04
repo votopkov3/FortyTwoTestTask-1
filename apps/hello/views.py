@@ -47,10 +47,7 @@ def update_profile(request):
     identify = request.POST.get('id')
     profile = Profile.objects.get(id=identify)
     form = ProfileForm(request.POST, request.FILES, instance=profile)
-    if form.errors:
-        for field in form:
-            if field.errors:
-                logger.info('Form error in %s: %s', field, field.errors)
+    logger.info(form)
     if form.is_valid():
         form.save()
         profile = Profile.objects.get(id=int(identify))
