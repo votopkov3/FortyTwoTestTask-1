@@ -10,4 +10,4 @@ class Command(NoArgsCommand):
         for model in get_models():
             self.stderr.write("Error: %s.%s %d\n" %
                               (model.__module__, model.__name__,
-                               model._default_manager.count()))
+                               model.objects.all().count()))

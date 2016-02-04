@@ -19,4 +19,4 @@ collectstatic:
 .PHONY: test syncdb migrate
 
 dumpdata:
-	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=$(SETTINGS) $(MANAGE) dumpdata --exclude hello.savedsignals --natural --indent 4 > apps/hello/fixtures/initial_data.json
+	PYTHONPATH=`pwd` DJANGO_SETTINGS_MODULE=$(SETTINGS) $(MANAGE) dumpdata --exclude hello.logentrry --natural --indent 4 > apps/hello/fixtures/initial_data.json

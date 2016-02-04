@@ -84,8 +84,8 @@
     "pk": 10, 
     "model": "contenttypes.contenttype", 
     "fields": {
-        "model": "savedsignals", 
-        "name": "saved signals", 
+        "model": "logentrry", 
+        "name": "log entrry", 
         "app_label": "hello"
     }
 },
@@ -130,7 +130,7 @@
     "fields": {
         "applied": "2016-02-02T08:13:49.553Z", 
         "app_name": "hello", 
-        "migration": "0004_auto__add_savedsignals"
+        "migration": "0004_auto__add_logentrry"
     }
 },
 {
@@ -570,11 +570,11 @@
     "pk": 28, 
     "model": "auth.permission", 
     "fields": {
-        "codename": "add_savedsignals", 
-        "name": "Can add saved signals", 
+        "codename": "add_logentrry", 
+        "name": "Can add log entrry", 
         "content_type": [
             "hello", 
-            "savedsignals"
+            "logentrry"
         ]
     }
 },
@@ -582,11 +582,11 @@
     "pk": 29, 
     "model": "auth.permission", 
     "fields": {
-        "codename": "change_savedsignals", 
-        "name": "Can change saved signals", 
+        "codename": "change_logentrry", 
+        "name": "Can change log entrry", 
         "content_type": [
             "hello", 
-            "savedsignals"
+            "logentrry"
         ]
     }
 },
@@ -594,11 +594,11 @@
     "pk": 30, 
     "model": "auth.permission", 
     "fields": {
-        "codename": "delete_savedsignals", 
-        "name": "Can delete saved signals", 
+        "codename": "delete_logentrry", 
+        "name": "Can delete log entrry", 
         "content_type": [
             "hello", 
-            "savedsignals"
+            "logentrry"
         ]
     }
 },
