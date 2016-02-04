@@ -408,7 +408,9 @@ class EditProfileTests(TestCase):
         Testing bad image fortmat
         Save Profile method open image and scale it
         """
-        bad_file = open('test_file.doc')
+        bad_file_path = settings.BASE_DIR + \
+            settings.MEDIA_URL + 'test_file.doc'
+        bad_file = open(bad_file_path, 'w+')
         form_data = {
             'id': 1,
             'name': 'ad2s',
@@ -423,16 +425,30 @@ class EditProfileTests(TestCase):
         response = self.client.post(reverse('hello:update_profile'), form_data)
         self.assertIn("error", response.content)
 
+        # delete file from app
+        default_storage.delete(bad_file_path)
+
     def test_send_valid_image_update_profile(self):
         """
         Testing valid image in profile form
         """
 
         profile = Profile.objects.get(id=1)
-        valid_file = open('image_for_test.jpg')
+
+        # create test image
+        test_image = Image.new('RGB', (1200, 1200))
+
+        test_image_path = settings.BASE_DIR + \
+            settings.MEDIA_URL + \
+            'image_for_test.jpg'
+
+        test_image.save(test_image_path)
+
+        # get it
+        valid_file = open(test_image_path)
 
         # test image width before put it in form
-        image_width = Image.open('image_for_test.jpg').width
+        image_width = Image.open(test_image_path).width
         self.assertEqual(image_width, 1200)
 
         form_data = {
@@ -467,8 +483,8 @@ class EditProfileTests(TestCase):
 
         # saved image path
         new_image = settings.BASE_DIR + \
-                    settings.MEDIA_URL + "images/" + \
-                    valid_file_name
+            settings.MEDIA_URL + 'images/' + \
+            'image_for_test.jpg'
 
         # open saved image
         profile_image = Image.open(new_image)
@@ -481,6 +497,7 @@ class EditProfileTests(TestCase):
 
         # delete image
         default_storage.delete(new_image)
+        default_storage.delete(test_image_path)
 
 
 class CommandTests(TestCase):

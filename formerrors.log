@@ -1,1 +1,0 @@
-[2016-02-03 11:20:42,094] INFO [apps.hello.views:52] Form error in <input id="id_photo" name="photo" type="file" />: <ul class="errorlist"><li>The submitted file is empty.</li></ul>
