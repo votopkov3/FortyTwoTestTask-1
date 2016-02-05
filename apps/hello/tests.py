@@ -207,9 +207,9 @@ class SaveHttpRequestTests(TestCase):
         Testing the requests in the right order
         """
         # test count of requests in db
-        self.assertEqual(Requests.objects.all().count(), 12)
+        self.assertEqual(Requests.objects.all().count(), 2)
         # test if new request is the first
-        self.assertEqual(Requests.objects.first().id, 12)
+        self.assertEqual(Requests.objects.first().id, 2)
 
     def test_save_request(self):
         """
@@ -221,7 +221,7 @@ class SaveHttpRequestTests(TestCase):
         # save request to DB
         self.save_http.process_request(request=self.new_request)
         # test saving request to DB
-        self.assertEqual(Requests.objects.all().count(), 13)
+        self.assertEqual(Requests.objects.all().count(), 3)
 
 
 class SaveHttpRequestNoDataTests(TestCase):
@@ -249,8 +249,9 @@ class SaveHttpRequestNoDataTests(TestCase):
         """
         1 request have to be in response hello:request_list
         """
+        # create request
+        req = Requests.objects.create(request="request")
         # get request_list
-        req = Requests.objects.first()
         response = client.get(reverse('hello:request_list'))
         # test entering the page
         self.assertIn(req, response.context['requests'])
@@ -259,10 +260,12 @@ class SaveHttpRequestNoDataTests(TestCase):
         """
         last request have to be in content
         """
+        # create request
+        req = Requests.objects.create(request="request")
         # get request_list
         response = client.get(reverse('hello:request_list'))
         # test entering the page
-        self.assertContains(response, 'last_request="10"')
+        self.assertContains(response, 'last_request="1"')
 
     def test_no_data_on_the_page(self):
         """
@@ -536,7 +539,7 @@ class SignalsTests(TestCase):
         """
         Must be 113 entries
         """
-        self.assertEqual(LogEntrry.objects.all().count(), 113)
+        self.assertEqual(LogEntrry.objects.all().count(), 93)
 
     def test_signals_create_entry(self):
         """
@@ -584,19 +587,19 @@ class SignalsTests(TestCase):
         """
         Test signals count change
         """
-        self.assertEqual(LogEntrry.objects.all().count(), 113)
+        self.assertEqual(LogEntrry.objects.all().count(), 93)
         # create user to add new signal
         User.objects.create_user('create', ' ', 'create')
-        self.assertEqual(LogEntrry.objects.all().count(), 114)
+        self.assertEqual(LogEntrry.objects.all().count(), 94)
         # delete Saved Signals to add new signal
         LogEntrry.objects.last().delete()
         # one Saved signal delete and one added 94 -1 + 1
-        self.assertEqual(LogEntrry.objects.all().count(), 114)
+        self.assertEqual(LogEntrry.objects.all().count(), 94)
         # update Saved signals instance
         signal = LogEntrry.objects.last()
         signal.status = "asd"
         signal.save()
-        self.assertEqual(LogEntrry.objects.all().count(), 115)
+        self.assertEqual(LogEntrry.objects.all().count(), 95)
 
     def test_signals_create_for_its_own(self):
         """
