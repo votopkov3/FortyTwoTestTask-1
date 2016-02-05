@@ -710,7 +710,7 @@ class RequestPriorityFieldTest(TestCase):
         """
         Test priority ordering
         at first order by -pub_date, then priority
-        They all have default priority - 10
+        They all have default priority - 0
         """
         # I will make it the last by adding to it priority 1
         # get request with id - 3
@@ -724,7 +724,7 @@ class RequestPriorityFieldTest(TestCase):
         # save it
         req.save()
         # get first request after
-        # adding priority to request with id-7
+        # adding priority to request with id - 3
         new_req_first = Requests.objects.first()
         self.assertEqual(req.id, new_req_first.id)
 
@@ -733,9 +733,10 @@ class RequestPriorityFieldTest(TestCase):
         Test ordering by priority on the page
         """
         # add 10 new quests to get valid json response
-        i = 0
+        Requests.objects.all().delete()
+        i = 1
         while i < 10:
-            if i == 5:
+            if i == 2:
                 Requests.objects.create(request='test_request', priority=1)
             else:
                 Requests.objects.create(request='test_request')
@@ -747,9 +748,7 @@ class RequestPriorityFieldTest(TestCase):
         response_list = json.loads(response.content)
         # Test if the first entry is entry with priority 1
         self.assertEqual(response_list[0]['fields']['priority'], 1)
-        # Test if the second entry has default priority and
-        # after priority ordering by date
-        self.assertEqual(response_list[1]['fields']['priority'], 10)
-        # Test if the third entry has default priority and
-        # after priority ordering by date
-        self.assertEqual(response_list[2]['fields']['priority'], 10)
+        # Test if the second entry has  priority 2
+        self.assertEqual(response_list[1]['fields']['priority'], 0)
+        # Test if the 6th request has priority 6
+        self.assertEqual(response_list[2]['fields']['priority'], 0)
