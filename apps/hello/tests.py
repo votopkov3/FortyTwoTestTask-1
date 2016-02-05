@@ -636,7 +636,6 @@ class SignalsTests(TestCase):
         self.assertEqual(signal.title, 'LogEntrry')
 
 
-
 class TagTests(TestCase):
     fixtures = ['initial_data.json']
 
@@ -681,3 +680,15 @@ class TagTests(TestCase):
         """
         response = self.client.get(reverse('hello:index'))
         self.assertNotIn('/admin/hello/profile/', response.content)
+
+    def test_tag_with_blank_data(self):
+        """
+        Testing custom tag
+        """
+        self.assertEqual(edit_link(''), '')
+
+    def test_tag_with_wrong_data(self):
+        """
+        Testing custom tag
+        """
+        self.assertEqual(edit_link(12312312313), '')
