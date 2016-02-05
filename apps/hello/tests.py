@@ -14,7 +14,7 @@ from apps.hello.templatetags.hello_tags import edit_link
 from django.core.management import call_command
 from django.utils.six import StringIO
 import subprocess
-from django.template import Template, Context
+from django.template import Template, Context, TemplateSyntaxError
 from django.utils import timezone as t
 from PIL import Image, ImageOps
 from django.conf import settings
@@ -685,10 +685,10 @@ class TagTests(TestCase):
         """
         Testing custom tag
         """
-        self.assertEqual(edit_link(''), '')
+        self.assertRaises(TemplateSyntaxError, lambda: edit_link(''))
 
     def test_tag_with_wrong_data(self):
         """
         Testing custom tag
         """
-        self.assertEqual(edit_link(12312312313), '')
+        self.assertRaises(TemplateSyntaxError, lambda: edit_link(123))

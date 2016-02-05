@@ -17,4 +17,5 @@ def edit_link(object):
                        args=(object.id,))
         return link
     except:
-        return ''
+        raise template.TemplateSyntaxError, \
+            "edit_link tag requires a single model instance/AttributeError"
