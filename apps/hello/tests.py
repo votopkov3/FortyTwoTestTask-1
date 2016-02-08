@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 import json
 from django.contrib.auth.models import User
+from django.contrib.contenttypes.models import ContentType
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, NoReverseMatch
 from django.test import Client, RequestFactory
 from django.test import TestCase
 from apps.hello.forms import ProfileForm
@@ -687,25 +689,24 @@ class TagTests(TestCase):
         """
         Testing custom tag
         """
-        self.assertRaises(TemplateSyntaxError, lambda: edit_link(''))
+        self.assertRaises(ObjectDoesNotExist, lambda: edit_link(''))
 
     def test_tag_with_wrong_data(self):
         """
         Testing custom tag
         """
-        self.assertRaises(TemplateSyntaxError, lambda: edit_link(123))
+        self.assertRaises(ObjectDoesNotExist, lambda: edit_link(123))
+
+    def test_tag_with_not_edit_model(self):
+        """
+        Testing custom tag
+        """
+        content_type = ContentType.objects.first()
+        self.assertRaises(NoReverseMatch, lambda: edit_link(content_type))
 
 
 class RequestPriorityFieldTest(TestCase):
     fixtures = ['initial_data.json']
-
-    def test_on_save_req_if_blank_priority(self):
-        # test if 10 requests in db
-        self.assertEqual(Requests.objects.count(), 0)
-        # create request with blank priority field
-        Requests.objects.create(request='test_request')
-        # test if new request has been created
-        self.assertEqual(Requests.objects.all().count(), 1)
 
     def test_request_priority_field(self):
         """
@@ -740,7 +741,6 @@ class RequestPriorityFieldTest(TestCase):
         Test ordering by priority on the page
         """
         # add 10 new quests to get valid json response
-        Requests.objects.all().delete()
         i = 1
         while i < 10:
             if i == 2:
@@ -757,5 +757,5 @@ class RequestPriorityFieldTest(TestCase):
         self.assertEqual(response_list[0]['fields']['priority'], 1)
         # Test if the second entry has  priority 2
         self.assertEqual(response_list[1]['fields']['priority'], 0)
-        # Test if the 6th request has priority 6
+        # Test if the 6th request has priority 3
         self.assertEqual(response_list[2]['fields']['priority'], 0)

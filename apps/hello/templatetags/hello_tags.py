@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import template
-from django.core.urlresolvers import reverse
+from django.core.exceptions import ObjectDoesNotExist
+from django.core.urlresolvers import reverse, NoReverseMatch
 
 register = template.Library()
 
@@ -16,6 +17,7 @@ def edit_link(object):
             object.__class__.__name__.lower()),
                        args=(object.id,))
         return link
-    except:
-        raise template.TemplateSyntaxError, \
-            "edit_link tag requires a single model instance/AttributeError"
+    except NoReverseMatch:
+        raise NoReverseMatch("This model hasn't got edit link")
+    except AttributeError:
+        raise ObjectDoesNotExist("No such model")
