@@ -232,3 +232,133 @@
 <tr><th><label for="id_other_contacts">Other contacts:</label></th><td><textarea class="form-control" cols="40" id="id_other_contacts" name="other_contacts" rows="10">
 </textarea><input id="id_id" name="id" type="hidden" value="2" /></td></tr> 
 
+[2016-02-05 20:26:02,371] INFO [apps.hello.views:50] 
+ <tr><th><label for="id_name">Name:</label></th><td><input class="form-control" id="id_name" maxlength="100" name="name" type="text" value="ad2s" /></td></tr>
+<tr><th><label for="id_last_name">Last name:</label></th><td><input class="form-control" id="id_last_name" maxlength="100" name="last_name" type="text" value="admin" /></td></tr>
+<tr><th><label for="id_date_of_birth">Date of birth:</label></th><td><input class="datepicker" id="id_date_of_birth" name="date_of_birth" type="text" value="1993-11-21" /></td></tr>
+<tr><th><label for="id_photo">Photo:</label></th><td><ul class="errorlist"><li>The submitted file is empty.</li></ul><input id="id_photo" name="photo" type="file" /></td></tr>
+<tr><th><label for="id_bio">Bio:</label></th><td><textarea class="form-control" cols="40" id="id_bio" name="bio" rows="10">
+</textarea></td></tr>
+<tr><th><label for="id_email">Email:</label></th><td><input class="form-control" id="id_email" maxlength="100" name="email" type="text" value="smith@mail.ru" /></td></tr>
+<tr><th><label for="id_jabber">Jabber:</label></th><td><input class="form-control" id="id_jabber" maxlength="100" name="jabber" type="text" value="smith@jabber.ru" /></td></tr>
+<tr><th><label for="id_skype">Skype:</label></th><td><input class="form-control" id="id_skype" maxlength="100" name="skype" type="text" value="sgsfdf" /></td></tr>
+<tr><th><label for="id_other_contacts">Other contacts:</label></th><td><textarea class="form-control" cols="40" id="id_other_contacts" name="other_contacts" rows="10">
+</textarea><input id="id_id" name="id" type="hidden" value="1" /></td></tr> 
+
+[2016-02-05 20:26:02,557] INFO [apps.hello.views:50] 
+ <tr><th><label for="id_name">Name:</label></th><td><input class="form-control" id="id_name" maxlength="100" name="name" type="text" value="admin" /></td></tr>
+<tr><th><label for="id_last_name">Last name:</label></th><td><input class="form-control" id="id_last_name" maxlength="100" name="last_name" type="text" value="admin" /></td></tr>
+<tr><th><label for="id_date_of_birth">Date of birth:</label></th><td><input class="datepicker" id="id_date_of_birth" name="date_of_birth" type="text" value="1993-11-29" /></td></tr>
+<tr><th><label for="id_photo">Photo:</label></th><td><input id="id_photo" name="photo" type="file" /></td></tr>
+<tr><th><label for="id_bio">Bio:</label></th><td><textarea class="form-control" cols="40" id="id_bio" name="bio" rows="10">
+</textarea></td></tr>
+<tr><th><label for="id_email">Email:</label></th><td><input class="form-control" id="id_email" maxlength="100" name="email" type="text" value="mail@mail.ua" /></td></tr>
+<tr><th><label for="id_jabber">Jabber:</label></th><td><input class="form-control" id="id_jabber" maxlength="100" name="jabber" type="text" value="jabber@jabber.ua" /></td></tr>
+<tr><th><label for="id_skype">Skype:</label></th><td><input class="form-control" id="id_skype" maxlength="100" name="skype" type="text" value="skype" /></td></tr>
+<tr><th><label for="id_other_contacts">Other contacts:</label></th><td><textarea class="form-control" cols="40" id="id_other_contacts" name="other_contacts" rows="10">
+</textarea><input id="id_id" name="id" type="hidden" value="2" /></td></tr> 
+
+[2016-02-08 21:36:12,539] INFO [apps.hello.views:51] 
+ <tr><th><label for="id_name">Name:</label></th><td><input class="form-control" id="id_name" maxlength="100" name="name" type="text" value="ad2s" /></td></tr>
+<tr><th><label for="id_last_name">Last name:</label></th><td><input class="form-control" id="id_last_name" maxlength="100" name="last_name" type="text" value="admin" /></td></tr>
+<tr><th><label for="id_date_of_birth">Date of birth:</label></th><td><input class="datepicker" id="id_date_of_birth" name="date_of_birth" type="text" value="1993-11-21" /></td></tr>
+<tr><th><label for="id_photo">Photo:</label></th><td><ul class="errorlist"><li>The submitted file is empty.</li></ul><input id="id_photo" name="photo" type="file" /></td></tr>
+<tr><th><label for="id_bio">Bio:</label></th><td><textarea class="form-control" cols="40" id="id_bio" name="bio" rows="10">
+</textarea></td></tr>
+<tr><th><label for="id_email">Email:</label></th><td><input class="form-control" id="id_email" maxlength="100" name="email" type="text" value="smith@mail.ru" /></td></tr>
+<tr><th><label for="id_jabber">Jabber:</label></th><td><input class="form-control" id="id_jabber" maxlength="100" name="jabber" type="text" value="smith@jabber.ru" /></td></tr>
+<tr><th><label for="id_skype">Skype:</label></th><td><input class="form-control" id="id_skype" maxlength="100" name="skype" type="text" value="sgsfdf" /></td></tr>
+<tr><th><label for="id_other_contacts">Other contacts:</label></th><td><textarea class="form-control" cols="40" id="id_other_contacts" name="other_contacts" rows="10">
+</textarea><input id="id_id" name="id" type="hidden" value="1" /></td></tr> 
+
+[2016-02-08 21:36:12,740] INFO [apps.hello.views:51] 
+ <tr><th><label for="id_name">Name:</label></th><td><input class="form-control" id="id_name" maxlength="100" name="name" type="text" value="admin" /></td></tr>
+<tr><th><label for="id_last_name">Last name:</label></th><td><input class="form-control" id="id_last_name" maxlength="100" name="last_name" type="text" value="admin" /></td></tr>
+<tr><th><label for="id_date_of_birth">Date of birth:</label></th><td><input class="datepicker" id="id_date_of_birth" name="date_of_birth" type="text" value="1993-11-29" /></td></tr>
+<tr><th><label for="id_photo">Photo:</label></th><td><input id="id_photo" name="photo" type="file" /></td></tr>
+<tr><th><label for="id_bio">Bio:</label></th><td><textarea class="form-control" cols="40" id="id_bio" name="bio" rows="10">
+</textarea></td></tr>
+<tr><th><label for="id_email">Email:</label></th><td><input class="form-control" id="id_email" maxlength="100" name="email" type="text" value="mail@mail.ua" /></td></tr>
+<tr><th><label for="id_jabber">Jabber:</label></th><td><input class="form-control" id="id_jabber" maxlength="100" name="jabber" type="text" value="jabber@jabber.ua" /></td></tr>
+<tr><th><label for="id_skype">Skype:</label></th><td><input class="form-control" id="id_skype" maxlength="100" name="skype" type="text" value="skype" /></td></tr>
+<tr><th><label for="id_other_contacts">Other contacts:</label></th><td><textarea class="form-control" cols="40" id="id_other_contacts" name="other_contacts" rows="10">
+</textarea><input id="id_id" name="id" type="hidden" value="2" /></td></tr> 
+
+[2016-02-08 21:38:21,556] INFO [apps.hello.views:51] 
+ <tr><th><label for="id_name">Name:</label></th><td><input class="form-control" id="id_name" maxlength="100" name="name" type="text" value="ad2s" /></td></tr>
+<tr><th><label for="id_last_name">Last name:</label></th><td><input class="form-control" id="id_last_name" maxlength="100" name="last_name" type="text" value="admin" /></td></tr>
+<tr><th><label for="id_date_of_birth">Date of birth:</label></th><td><input class="datepicker" id="id_date_of_birth" name="date_of_birth" type="text" value="1993-11-21" /></td></tr>
+<tr><th><label for="id_photo">Photo:</label></th><td><ul class="errorlist"><li>The submitted file is empty.</li></ul><input id="id_photo" name="photo" type="file" /></td></tr>
+<tr><th><label for="id_bio">Bio:</label></th><td><textarea class="form-control" cols="40" id="id_bio" name="bio" rows="10">
+</textarea></td></tr>
+<tr><th><label for="id_email">Email:</label></th><td><input class="form-control" id="id_email" maxlength="100" name="email" type="text" value="smith@mail.ru" /></td></tr>
+<tr><th><label for="id_jabber">Jabber:</label></th><td><input class="form-control" id="id_jabber" maxlength="100" name="jabber" type="text" value="smith@jabber.ru" /></td></tr>
+<tr><th><label for="id_skype">Skype:</label></th><td><input class="form-control" id="id_skype" maxlength="100" name="skype" type="text" value="sgsfdf" /></td></tr>
+<tr><th><label for="id_other_contacts">Other contacts:</label></th><td><textarea class="form-control" cols="40" id="id_other_contacts" name="other_contacts" rows="10">
+</textarea><input id="id_id" name="id" type="hidden" value="1" /></td></tr> 
+
+[2016-02-08 21:38:21,739] INFO [apps.hello.views:51] 
+ <tr><th><label for="id_name">Name:</label></th><td><input class="form-control" id="id_name" maxlength="100" name="name" type="text" value="admin" /></td></tr>
+<tr><th><label for="id_last_name">Last name:</label></th><td><input class="form-control" id="id_last_name" maxlength="100" name="last_name" type="text" value="admin" /></td></tr>
+<tr><th><label for="id_date_of_birth">Date of birth:</label></th><td><input class="datepicker" id="id_date_of_birth" name="date_of_birth" type="text" value="1993-11-29" /></td></tr>
+<tr><th><label for="id_photo">Photo:</label></th><td><input id="id_photo" name="photo" type="file" /></td></tr>
+<tr><th><label for="id_bio">Bio:</label></th><td><textarea class="form-control" cols="40" id="id_bio" name="bio" rows="10">
+</textarea></td></tr>
+<tr><th><label for="id_email">Email:</label></th><td><input class="form-control" id="id_email" maxlength="100" name="email" type="text" value="mail@mail.ua" /></td></tr>
+<tr><th><label for="id_jabber">Jabber:</label></th><td><input class="form-control" id="id_jabber" maxlength="100" name="jabber" type="text" value="jabber@jabber.ua" /></td></tr>
+<tr><th><label for="id_skype">Skype:</label></th><td><input class="form-control" id="id_skype" maxlength="100" name="skype" type="text" value="skype" /></td></tr>
+<tr><th><label for="id_other_contacts">Other contacts:</label></th><td><textarea class="form-control" cols="40" id="id_other_contacts" name="other_contacts" rows="10">
+</textarea><input id="id_id" name="id" type="hidden" value="2" /></td></tr> 
+
+[2016-02-08 21:38:41,109] INFO [apps.hello.views:51] 
+ <tr><th><label for="id_name">Name:</label></th><td><input class="form-control" id="id_name" maxlength="100" name="name" type="text" value="ad2s" /></td></tr>
+<tr><th><label for="id_last_name">Last name:</label></th><td><input class="form-control" id="id_last_name" maxlength="100" name="last_name" type="text" value="admin" /></td></tr>
+<tr><th><label for="id_date_of_birth">Date of birth:</label></th><td><input class="datepicker" id="id_date_of_birth" name="date_of_birth" type="text" value="1993-11-21" /></td></tr>
+<tr><th><label for="id_photo">Photo:</label></th><td><ul class="errorlist"><li>The submitted file is empty.</li></ul><input id="id_photo" name="photo" type="file" /></td></tr>
+<tr><th><label for="id_bio">Bio:</label></th><td><textarea class="form-control" cols="40" id="id_bio" name="bio" rows="10">
+</textarea></td></tr>
+<tr><th><label for="id_email">Email:</label></th><td><input class="form-control" id="id_email" maxlength="100" name="email" type="text" value="smith@mail.ru" /></td></tr>
+<tr><th><label for="id_jabber">Jabber:</label></th><td><input class="form-control" id="id_jabber" maxlength="100" name="jabber" type="text" value="smith@jabber.ru" /></td></tr>
+<tr><th><label for="id_skype">Skype:</label></th><td><input class="form-control" id="id_skype" maxlength="100" name="skype" type="text" value="sgsfdf" /></td></tr>
+<tr><th><label for="id_other_contacts">Other contacts:</label></th><td><textarea class="form-control" cols="40" id="id_other_contacts" name="other_contacts" rows="10">
+</textarea><input id="id_id" name="id" type="hidden" value="1" /></td></tr> 
+
+[2016-02-08 21:38:41,292] INFO [apps.hello.views:51] 
+ <tr><th><label for="id_name">Name:</label></th><td><input class="form-control" id="id_name" maxlength="100" name="name" type="text" value="admin" /></td></tr>
+<tr><th><label for="id_last_name">Last name:</label></th><td><input class="form-control" id="id_last_name" maxlength="100" name="last_name" type="text" value="admin" /></td></tr>
+<tr><th><label for="id_date_of_birth">Date of birth:</label></th><td><input class="datepicker" id="id_date_of_birth" name="date_of_birth" type="text" value="1993-11-29" /></td></tr>
+<tr><th><label for="id_photo">Photo:</label></th><td><input id="id_photo" name="photo" type="file" /></td></tr>
+<tr><th><label for="id_bio">Bio:</label></th><td><textarea class="form-control" cols="40" id="id_bio" name="bio" rows="10">
+</textarea></td></tr>
+<tr><th><label for="id_email">Email:</label></th><td><input class="form-control" id="id_email" maxlength="100" name="email" type="text" value="mail@mail.ua" /></td></tr>
+<tr><th><label for="id_jabber">Jabber:</label></th><td><input class="form-control" id="id_jabber" maxlength="100" name="jabber" type="text" value="jabber@jabber.ua" /></td></tr>
+<tr><th><label for="id_skype">Skype:</label></th><td><input class="form-control" id="id_skype" maxlength="100" name="skype" type="text" value="skype" /></td></tr>
+<tr><th><label for="id_other_contacts">Other contacts:</label></th><td><textarea class="form-control" cols="40" id="id_other_contacts" name="other_contacts" rows="10">
+</textarea><input id="id_id" name="id" type="hidden" value="2" /></td></tr> 
+
+[2016-02-08 21:40:18,459] INFO [apps.hello.views:51] 
+ <tr><th><label for="id_name">Name:</label></th><td><input class="form-control" id="id_name" maxlength="100" name="name" type="text" value="ad2s" /></td></tr>
+<tr><th><label for="id_last_name">Last name:</label></th><td><input class="form-control" id="id_last_name" maxlength="100" name="last_name" type="text" value="admin" /></td></tr>
+<tr><th><label for="id_date_of_birth">Date of birth:</label></th><td><input class="datepicker" id="id_date_of_birth" name="date_of_birth" type="text" value="1993-11-21" /></td></tr>
+<tr><th><label for="id_photo">Photo:</label></th><td><ul class="errorlist"><li>The submitted file is empty.</li></ul><input id="id_photo" name="photo" type="file" /></td></tr>
+<tr><th><label for="id_bio">Bio:</label></th><td><textarea class="form-control" cols="40" id="id_bio" name="bio" rows="10">
+</textarea></td></tr>
+<tr><th><label for="id_email">Email:</label></th><td><input class="form-control" id="id_email" maxlength="100" name="email" type="text" value="smith@mail.ru" /></td></tr>
+<tr><th><label for="id_jabber">Jabber:</label></th><td><input class="form-control" id="id_jabber" maxlength="100" name="jabber" type="text" value="smith@jabber.ru" /></td></tr>
+<tr><th><label for="id_skype">Skype:</label></th><td><input class="form-control" id="id_skype" maxlength="100" name="skype" type="text" value="sgsfdf" /></td></tr>
+<tr><th><label for="id_other_contacts">Other contacts:</label></th><td><textarea class="form-control" cols="40" id="id_other_contacts" name="other_contacts" rows="10">
+</textarea><input id="id_id" name="id" type="hidden" value="1" /></td></tr> 
+
+[2016-02-08 21:40:18,646] INFO [apps.hello.views:51] 
+ <tr><th><label for="id_name">Name:</label></th><td><input class="form-control" id="id_name" maxlength="100" name="name" type="text" value="admin" /></td></tr>
+<tr><th><label for="id_last_name">Last name:</label></th><td><input class="form-control" id="id_last_name" maxlength="100" name="last_name" type="text" value="admin" /></td></tr>
+<tr><th><label for="id_date_of_birth">Date of birth:</label></th><td><input class="datepicker" id="id_date_of_birth" name="date_of_birth" type="text" value="1993-11-29" /></td></tr>
+<tr><th><label for="id_photo">Photo:</label></th><td><input id="id_photo" name="photo" type="file" /></td></tr>
+<tr><th><label for="id_bio">Bio:</label></th><td><textarea class="form-control" cols="40" id="id_bio" name="bio" rows="10">
+</textarea></td></tr>
+<tr><th><label for="id_email">Email:</label></th><td><input class="form-control" id="id_email" maxlength="100" name="email" type="text" value="mail@mail.ua" /></td></tr>
+<tr><th><label for="id_jabber">Jabber:</label></th><td><input class="form-control" id="id_jabber" maxlength="100" name="jabber" type="text" value="jabber@jabber.ua" /></td></tr>
+<tr><th><label for="id_skype">Skype:</label></th><td><input class="form-control" id="id_skype" maxlength="100" name="skype" type="text" value="skype" /></td></tr>
+<tr><th><label for="id_other_contacts">Other contacts:</label></th><td><textarea class="form-control" cols="40" id="id_other_contacts" name="other_contacts" rows="10">
+</textarea><input id="id_id" name="id" type="hidden" value="2" /></td></tr> 
+
