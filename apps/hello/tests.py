@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 import json
 from django.contrib.auth.models import User
+from django.contrib.contenttypes.models import ContentType
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, NoReverseMatch
 from django.test import Client, RequestFactory
 from django.test import TestCase
 from apps.hello.forms import ProfileForm
@@ -688,10 +690,17 @@ class TagTests(TestCase):
         """
         Testing custom tag
         """
-        self.assertRaises(TemplateSyntaxError, lambda: edit_link(''))
+        self.assertRaises(ObjectDoesNotExist, lambda: edit_link(''))
 
     def test_tag_with_wrong_data(self):
         """
         Testing custom tag
         """
-        self.assertRaises(TemplateSyntaxError, lambda: edit_link(123))
+        self.assertRaises(ObjectDoesNotExist, lambda: edit_link(123))
+
+    def test_tag_with_not_edit_model(self):
+        """
+        Testing custom tag
+        """
+        content_type = ContentType.objects.first()
+        self.assertRaises(NoReverseMatch, lambda: edit_link(content_type))
