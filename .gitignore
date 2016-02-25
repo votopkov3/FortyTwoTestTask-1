@@ -15,4 +15,3 @@ media
 static
 *.dat
 .env
-*.log
