@@ -32,7 +32,11 @@ def request_list(request):
     requests = Requests.objects.all()[:10]
     context = {'requests': requests}
     if request.is_ajax():
-        data = serializers.serialize("json", Requests.objects.all()[:10])
+        last_request = int(request.GET.get('last_request', 0))
+        data = serializers.serialize(
+            "json",
+            Requests.objects.filter(id__gt=last_request).reverse()[:10]
+        )
         return HttpResponse(data, content_type="application/json")
     return render(request, 'hello/request_list.html', context)
 
