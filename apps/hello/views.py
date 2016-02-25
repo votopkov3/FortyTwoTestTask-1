@@ -2,7 +2,7 @@
 import json
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
-from django.http.response import HttpResponse, Http404
+from django.http.response import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.http import require_POST
 from apps.hello.forms import ProfileForm
@@ -31,14 +31,10 @@ def edit_profile(request):
 def request_list(request):
     requests = Requests.objects.all()[:10]
     context = {'requests': requests}
-    return render(request, 'hello/request_list.html', context)
-
-
-def request_list_ajax(request):
     if request.is_ajax():
         data = serializers.serialize("json", Requests.objects.all()[:10])
         return HttpResponse(data, content_type="application/json")
-    return Http404
+    return render(request, 'hello/request_list.html', context)
 
 
 @login_required()
