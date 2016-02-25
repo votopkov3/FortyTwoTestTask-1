@@ -18,6 +18,14 @@ class ProfileMethodTests(TestCase):
         # get main page
         self.response = self.client.get(reverse('hello:index'))
 
+    def test_profile_context(self):
+        """
+        Test profile context
+        """
+        profile = Profile.objects.first()
+        self.assertEqual(self.response.context['profile'],
+                         profile)
+
     def test_enter_main_page(self):
         """
         Test entering main page
