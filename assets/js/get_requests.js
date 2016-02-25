@@ -7,7 +7,7 @@ $(document).ready(function() {
         var last_request = $('span[last_request]').attr('last_request'); // get id of the last request
         $.ajax({
             type: 'GET',
-            url: '/request_list_ajax/',
+            url: '/request_list/',
             context: {last_request: last_request},
             success: function (msg) {
                 var result = ""; // create variable for put there html with requests
@@ -23,12 +23,8 @@ $(document).ready(function() {
                             if (msg[key]['pk'] != last_request && last_request != undefined){
                                 // last id - last request id and get how many new requests
                                 new_request = parseInt(msg[key]['pk']) - parseInt(last_request);
-                                // if new request make doc. title "{count of new requests}" + new requests
-                                if (new_request >= 1){
-                                    document.title = new_request + " new requests";
-                                } else {
-                                    document.title = 'Request list';
-                                }
+                                // if new request make doc. title "(count of new requests)"
+                                    document.title = '(' + new_request + ')';
                             }
                             result += '<tr><td><span last_request=' + msg[key]['pk'] + '>' + msg[key]['pk'] + '</span></td>';
                         } else {
@@ -46,7 +42,7 @@ $(document).ready(function() {
 
                     });
                     // replace last 10 request on new 10 requests
-                    $('.result').replaceWith('<div class="col-xs-12 result"><table class="table table-bordered text-center"><tr><th>ID</th><th>Date</th><th>Path</th><th>Priority</th></tr><tr>' + result + '</tr></table></div>');
+                    $('.result').replaceWith('<tbody class="result"><tr>' + result + '</tr></tbody>');
                 });
                 // load function every 3 seconds.
                 setTimeout(load_requests, 3000);
@@ -57,7 +53,7 @@ $(document).ready(function() {
     load_requests();
 
     // when user see page, title become Request list
-    $(document).hover(function (){
+    $(window).on('blur focus', function (){
         document.title = "Request list";
     });
 });
