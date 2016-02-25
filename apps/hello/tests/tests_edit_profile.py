@@ -286,4 +286,3 @@ class EditProfileImageFieldTests(TestCase):
 
         # test image height
         self.assertEqual(profile_image.height, 33)
-

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.models import User
 from django.db import models
-from PIL import Image, ImageOps
+from PIL import Image
 
 
 class Profile(models.Model):
