@@ -3,7 +3,6 @@ from django.core.urlresolvers import reverse
 from django.test import Client
 from django.test import TestCase
 from models import Profile
-from django.utils.encoding import smart_unicode
 
 client = Client()
 
@@ -40,8 +39,8 @@ class ProfileMethodTests(TestCase):
         # test context main view
         self.assertEqual(self.response.context['profile'], profile)
         # test profile data exist on the main page
-        self.assertContains(self.response, u'Отопков')
-        self.assertContains(self.response, u'Владимир')
+        self.assertContains(self.response, profile.last_name)
+        self.assertContains(self.response, profile.name)
 
     def test_non_another_profile(self):
         """
@@ -51,13 +50,6 @@ class ProfileMethodTests(TestCase):
         self.assertNotEqual(self.response.context['profile'],
                             Profile.objects.get(id=2))
         self.assertNotIn('Василий', self.response.content)
-
-    def test_unicode(self):
-        """
-        Test unicode data on the page
-        """
-        profile = Profile.objects.first()
-        self.assertEqual(smart_unicode(profile), u'Отопков')
 
     def test_db_entries_count(self):
         """
