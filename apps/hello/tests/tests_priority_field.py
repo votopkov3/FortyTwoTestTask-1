@@ -7,7 +7,6 @@ client = Client()
 
 
 class RequestPriorityFieldTest(TestCase):
-    fixtures = ['initial_data.json']
 
     def test_request_priority_field(self):
         """
@@ -42,9 +41,10 @@ class RequestPriorityFieldTest(TestCase):
         Test ordering by priority on the page
         """
         # add 10 new quests to get valid json response
+        Requests.objects.all().delete()
         i = 1
-        while i < 10:
-            if i == 2:
+        while i <= 10:
+            if i == 9:
                 Requests.objects.create(request='test_request', priority=1)
             else:
                 Requests.objects.create(request='test_request')
@@ -54,9 +54,8 @@ class RequestPriorityFieldTest(TestCase):
                               HTTP_X_REQUESTED_WITH='XMLHttpRequest',
                               content_type='application/json',)
         response_list = json.loads(response.content)
-        # Test if the first entry is entry with priority 1
-        self.assertEqual(response_list[0]['fields']['priority'], 1)
-        # Test if the second entry has  priority 2
+        # set the last request priority 1
+        self.assertEqual(response_list[9]['fields']['priority'], 1)
+        # Test if other priority has default values
         self.assertEqual(response_list[1]['fields']['priority'], 0)
-        # Test if the 6th request has priority 3
         self.assertEqual(response_list[2]['fields']['priority'], 0)
