@@ -9,41 +9,28 @@ $(document).ready(function() {
             type: 'GET',
             url: '/request_list/',
             context: {last_request: last_request},
-            success: function (msg) {
-                var result = ""; // create variable for put there html with requests
-                var i = 0; // create iterator with initial value 0
+            data: {last_request: last_request},
+            success: function (data) {
+                // count how much tr need to remove
+                remove_tr = 10 - data.length;
 
-                // get json requests
-                $.each(msg, function (key) {
-                    if (msg[key]['pk']) {
-                        // set number to span attribute for the first request that this is the last request(this is the last request added in db)
-                        if (i==0) {
+                // remove tr's
+                $('.result').find('tr:gt(' + remove_tr + ')').remove();
 
-                            // verify that new request come in
-                            if (msg[key]['pk'] != last_request && last_request != undefined){
-                                // last id - last request id and get how many new requests
-                                new_request = parseInt(msg[key]['pk']) - parseInt(last_request);
-                                // if new request make doc. title "(count of new requests)"
-                                    document.title = '(' + new_request + ')';
-                            }
-                            result += '<tr><td><span last_request=' + msg[key]['pk'] + '>' + msg[key]['pk'] + '</span></td>';
-                        } else {
-                            result += '<tr><td><span>' + msg[key]['pk'] + '</span></td>';
-                        }
-                    }
-                    i++;
-                    // create html table with requests
-                    $.each(msg[key]['fields'], function (k, val) {
-                        if (k !== 'request' && k !== 'title' && k !== 'pub_date') {
-                            result += '<td>' + val + '</td>';
-                        } else if (k == 'pub_date') {
-                            result += '<td>' + val.slice(0, 19).replace("T"," ") + '</td>';
-                        }
-
-                    });
-                    // replace last 10 request on new 10 requests
-                    $('.result').replaceWith('<tbody class="result"><tr>' + result + '</tr></tbody>');
+                // put new requests on the page
+                $.each(data, function(key, value){
+                    var new_request = '<tr>' +
+                    '<td><span last_request="' + value.pk + '">' + value.pk + '</span></td>' +
+                    '<td>' + value.fields.pub_date.slice(0, 19).replace("T"," ") + '</td>' +
+                    '<td>' + value.fields.path + '</td></tr>';
+                    $('.result').prepend(new_request);
                 });
+
+                // update title count of new requests
+                if (data.length > 0) {
+                    document.title = '(' + data.length + ')';
+                }
+
                 // load function every 3 seconds.
                 setTimeout(load_requests, 3000);
             }
