@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from StringIO import StringIO
 from django.contrib.auth.models import User
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core.urlresolvers import reverse
