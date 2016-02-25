@@ -41,6 +41,8 @@ class EditProfileTests(TestCase):
                         ' id="update-profile-form" '
                         'enctype="multipart/form-data">'
                         in response.content)
+        # test if form is on the page (Save - submit button)
+        self.assertContains(response, 'Save')
 
     def test_entering_edit_profile(self):
         """
@@ -56,8 +58,6 @@ class EditProfileTests(TestCase):
         # get edit page with login user
         response = self.client.get(reverse('hello:edit_profile'))
         self.assertEqual(response.status_code, 200)
-        # test if form is on the page (Save - submit button)
-        self.assertContains(response, 'Save')
 
     def test_send_post_data_update_profile(self):
         """
@@ -166,6 +166,20 @@ class EditProfileTests(TestCase):
         # delete file from app
         default_storage.delete(bad_file_path)
 
+
+class EditProfileImageFieldTests(TestCase):
+    fixtures = ['initial_data.json']
+
+    def setUp(self):
+        Profile.objects.create(
+            name=u"Василий",
+            last_name=u"Петров",
+            user=User.objects.get(id=1))
+
+    def tearDown(self):
+        # delete image
+        default_storage.delete(self.profile_obj.photo)
+
     def test_send_valid_image_update_profile(self):
         """
         Testing valid image in profile form
@@ -209,19 +223,16 @@ class EditProfileTests(TestCase):
         # test if form is valid
         self.assertEqual(form.is_valid(), True)
 
-        profile_obj = Profile.objects.get(id=1)
+        self.profile_obj = Profile.objects.get(id=1)
 
         # open saved image
-        profile_image = Image.open(profile_obj.photo)
+        profile_image = Image.open(self.profile_obj.photo)
 
         # test image width
         self.assertEqual(profile_image.width, 200)
 
         # test image height
         self.assertEqual(profile_image.height, 200)
-
-        # delete image
-        default_storage.delete(profile_obj.photo)
 
     def test_aspect_ratio_update_profile(self):
         """
@@ -266,10 +277,10 @@ class EditProfileTests(TestCase):
         # test if form is valid
         self.assertEqual(form.is_valid(), True)
 
-        profile_obj = Profile.objects.get(id=1)
+        self.profile_obj = Profile.objects.get(id=1)
 
         # open saved image
-        profile_image = Image.open(profile_obj.photo)
+        profile_image = Image.open(self.profile_obj.photo)
 
         # test image width
         self.assertEqual(profile_image.width, 200)
@@ -277,5 +288,3 @@ class EditProfileTests(TestCase):
         # test image height
         self.assertEqual(profile_image.height, 33)
 
-        # delete image
-        default_storage.delete(profile_obj.photo)
