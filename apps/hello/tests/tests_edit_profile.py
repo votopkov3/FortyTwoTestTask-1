@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
+from StringIO import StringIO
 from django.contrib.auth.models import User
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core.urlresolvers import reverse
 from django.test import Client
 from django.test import TestCase
@@ -7,8 +9,8 @@ from apps.hello.forms import ProfileForm
 from apps.hello.models import Profile
 from PIL import Image
 from django.conf import settings
-from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core.files.storage import default_storage
+from io import BytesIO
 
 
 client = Client()
@@ -172,20 +174,19 @@ class EditProfileTests(TestCase):
         profile = Profile.objects.get(id=1)
 
         # create test image
-        test_image = Image.new('RGB', (1200, 1200))
+        file_obj = BytesIO()
+        test_image = Image.new('RGB', size=(1200, 1200))
 
-        test_image_path = settings.BASE_DIR + \
-            settings.MEDIA_URL + \
-            'image_for_test.jpg'
-
-        test_image.save(test_image_path)
-
-        # get it
-        valid_file = open(test_image_path)
-
+        test_image.save(file_obj, 'JPEG')
+        file_obj.name = 'test.jpg'
+        file_obj.seek(0)
         # test image width before put it in form
-        image_width = Image.open(test_image_path).width
+        image_width = Image.open(file_obj).width
         self.assertEqual(image_width, 1200)
+
+        photo_file = {
+            'photo': SimpleUploadedFile(
+                name='test.jpg', content=file_obj.getvalue())}
 
         form_data = {
             'id': 1,
@@ -196,15 +197,6 @@ class EditProfileTests(TestCase):
             'jabber': 'smith@jabber.ru',
             'skype': 'sgsfdf',
         }
-
-        valid_file_name = valid_file.name
-
-        # upload file
-        photo_file = {
-            'photo': SimpleUploadedFile(
-                valid_file_name, valid_file.read())}
-
-        valid_file.close()
 
         # put data in form
         form = ProfileForm(
@@ -217,13 +209,10 @@ class EditProfileTests(TestCase):
         # test if form is valid
         self.assertEqual(form.is_valid(), True)
 
-        # saved image path
-        new_image = settings.BASE_DIR + \
-            settings.MEDIA_URL + 'images/' + \
-            'image_for_test.jpg'
+        profile_obj = Profile.objects.get(id=1)
 
         # open saved image
-        profile_image = Image.open(new_image)
+        profile_image = Image.open(profile_obj.photo)
 
         # test image width
         self.assertEqual(profile_image.width, 200)
@@ -232,5 +221,61 @@ class EditProfileTests(TestCase):
         self.assertEqual(profile_image.height, 200)
 
         # delete image
-        default_storage.delete(new_image)
-        default_storage.delete(test_image_path)
+        default_storage.delete(profile_obj.photo)
+
+    def test_aspect_ratio_update_profile(self):
+        """
+        Testing valid image in profile form
+        """
+
+        profile = Profile.objects.get(id=1)
+
+        # create test image
+        file_obj = BytesIO()
+        test_image = Image.new('RGB', size=(1200, 200))
+
+        test_image.save(file_obj, 'JPEG')
+        file_obj.name = 'test.jpg'
+        file_obj.seek(0)
+        # test image width before put it in form
+        image_height = Image.open(file_obj).height
+        self.assertEqual(image_height, 200)
+
+        photo_file = {
+            'photo': SimpleUploadedFile(
+                name='test.jpg', content=file_obj.getvalue())}
+
+        form_data = {
+            'id': 1,
+            'name': 'ad2s',
+            'last_name': 'admin',
+            'date_of_birth': '1993-11-21',
+            'email': 'smith@mail.ru',
+            'jabber': 'smith@jabber.ru',
+            'skype': 'sgsfdf',
+        }
+
+        # put data in form
+        form = ProfileForm(
+            data=form_data,
+            files=photo_file,
+            instance=profile
+        )
+        form.save()
+
+        # test if form is valid
+        self.assertEqual(form.is_valid(), True)
+
+        profile_obj = Profile.objects.get(id=1)
+
+        # open saved image
+        profile_image = Image.open(profile_obj.photo)
+
+        # test image width
+        self.assertEqual(profile_image.width, 200)
+
+        # test image height
+        self.assertEqual(profile_image.height, 33)
+
+        # delete image
+        default_storage.delete(profile_obj.photo)

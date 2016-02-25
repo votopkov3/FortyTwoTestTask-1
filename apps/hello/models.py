@@ -33,8 +33,8 @@ class Profile(models.Model):
         super(Profile, self).save(*args, **kwargs)
         if self.photo:
             image = Image.open(self.photo)
-            imagefit = ImageOps.fit(image, (200, 200), Image.ANTIALIAS)
-            imagefit.save(self.photo.path, 'JPEG', quality=75)
+            image.thumbnail((200, 200), Image.ANTIALIAS)
+            image.save(self.photo.path, 'JPEG', quality=75)
 
 
 class Requests(models.Model):
