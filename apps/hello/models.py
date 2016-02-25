@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.models import User
 from django.db import models
-from PIL import Image, ImageOps
+from PIL import Image
 
 
 class Profile(models.Model):
@@ -33,8 +33,8 @@ class Profile(models.Model):
         super(Profile, self).save(*args, **kwargs)
         if self.photo:
             image = Image.open(self.photo)
-            imagefit = ImageOps.fit(image, (200, 200), Image.ANTIALIAS)
-            imagefit.save(self.photo.path, 'JPEG', quality=75)
+            image.thumbnail((200, 200), Image.ANTIALIAS)
+            image.save(self.photo.path, 'JPEG', quality=75)
 
 
 class Requests(models.Model):
