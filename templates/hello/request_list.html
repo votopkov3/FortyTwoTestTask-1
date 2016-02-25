@@ -23,7 +23,7 @@
                         {% for request in requests %}
                         <tr>
                             <td><span last_request="{{ request.id }}">{{ request.id }}</span></td>
-                            <td>{{ request.pub_date }}</td>
+                            <td>{{ request.pub_date|date:"o-m-d H:i:s" }}</td>
                             <td>{{ request.path }}</td>
                         </tr>
                         {% endfor %}
