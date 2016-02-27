@@ -177,14 +177,12 @@ class EditProfileImageFieldTests(TestCase):
 
     def tearDown(self):
         # delete image
-        default_storage.delete(self.profile_obj.photo)
+        self.profile_obj.photo.delete()
 
     def test_send_valid_image_update_profile(self):
         """
         Testing valid image in profile form
         """
-
-        profile = Profile.objects.get(id=1)
 
         # create test image
         file_obj = BytesIO()
@@ -197,9 +195,8 @@ class EditProfileImageFieldTests(TestCase):
         image_width = Image.open(file_obj).width
         self.assertEqual(image_width, 1200)
 
-        photo_file = {
-            'photo': SimpleUploadedFile(
-                name='test.jpg', content=file_obj.getvalue())}
+        photo_file = SimpleUploadedFile(
+                name='test.jpg', content=file_obj.getvalue())
 
         form_data = {
             'id': 1,
@@ -209,20 +206,18 @@ class EditProfileImageFieldTests(TestCase):
             'email': 'smith@mail.ru',
             'jabber': 'smith@jabber.ru',
             'skype': 'sgsfdf',
+            'photo': photo_file
         }
 
-        # put data in form
-        form = ProfileForm(
-            data=form_data,
-            files=photo_file,
-            instance=profile
+        # login
+        self.client.login(username='admin', password='admin')
+
+        self.client.post(
+            reverse('hello:update_profile'),
+            form_data,
         )
-        form.save()
 
-        # test if form is valid
-        self.assertEqual(form.is_valid(), True)
-
-        self.profile_obj = Profile.objects.get(id=1)
+        self.profile_obj = Profile.objects.first()
 
         # open saved image
         profile_image = Image.open(self.profile_obj.photo)
@@ -237,8 +232,8 @@ class EditProfileImageFieldTests(TestCase):
         """
         Testing valid image in profile form
         """
-
-        profile = Profile.objects.get(id=1)
+        # login
+        self.client.login(username='admin', password='admin')
 
         # create test image
         file_obj = BytesIO()
@@ -251,9 +246,8 @@ class EditProfileImageFieldTests(TestCase):
         image_height = Image.open(file_obj).height
         self.assertEqual(image_height, 200)
 
-        photo_file = {
-            'photo': SimpleUploadedFile(
-                name='test.jpg', content=file_obj.getvalue())}
+        photo_file = SimpleUploadedFile(
+                name='test.jpg', content=file_obj.getvalue())
 
         form_data = {
             'id': 1,
@@ -263,20 +257,18 @@ class EditProfileImageFieldTests(TestCase):
             'email': 'smith@mail.ru',
             'jabber': 'smith@jabber.ru',
             'skype': 'sgsfdf',
+            'photo': photo_file
         }
 
-        # put data in form
-        form = ProfileForm(
-            data=form_data,
-            files=photo_file,
-            instance=profile
+        # login
+        self.client.login(username='admin', password='admin')
+
+        self.client.post(
+            reverse('hello:update_profile'),
+            form_data,
         )
-        form.save()
 
-        # test if form is valid
-        self.assertEqual(form.is_valid(), True)
-
-        self.profile_obj = Profile.objects.get(id=1)
+        self.profile_obj = Profile.objects.first()
 
         # open saved image
         profile_image = Image.open(self.profile_obj.photo)
