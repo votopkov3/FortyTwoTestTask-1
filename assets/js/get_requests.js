@@ -1,6 +1,6 @@
 // get 10 requests
 $(document).ready(function() {
-
+    var new_requests = 0;
     // load 10 last request ordering by pub_date
     load_requests = function () {
 
@@ -25,10 +25,10 @@ $(document).ready(function() {
                     '<td>' + value.fields.path + '</td></tr>';
                     $('.result').prepend(new_request);
                 });
-
+                new_requests += data.length;
                 // update title count of new requests
-                if (data.length > 0) {
-                    document.title = '(' + data.length + ')';
+                if (new_requests > 0) {
+                    document.title = '(' + new_requests + ')';
                 }
 
                 // load function every 3 seconds.
@@ -40,7 +40,8 @@ $(document).ready(function() {
     load_requests();
 
     // when user see page, title become Request list
-    $(window).on('blur focus', function (){
+    $(window).on('focus', function (){
         document.title = "Request list";
+        new_requests = 0;
     });
 });
