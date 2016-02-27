@@ -1,4 +1,5 @@
 import json
+from django.core import serializers
 from django.core.urlresolvers import reverse
 from django.test import Client, TestCase
 from apps.hello.models import Requests
