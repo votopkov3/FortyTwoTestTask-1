@@ -33,6 +33,14 @@ class ProfileMethodTests(TestCase):
         # if index page exists
         self.assertEqual(self.response.status_code, 200)
 
+    def test_profile_static_html(self):
+        """
+        Testing profile shown on the page
+        """
+        # test profile data exist on the main page
+        self.assertContains(self.response, u'Отопков')
+        self.assertContains(self.response, u'Владимир')
+
     def test_profile(self):
         """
         Testing profile shown in the page
