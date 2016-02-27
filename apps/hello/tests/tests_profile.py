@@ -46,6 +46,14 @@ class ProfileMethodTests(TestCase):
         self.assertContains(self.response, profile.last_name)
         self.assertContains(self.response, profile.name)
 
+    def test_profile_static_html(self):
+        """
+        Testing profile shown on the page
+        """
+        # test profile data exist on the main page
+        self.assertContains(self.response, u'Отопков')
+        self.assertContains(self.response, u'Владимир')
+
     def test_non_another_profile(self):
         """
         Test if exist another profile in the page
