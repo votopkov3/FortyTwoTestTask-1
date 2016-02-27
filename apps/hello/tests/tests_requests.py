@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+from django.core import serializers
 from django.core.urlresolvers import reverse
 from django.test import Client, RequestFactory
 from django.test import TestCase
@@ -28,19 +29,24 @@ class SaveHttpRequestTests(TestCase):
         """
         Testing request list view function
         """
+        # delete all requests
+        Requests.objects.all().delete()
         # create new 10 requests will be 12 requests in db
         i = 0
-        while i < 10:
-            Requests.objects.create(request='test_request')
+        while i <= 10:
+            Requests.objects.create(
+                request='request_1',
+                path='/'
+            )
             i += 1
         # get requests
         response = client.get(reverse('hello:request_list'),
                               content_type='application/json',
                               HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         # get first request
-        request = Requests.objects.get(request='request_1')
+        request = Requests.objects.get(id=1)
         # get second request
-        request_2 = Requests.objects.get(request='request_2')
+        request_2 = Requests.objects.get(id=2)
         # test getting request list
         self.assertEquals(response.status_code, 200)
         # test first request in response content
@@ -50,8 +56,14 @@ class SaveHttpRequestTests(TestCase):
         # get json response and loads it
         response_list = json.loads(response.content)
         # test if 10 requests in response
-        resp_list_count = sum(1 for x in response_list)
-        self.assertEqual(resp_list_count, 10)
+        self.assertEqual(len(response_list), 10)
+
+        # test queryset
+        requests = serializers.serialize(
+            "json",
+            Requests.objects.filter(id__gt=0).reverse()[:10]
+        )
+        self.assertEqual(response.content, requests)
 
     def test_last_requests(self):
         """
