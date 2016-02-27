@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-from django.utils.six import StringIO
-from django.core.management import call_command
+import os
 from django.test import TestCase
-import subprocess
 from apps.hello.models import Requests
 from django.utils import timezone as t
 
@@ -10,7 +8,7 @@ from django.utils import timezone as t
 class CommandTests(TestCase):
     fixtures = ['initial_data.json']
 
-    def test_command_output(self):
+    def test_command_stdout_output(self):
         """
         Testing command
         """
@@ -19,15 +17,19 @@ class CommandTests(TestCase):
                        path='/'
                        )
         req.save()
-        out = StringIO()  # flake8: noqa
-        call_command('model_list', stderr=out)
+        fin, fout = os.popen4('python manage.py model_list --stdout')
         self.assertIn('apps.hello.models.Requests',
-                      out.getvalue())
+                      fout.read())
 
-    def test_model_list_script(self):
+    def test_command_stderr_output(self):
         """
-        Testing command by executing models_lish.sh
+        Testing command
         """
-        out = subprocess.Popen("./model_list.sh",
-                               stderr=subprocess.PIPE,
-                               shell=True)
+        req = Requests(request='request',
+                       pub_date=t.now() + t.timedelta(hours=3),
+                       path='/'
+                       )
+        req.save()
+        fin, fout = os.popen4('python manage.py model_list --stderr')
+        self.assertIn('Error: apps.hello.models.Requests',
+                      fout.read())
