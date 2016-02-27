@@ -11,7 +11,13 @@ class ProfileMethodTests(TestCase):
     fixtures = ['initial_data.json']
 
     def setUp(self):
-        Profile.objects.create(name=u"Василий", last_name=u"Петров")
+        Profile.objects.create(name=u"Василий",
+                               last_name=u"Петров",
+                               date_of_birth='1993-11-29',
+                               bio='biofield',
+                               email='mail@mail.ru',
+                               jabber='jabber',
+                               skype='skype')
         # get main page
         self.response = self.client.get(reverse('hello:index'))
 
@@ -41,6 +47,12 @@ class ProfileMethodTests(TestCase):
         # test profile data exist on the main page
         self.assertContains(self.response, profile.last_name)
         self.assertContains(self.response, profile.name)
+        self.assertContains(self.response,
+                            profile.date_of_birth.strftime("%b. %d, %Y"))
+        self.assertContains(self.response, profile.bio)
+        self.assertContains(self.response, profile.jabber)
+        self.assertContains(self.response, profile.skype)
+        self.assertContains(self.response, profile.email)
 
     def test_profile_static_html(self):
         """
@@ -49,6 +61,27 @@ class ProfileMethodTests(TestCase):
         # test profile data exist on the main page
         self.assertContains(self.response, u'Отопков')
         self.assertContains(self.response, u'Владимир')
+        self.assertContains(self.response,
+                            u'Меня зовут Владимир')
+        self.assertContains(self.response,
+                            'votopkov.webmaster@gmail.com')
+        self.assertContains(self.response,
+                            '_smith_@khavr.com')
+        self.assertContains(self.response, 'gashik_3')
+
+    def test_profile_static_enter_html(self):
+        """
+        Testing profile shown on the page
+        """
+        # test profile data exist on the main page
+        self.assertNotContains(self.response, 'Георгий')
+        self.assertNotContains(self.response, 'Петров')
+        self.assertNotContains(self.response,
+                               'Меня зовут Георгий')
+        self.assertNotContains(self.response,
+                               'votopkov@gmail.com')
+        self.assertNotContains(self.response,
+                               'smith@khavr.com')
 
     def test_non_another_profile(self):
         """
