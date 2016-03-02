@@ -19,7 +19,8 @@ class TagTests(TestCase):
         template = Template("{% load hello_tags %}"
                             "{% edit_link profile %}")
         rendered = template.render(Context({'profile': profile}))
-        self.assertIn(u'/admin/hello/profile/',
+        self.assertIn(reverse('admin:hello_profile_change',
+                              args=(profile.id, )),
                       rendered)
 
     def test_tag_add_another_object(self):
@@ -34,7 +35,8 @@ class TagTests(TestCase):
         template = Template("{% load hello_tags %}"
                             "{% edit_link request %}")
         rendered = template.render(Context({'request': req}))
-        self.assertIn(u'/admin/hello/requests/',
+        self.assertIn(reverse('admin:hello_requests_change',
+                              args=(req.id, )),
                       rendered)
 
     def test_tag_on_the_page(self):
@@ -44,14 +46,17 @@ class TagTests(TestCase):
         # login
         self.client.login(username='admin', password='admin')
         response = self.client.get(reverse('hello:index'))
-        self.assertIn('/admin/hello/profile/', response.content)
+        self.assertIn(reverse('admin:hello_profile_change',
+                              args=(1, )), response.content)
 
     def test_tag_on_the_page_not_login_user(self):
         """
         Test tag on the page not login user
         """
         response = self.client.get(reverse('hello:index'))
-        self.assertNotIn('/admin/hello/profile/', response.content)
+        self.assertNotIn(reverse('admin:hello_profile_change',
+                                 args=(1, )),
+                         response.content)
 
     def test_tag_with_blank_data(self):
         """
