@@ -35,29 +35,23 @@ class SaveHttpRequestTests(TestCase):
         Testing request list view function
         """
         # delete all requests
+        # create new 10 requests will be 11 requests in db
         Requests.objects.all().delete()
-        # create new 10 requests will be 12 requests in db
         i = 0
         while i <= 10:
             Requests.objects.create(
                 request='request_1',
-                path='/'
+                path='/path_to_test'
             )
             i += 1
         # get requests
         response = client.get(reverse('hello:request_list'),
                               content_type='application/json',
                               HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-        # get first request
-        request = Requests.objects.get(id=1)
-        # get second request
-        request_2 = Requests.objects.get(id=2)
         # test getting request list
         self.assertEquals(response.status_code, 200)
         # test first request in response content
-        self.assertContains(response, request)
-        # test second request in response content
-        self.assertContains(response, request_2)
+        self.assertContains(response, '/path_to_test')
         # get json response and loads it
         response_list = json.loads(response.content)
         # test if 10 requests in response
