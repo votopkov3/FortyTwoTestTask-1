@@ -36,7 +36,7 @@ class ProfileForm(forms.ModelForm):
                                          attrs={'class':
                                                 'form-control'}))
     bio = forms.CharField(max_length=1000,
-                          required=False,
+                          min_length=3,
                           widget=forms.Textarea(
                               attrs={'class': 'form-control'}))
 
