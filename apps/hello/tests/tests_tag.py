@@ -19,7 +19,7 @@ class TagTests(TestCase):
         template = Template("{% load hello_tags %}"
                             "{% edit_link profile %}")
         rendered = template.render(Context({'profile': profile}))
-        self.assertIn(edit_link(profile),
+        self.assertIn(u'/admin/hello/profile/',
                       rendered)
 
     def test_tag_add_another_object(self):
@@ -34,7 +34,7 @@ class TagTests(TestCase):
         template = Template("{% load hello_tags %}"
                             "{% edit_link request %}")
         rendered = template.render(Context({'request': req}))
-        self.assertIn(edit_link(req),
+        self.assertIn(u'/admin/hello/requests/',
                       rendered)
 
     def test_tag_on_the_page(self):
