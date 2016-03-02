@@ -104,7 +104,7 @@ class EditProfileTests(TestCase):
         form_data = {
             'id': 2,
             'name': 'ad',
-            'bio': 'my bio',
+            'bio': 'my',
             'last_name': 'admin' * 21,
             'date_of_birth': '1993-1121',
             'email': '123',
@@ -126,6 +126,8 @@ class EditProfileTests(TestCase):
                       str(form['jabber'].errors))
         self.assertIn(u'Ensure this value has at least 3 characters',
                       str(form['skype'].errors))
+        self.assertIn(u'Ensure this value has at least 3 characters',
+                      str(form['bio'].errors))
 
     def test_send_no_post_data_update_profile(self):
         """
@@ -146,6 +148,8 @@ class EditProfileTests(TestCase):
                       str(form['jabber'].errors))
         self.assertIn(u'This field is required',
                       str(form['skype'].errors))
+        self.assertIn(u'This field is required',
+                      str(form['bio'].errors))
 
     def test_send_bad_image_format_cant_open(self):
         """
