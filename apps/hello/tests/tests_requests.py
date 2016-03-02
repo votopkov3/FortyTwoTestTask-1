@@ -55,7 +55,7 @@ class SaveHttpRequestTests(TestCase):
         # test queryset
         requests = serializers.serialize(
             "json",
-            Requests.objects.filter(id__gt=0).reverse()[:10]
+            Requests.objects.filter(id__gt=0).order_by('pk')[:10]
         )
         self.assertEqual(response.content, requests)
 

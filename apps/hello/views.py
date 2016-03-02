@@ -34,7 +34,7 @@ def request_list(request):
         last_request = int(request.GET.get('last_request', 0))
         data = serializers.serialize(
             "json",
-            Requests.objects.filter(id__gt=last_request).reverse()[:10]
+            Requests.objects.filter(id__gt=last_request).order_by('pk')[:10]
         )
         return HttpResponse(data, content_type="application/json")
     requests = Requests.objects.all()[:10]
