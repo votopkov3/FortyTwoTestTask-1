@@ -54,37 +54,6 @@ class ProfileMethodTests(TestCase):
         self.assertContains(self.response, profile.skype)
         self.assertContains(self.response, profile.email)
 
-    def test_profile_static_html(self):
-        """
-        Testing profile shown on the page
-        """
-        # test profile data exist on the main page
-        self.assertContains(self.response, u'Отопков')
-        self.assertContains(self.response, u'Владимир')
-        self.assertContains(self.response,
-                            'Nov. 29, 1993')
-        self.assertContains(self.response,
-                            u'Меня зовут Владимир')
-        self.assertContains(self.response,
-                            '_smith_@khavr.com')
-        self.assertContains(self.response, 'gashik_3')
-        self.assertContains(self.response,
-                            'votopkov.webmaster@gmail.com')
-
-    def test_profile_static_enter_html(self):
-        """
-        Testing profile shown on the page
-        """
-        # test profile data exist on the main page
-        self.assertNotContains(self.response, 'Георгий')
-        self.assertNotContains(self.response, 'Петров')
-        self.assertNotContains(self.response,
-                               'Меня зовут Георгий')
-        self.assertNotContains(self.response,
-                               'votopkov@gmail.com')
-        self.assertNotContains(self.response,
-                               'smith@khavr.com')
-
     def test_non_another_profile(self):
         """
         Test if exist another profile in the page
