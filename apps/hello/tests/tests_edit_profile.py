@@ -19,10 +19,15 @@ class EditProfileTests(TestCase):
     fixtures = ['initial_data.json']
 
     def setUp(self):
-        Profile.objects.create(
-            name=u"Василий",
-            last_name=u"Петров",
-            user=User.objects.get(id=1))
+        user = User.objects.get(id=1)
+        Profile.objects.create(name=u"Василий",
+                               last_name=u"Петров",
+                               date_of_birth='1993-11-29',
+                               bio='biofield',
+                               email='mail@mail.ru',
+                               jabber='jabber',
+                               skype='skype',
+                               user=user)
 
     def test_edit_profile_html(self):
         """
@@ -66,6 +71,7 @@ class EditProfileTests(TestCase):
             'id': 2,
             'name': 'admin',
             'last_name': 'admin',
+            'bio': 'my bio',
             'date_of_birth': '1993-11-29',
             'email': 'mail@mail.ua',
             'jabber': 'jabber@jabber.ua',
@@ -99,6 +105,7 @@ class EditProfileTests(TestCase):
             'id': 2,
             'name': 'ad',
             'last_name': 'admin' * 21,
+            'bio': 'my bio',
             'date_of_birth': '1993-1121',
             'email': '123',
             'jabber': '123',
@@ -152,6 +159,7 @@ class EditProfileTests(TestCase):
             'id': 1,
             'name': 'ad2s',
             'last_name': 'admin',
+            'bio': 'my bio',
             'date_of_birth': '1993-11-21',
             'email': 'smith@mail.ru',
             'jabber': 'smith@jabber.ru',
@@ -170,10 +178,15 @@ class EditProfileImageFieldTests(TestCase):
     fixtures = ['initial_data.json']
 
     def setUp(self):
-        Profile.objects.create(
-            name=u"Василий",
-            last_name=u"Петров",
-            user=User.objects.get(id=1))
+        user = User.objects.get(id=1)
+        Profile.objects.create(name=u"Василий",
+                               last_name=u"Петров",
+                               date_of_birth='1993-11-29',
+                               bio='biofield',
+                               email='mail@mail.ru',
+                               jabber='jabber',
+                               skype='skype',
+                               user=user)
 
     def tearDown(self):
         # delete image
@@ -202,6 +215,7 @@ class EditProfileImageFieldTests(TestCase):
             'id': 1,
             'name': 'ad2s',
             'last_name': 'admin',
+            'bio': 'my bio',
             'date_of_birth': '1993-11-21',
             'email': 'smith@mail.ru',
             'jabber': 'smith@jabber.ru',
@@ -253,6 +267,7 @@ class EditProfileImageFieldTests(TestCase):
             'id': 1,
             'name': 'ad2s',
             'last_name': 'admin',
+            'bio': 'my bio',
             'date_of_birth': '1993-11-21',
             'email': 'smith@mail.ru',
             'jabber': 'smith@jabber.ru',
