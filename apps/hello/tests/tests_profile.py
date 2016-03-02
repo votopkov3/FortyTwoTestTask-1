@@ -10,7 +10,13 @@ class ProfileMethodTests(TestCase):
     fixtures = ['initial_data.json']
 
     def setUp(self):
-        Profile.objects.create(name=u"Василий", last_name=u"Петров")
+        Profile.objects.create(name=u"Василий",
+                               last_name=u"Петров",
+                               date_of_birth='1993-11-29',
+                               bio='biofield',
+                               email='mail@mail.ru',
+                               jabber='jabber',
+                               skype='skype')
         # get main page
         self.response = self.client.get(reverse('hello:index'))
 
