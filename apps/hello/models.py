@@ -11,16 +11,14 @@ class Profile(models.Model):
     name = models.CharField(max_length=250, default="Eneter your name")
     last_name = models.CharField(max_length=250,
                                  default="Eneter your last name")
-    date_of_birth = models.DateField(blank=True, null=True)
-    photo = models.ImageField(upload_to='images/',
-                              blank=True,
-                              null=True)
-    bio = models.TextField(blank=True, null=True, default=" ")
+    date_of_birth = models.DateField()
+    photo = models.ImageField(upload_to='images/')
+    bio = models.TextField()
 
-    email = models.EmailField(blank=True, null=True)
-    jabber = models.CharField(max_length=250, blank=True, null=True)
-    skype = models.CharField(max_length=250, blank=True, null=True)
-    other_contacts = models.TextField(blank=True, null=True, default=" ")
+    email = models.EmailField()
+    jabber = models.CharField(max_length=250)
+    skype = models.CharField(max_length=250)
+    other_contacts = models.TextField()
 
     class Meta:
         verbose_name = "Profile"
