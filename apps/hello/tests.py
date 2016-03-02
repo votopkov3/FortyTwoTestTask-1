@@ -62,12 +62,14 @@ class ProfileMethodTests(TestCase):
         self.assertContains(self.response, u'Отопков')
         self.assertContains(self.response, u'Владимир')
         self.assertContains(self.response,
-                            u'Меня зовут Владимир')
+                            'Nov. 29, 1993')
         self.assertContains(self.response,
-                            'votopkov.webmaster@gmail.com')
+                            u'Меня зовут Владимир')
         self.assertContains(self.response,
                             '_smith_@khavr.com')
         self.assertContains(self.response, 'gashik_3')
+        self.assertContains(self.response,
+                            'votopkov.webmaster@gmail.com')
 
     def test_profile_static_enter_html(self):
         """
