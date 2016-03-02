@@ -15,6 +15,11 @@ class ProfileMethodTests(TestCase):
         user = User.objects.get(id=1)
         Profile.objects.create(name=u"Василий",
                                last_name=u"Петров",
+                               date_of_birth='1993-11-29',
+                               bio='biofield',
+                               email='mail@mail.ru',
+                               jabber='jabber',
+                               skype='skype',
                                user=user)
         # get main page
         self.response = client.get(reverse('hello:index'))
