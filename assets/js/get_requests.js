@@ -12,7 +12,7 @@ $(document).ready(function() {
             data: {last_request: last_request},
             success: function (data) {
                 // count how much tr need to remove
-                remove_tr = 10 - data.length;
+                remove_tr = 9 - data.length;
 
                 // remove tr's
                 $('.result').find('tr:gt(' + remove_tr + ')').remove();
