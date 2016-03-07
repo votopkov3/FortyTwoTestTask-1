@@ -14,7 +14,7 @@ def main(request):
 
 def request_list(request):
     if request.is_ajax():
-        last_request = int(request.GET.get('last_request', 0))
+        last_request = int(request.GET.get('last_request'))
         data = serializers.serialize(
             "json",
             Requests.objects.filter(id__gt=last_request).order_by('pk')[:10]

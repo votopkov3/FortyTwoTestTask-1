@@ -46,6 +46,7 @@ class SaveHttpRequestTests(TestCase):
             i += 1
         # get requests
         response = client.get(reverse('hello:request_list'),
+                              {'last_request': 0},  # to get 10 last requests
                               content_type='application/json',
                               HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         # test getting request list
@@ -60,7 +61,7 @@ class SaveHttpRequestTests(TestCase):
         # test queryset
         requests = serializers.serialize(
             "json",
-            Requests.objects.filter(id__gt=0).order_by('pk')[:10]
+            Requests.objects.order_by('pk')[:10]
         )
         self.assertEqual(response.content, requests)
 
@@ -111,6 +112,7 @@ class SaveHttpRequestNoDataTests(TestCase):
         """
         # get requests
         response = client.get(reverse('hello:request_list'),
+                              {'last_request': 0},
                               content_type='application/json',
                               HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEquals(response.status_code, 200)
