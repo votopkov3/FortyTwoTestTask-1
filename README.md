@@ -1,6 +1,7 @@
 42-test template
 ===========================
 
+
 A Django 1.6+ project template
 
 Use fortytwo_test_task.settings when deploying with getbarista.com
@@ -14,4 +15,3 @@ Use fortytwo_test_task.settings when deploying with getbarista.com
 * common templates live in templates/
 * common static lives in assets/
 * management commands should be proxied to single word make commands, e.g make test
-

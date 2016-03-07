@@ -44,15 +44,16 @@ class RequestPriorityFieldTest(TestCase):
         Requests.objects.all().delete()
         i = 1
         while i <= 10:
-            if i == 9:
-                Requests.objects.create(request='test_request', priority=1)
+            if i == 10:
+                Requests.objects.create(request='test_request',
+                                        priority=1)
             else:
                 Requests.objects.create(request='test_request')
             i += 1
-        # get list of requests
         response = client.get(reverse('hello:request_list'),
+                              {'last_request': 0},
                               HTTP_X_REQUESTED_WITH='XMLHttpRequest',
-                              content_type='application/json',)
+                              content_type='application/json')
         response_list = json.loads(response.content)
         # set the last request priority 1
         self.assertEqual(response_list[9]['fields']['priority'], 1)
