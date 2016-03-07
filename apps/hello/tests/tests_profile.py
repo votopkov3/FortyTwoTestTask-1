@@ -62,10 +62,11 @@ class ProfileMethodTests(TestCase):
         """
         Test if exist another profile in the page
         """
+        an_profile = Profile.objects.get(id=2)
         # test if not another profile on index
         self.assertNotEqual(self.response.context['profile'],
-                            Profile.objects.get(id=2))
-        self.assertNotIn('Василий', self.response.content)
+                            an_profile)
+        self.assertNotIn(an_profile.name, self.response.content)
 
     def test_db_entries_count(self):
         """
