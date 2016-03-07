@@ -67,7 +67,7 @@ class ProfileMethodTests(TestCase):
         """
         Test db entries
         """
-        profile = Profile.objects.all().count()
+        profile = Profile.objects.count()
         # one profile in fixtures and one in setUp
         self.assertEqual(profile, 2)
 
