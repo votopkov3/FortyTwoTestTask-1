@@ -28,7 +28,7 @@
                     <div class='logged_in_greeting col-xs-12'>
                         <div class='row'>
                             <div class='logged_in_greeting_title col-xs-11 col-xs-offset-1'>
-                                    <form action="{% url 'hello:update_profile' %}" method="post" id="update-profile-form" enctype="multipart/form-data">
+                                    <form action="{% url 'hello:edit_profile' %}" method="post" id="update-profile-form" enctype="multipart/form-data">
                                         {{ user_form.id }}
                                         <div class="col-xs-6 left-column">
                                             {% csrf_token %}
