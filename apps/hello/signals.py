@@ -12,10 +12,10 @@ def post_save_signal(sender, created, **kwargs):
         LogEntrry.objects.create(title=sender.__name__, status='Create')
     elif not created:
         LogEntrry.objects.create(title=sender.__name__, status='Update')
-    return None
+    return
 
 
 @receiver(post_delete)
 def post_delete_signal(sender, **kwargs):
     LogEntrry.objects.create(title=sender.__name__, status='Delete')
-    return None
+    return

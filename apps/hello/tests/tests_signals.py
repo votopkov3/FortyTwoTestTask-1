@@ -11,7 +11,7 @@ class SignalsTests(TestCase):
 
     def test_count_LogEntrry(self):
         """
-        Must be 113 entries
+        Must be 93 entries
         """
         self.assertEqual(LogEntrry.objects.all().count(), 93)
 
