@@ -31,13 +31,6 @@ class ProfileMethodTests(TestCase):
         self.assertEqual(self.response.context['profile'],
                          profile)
 
-    def test_enter_main_page(self):
-        """
-        Test entering main page
-        """
-        # if index page exists
-        self.assertEqual(self.response.status_code, 200)
-
     def test_profile_static_html(self):
         """
         Testing profile shown on the page
@@ -75,22 +68,6 @@ class ProfileMethodTests(TestCase):
         profile = Profile.objects.all().count()
         # one profile in fixtures and one in setUp
         self.assertEqual(profile, 2)
-
-    def test_admin(self):
-        """
-        Test getting admin page
-        """
-        response = self.client.get(reverse('admin:index'))
-        self.assertEqual(response.status_code, 200)
-
-    def test_admin_login(self):
-        """
-        Testing admin login
-        """
-        admin = {'name': 'admin',
-                 'password': 'admin'}
-        response = self.client.post(reverse('admin:index'), admin)
-        self.assertEqual(response.status_code, 200)
 
     def test_index_html(self):
         """
