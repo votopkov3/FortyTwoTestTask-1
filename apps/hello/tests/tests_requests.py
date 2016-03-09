@@ -21,15 +21,6 @@ class SaveHttpRequestTests(TestCase):
             path='/'
         )
 
-    def test_request_list(self):
-        """
-        Testing request list view function
-        """
-        # get request_list
-        response = client.get(reverse('hello:request_list'))
-        # test entering the page
-        self.assertEquals(response.status_code, 200)
-
     def test_request_list_ajax(self):
         """
         Testing request list view function
@@ -74,6 +65,20 @@ class SaveHttpRequestTests(TestCase):
         # test if new request is the first
         self.assertEqual(Requests.objects.first().id, 12)
 
+    def test_ajax_request_not_save(self):
+        """
+        Test that ajax requests not save to the DB
+        """
+        # 12 requests in in DB
+        self.assertEqual(Requests.objects.count(), 12)
+        # get request_list by ajax
+        client.get(reverse('hello:request_list'),
+                   {'last_request': 0},
+                   content_type='application/json',
+                   HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        # Test if new ajax request not save to DB
+        self.assertEqual(Requests.objects.count(), 12)
+
 
 class SaveHttpRequestNoDataTests(TestCase):
 
@@ -105,14 +110,3 @@ class SaveHttpRequestNoDataTests(TestCase):
         response = client.get(reverse('hello:request_list'))
         # test entering the page
         self.assertContains(response, 'last_request="11"')
-
-    def test_request_list_ajax(self):
-        """
-        Testing request list view function
-        """
-        # get requests
-        response = client.get(reverse('hello:request_list'),
-                              {'last_request': 0},
-                              content_type='application/json',
-                              HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-        self.assertEquals(response.status_code, 200)
