@@ -2,7 +2,7 @@
 from django.core.urlresolvers import reverse
 from django.test import Client
 from django.test import TestCase
-from models import Profile
+from apps.hello.models import Profile
 
 client = Client()
 
@@ -28,13 +28,6 @@ class ProfileMethodTests(TestCase):
         profile = Profile.objects.first()
         self.assertEqual(self.response.context['profile'],
                          profile)
-
-    def test_enter_main_page(self):
-        """
-        Test entering main page
-        """
-        # if index page exists
-        self.assertEqual(self.response.status_code, 200)
 
     def test_profile(self):
         """
@@ -71,22 +64,6 @@ class ProfileMethodTests(TestCase):
         profile = Profile.objects.count()
         # one profile in fixtures and one in setUp
         self.assertEqual(profile, 2)
-
-    def test_admin(self):
-        """
-        Test getting admin page
-        """
-        response = self.client.get(reverse('admin:index'))
-        self.assertEqual(response.status_code, 200)
-
-    def test_admin_login(self):
-        """
-        Testing admin login
-        """
-        admin = {'name': 'admin',
-                 'password': 'admin'}
-        response = self.client.post(reverse('admin:index'), admin)
-        self.assertEqual(response.status_code, 200)
 
     def test_index_html(self):
         """
