@@ -25,10 +25,15 @@ $(document).ready(function() {
                 minlength: 3
             },
             email: {
-                email: true
+                email: true,
+                required: true
             },
             jabber: {
-                email: true
+                email: true,
+                required: true
+            },
+            skype: {
+                required: true
             }
         },
         messages: {
@@ -47,6 +52,9 @@ $(document).ready(function() {
             jabber: {
                 email: "* Please enter a valid jabber address",
                 required: "* Jabber field is required"
+            },
+            skype: {
+                required: "* Skype field is required"
             }
         }, submitHandler: function () {
             var options = {
