@@ -57,14 +57,6 @@ class ProfileMethodTests(TestCase):
                             an_profile)
         self.assertNotIn(an_profile.name, self.response.content)
 
-    def test_db_entries_count(self):
-        """
-        Test db entries
-        """
-        profile = Profile.objects.count()
-        # one profile in fixtures and one in setUp
-        self.assertEqual(profile, 2)
-
     def test_index_html(self):
         """
         Testing valid html on the page
@@ -77,32 +69,12 @@ class ProfileMethodTests(TestCase):
 
 class ProfileNoDataMethodTests(TestCase):
 
-    def setUp(self):
-        Profile.objects.all().delete()
-        # get main page
-        self.response = self.client.get(reverse('hello:index'))
-
-    def test_enter_main_page(self):
-        """
-        Test entering main page
-        """
-        # if index page exists
-        self.assertEqual(self.response.status_code, 200)
-
     def test_profile(self):
         """
         Testing profile shown in the page
         """
         # get profile
-        profile = Profile.objects.all().count()
-        self.assertEqual(profile, 0)
+        self.response = self.client.get(reverse('hello:index'))
         # test profile data exist on the main page
-        self.assertNotContains(self.response, u'Отопков')
-        self.assertNotContains(self.response, u'Владимир')
-
-    def test_db_entries_count(self):
-        """
-        Test db entries
-        """
-        profile = Profile.objects.all().count()
-        self.assertEqual(profile, 0)
+        self.assertNotIn(self.response.content, u'Отопков')
+        self.assertNotIn(self.response.content, u'Владимир')
