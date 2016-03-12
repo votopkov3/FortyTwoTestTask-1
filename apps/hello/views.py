@@ -22,22 +22,20 @@ def main(request):
 
 @login_required()
 def edit_profile(request):
-    identify = request.POST.get('id', 1)
-    profile = Profile.objects.get(id=identify)
+    identify = request.POST.get('id')
+    profile = Profile.objects.get(id=identify) \
+        if identify else Profile.objects.first()
     form = ProfileForm(request.POST, request.FILES, instance=profile)
     logger.info(form)
-    if request.POST:
-        if form.is_valid():
-            form.save()
-            profile = Profile.objects.get(id=int(identify))
-            profile_to_json = {'status': "success",
-                               'image_src': profile.photo.url
-                               if profile.photo else ''}
-        else:
-            profile_to_json = {'status': "error",
-                               'image_src': profile.photo.url
-                               if profile.photo else ' '}
-
+    profile_to_json = {'status': "error",
+                       'image_src': profile.photo.url
+                       if profile.photo else ' '}
+    if request.POST and form.is_valid():
+        form.save()
+        profile_to_json['status'] = "success"
+        return HttpResponse(json.dumps(profile_to_json),
+                            content_type="application/json")
+    if request.POST and not form.is_valid():
         return HttpResponse(json.dumps(profile_to_json),
                             content_type="application/json")
     user_form = ProfileForm(instance=profile)
