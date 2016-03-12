@@ -63,7 +63,7 @@ class EditProfileTests(TestCase):
         response = self.client.get(reverse('hello:edit_profile'))
         self.assertEqual(response.status_code, 200)
 
-    def test_send_post_data_update_profile(self):
+    def test_send_post_data_edit_profile(self):
         """
         Testing update profile
         """
@@ -71,8 +71,8 @@ class EditProfileTests(TestCase):
             'id': 2,
             'name': 'admin',
             'last_name': 'admin',
-            'bio': 'my bio',
             'date_of_birth': '1993-11-29',
+            'bio': 'my bio',
             'email': 'mail@mail.ua',
             'jabber': 'jabber@jabber.ua',
             'skype': 'skype',
@@ -89,8 +89,43 @@ class EditProfileTests(TestCase):
         # get Vasiliy Petrov profile
         profile = Profile.objects.get(id=2)
         # test if it is updated
+        # Vasiliy Petrov's name was Василий, email mail@mail.ru
+        # if form data is valid Vasiliy Petrov's name will be
+        # admin, email - mail@mail.ua
         self.assertEqual(profile.name, 'admin')
         self.assertEqual(profile.email, 'mail@mail.ua')
+
+    def test_edit_profile_with_not_valid_field(self):
+        """
+        Testing edit profile if form is not valid
+        """
+        form_data = {
+            'id': 2,
+            'name': 'ad',  # not valid field
+            'last_name': 'admin',
+            'date_of_birth': '1993-11-29',
+            'bio': 'my bio',
+            'email': 'mail@mail.ua',
+            'jabber': 'jabber@jabber.ua',
+            'skype': 'skype',
+        }
+        # test login required
+        test_login_req_response = self.client.post(
+            reverse('hello:edit_profile'), form_data
+        )
+        self.assertEqual(test_login_req_response.status_code, 302)
+        # login
+        self.client.login(username='admin', password='admin')
+        # update Vasiliy Petrov
+        self.client.post(reverse('hello:edit_profile'), form_data)
+        # get Vasiliy Petrov profile
+        profile = Profile.objects.get(id=2)
+        # test if it is updated
+        # Vasiliy Petrov's name was Василий, email mail@mail.ru
+        # if form data is valid Vasiliy Petrov's name will be
+        # admin, email - mail@mail.ua
+        self.assertNotEqual(profile.name, 'admin')
+        self.assertNotEqual(profile.email, 'mail@mail.ua')
 
     def test_send_unvalid_post_data_edit_profile(self):
         """
