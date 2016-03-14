@@ -2,6 +2,7 @@
 import json
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
+from django.core.exceptions import ObjectDoesNotExist
 from django.http.response import HttpResponse
 from django.shortcuts import render
 from apps.hello.forms import ProfileForm
@@ -22,9 +23,11 @@ def main(request):
 
 @login_required()
 def edit_profile(request):
-    identify = request.POST.get('id')
-    profile = Profile.objects.get(id=identify) \
-        if identify else Profile.objects.first()
+    identify = request.POST.get('id', 1)
+    try:
+        profile = Profile.objects.get(id=identify)
+    except ObjectDoesNotExist:
+        profile = Profile.objects.first()
     form = ProfileForm(request.POST, request.FILES, instance=profile)
     logger.info(form)
     profile_to_json = {'status': "error",
