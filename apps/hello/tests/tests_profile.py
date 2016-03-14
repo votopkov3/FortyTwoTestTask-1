@@ -66,12 +66,9 @@ class ProfileMethodTests(TestCase):
         self.assertTrue('<h1>42 Coffee Cups Test Assignment</h1>'
                         in response.content)
 
-
-class ProfileNoDataMethodTests(TestCase):
-
-    def test_profile(self):
+    def test_profile_unicode(self):
         """
-        Testing profile shown in the page
+        Testing unicode profile data shown on the page
         """
         # get profile
         self.response = self.client.get(reverse('hello:index'))
