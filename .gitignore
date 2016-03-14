@@ -12,6 +12,7 @@ git_ignore
 build
 .noseids
 media
+uploads
 static
 *.dat
 .env
