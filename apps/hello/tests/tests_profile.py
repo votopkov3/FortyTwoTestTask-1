@@ -93,12 +93,9 @@ class ProfileMethodTests(TestCase):
         response = self.client.get(reverse('hello:edit_profile'))
         self.assertTemplateUsed(response, 'hello/edit_profile.html')
 
-
-class ProfileNoDataMethodTests(TestCase):
-
-    def test_profile(self):
+    def test_profile_unicode(self):
         """
-        Testing profile shown in the page
+        Testing unicode profile data shown on the page
         """
         # get profile
         self.response = self.client.get(reverse('hello:index'))
