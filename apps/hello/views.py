@@ -8,6 +8,8 @@ from apps.hello.forms import ProfileForm
 from models import Profile
 from models import Requests
 import logging
+from django.core.exceptions import ObjectDoesNotExist
+
 
 logger = logging.getLogger(__name__)
 
@@ -21,9 +23,11 @@ def main(request):
 
 @login_required()
 def edit_profile(request):
-    identify = request.POST.get('id')
-    profile = Profile.objects.get(id=identify) \
-        if identify else Profile.objects.first()
+    identify = request.POST.get('id', 1)
+    try:
+        profile = Profile.objects.get(id=identify)
+    except ObjectDoesNotExist:
+        profile = Profile.objects.first()
     form = ProfileForm(request.POST, request.FILES, instance=profile)
     logger.info(form)
     profile_to_json = {'status': "error",
