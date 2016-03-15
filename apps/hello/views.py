@@ -3,6 +3,7 @@ import json
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
 from django.core.exceptions import ObjectDoesNotExist
+from django.db import IntegrityError
 from django.http.response import HttpResponse
 from django.shortcuts import render
 from apps.hello.forms import ProfileForm
@@ -32,10 +33,13 @@ def edit_profile(request):
     logger.info(form)
     profile_to_json = {'status': "error",
                        'image_src': profile.photo.url
-                       if profile.photo else ' '}
+                       if profile and profile.photo else ' '}
     if request.POST and form.is_valid():
-        form.save()
-        profile_to_json['status'] = "success"
+        try:
+            form.save()
+            profile_to_json['status'] = "success"
+        except IntegrityError:
+            profile_to_json['status'] = "error"
         return HttpResponse(json.dumps(profile_to_json),
                             content_type="application/json")
     if request.POST and not form.is_valid():

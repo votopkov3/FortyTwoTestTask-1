@@ -28,7 +28,8 @@
                     <div class='logged_in_greeting col-xs-12'>
                         <div class='row'>
                             <div class='logged_in_greeting_title col-xs-11 col-xs-offset-1'>
-                                    <form action="{% url 'hello:edit_profile' %}" method="post" id="update-profile-form" enctype="multipart/form-data">
+                                {% if profile %}
+                                <form action="{% url 'hello:edit_profile' %}" method="post" id="update-profile-form" enctype="multipart/form-data">
                                         {{ user_form.id }}
                                         <div class="col-xs-6 left-column">
                                             {% csrf_token %}
@@ -78,6 +79,9 @@
                                         <input class="btn-group btn" type="submit" value="Save">
                                         <a class="btn-group btn"  href="{% url 'hello:index' %}">Cancel</a>
                                     </form>
+                            {% else %}
+                            No profile in db
+                        {% endif %}
                                     </div>
                     </div>
                 </div>
