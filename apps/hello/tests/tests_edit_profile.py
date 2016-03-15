@@ -207,6 +207,46 @@ class EditProfileTests(TestCase):
         # delete file from app
         default_storage.delete(bad_file_path)
 
+    def test_no_profile_in_db_edit_profile_test(self):
+        """
+        Test get edit profile page get method with no Profile
+        objects
+        """
+        # delete Profile objects from db
+        Profile.objects.all().delete()
+        # login
+        self.client.login(username='admin', password='admin')
+        # if no profile attribute error will raise
+        self.assertRaises(AttributeError,
+                          lambda: self.client.get(
+                              reverse('hello:edit_profile')
+                          ))
+
+    def test_edit_non_exist_profile(self):
+        """
+        test non exist profile edit
+        """
+        # create valid data
+        form_data = {
+            'id': 2,
+            'name': 'admin',
+            'last_name': 'admin',
+            'date_of_birth': '1993-11-29',
+            'bio': 'my bio',
+            'email': 'mail@mail.ua',
+            'jabber': 'jabber@jabber.ua',
+            'skype': 'skype',
+        }
+        Profile.objects.all().delete()
+        # login
+        self.client.login(username='admin', password='admin')
+        # if no profile attribute error will raise
+        self.assertRaises(AttributeError,
+                          lambda: self.client.post(
+                              reverse('hello:edit_profile'),
+                              form_data
+                          ))
+
 
 class EditProfileImageFieldTests(TestCase):
     fixtures = ['initial_data.json']
