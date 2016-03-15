@@ -217,10 +217,11 @@ class EditProfileTests(TestCase):
         # login
         self.client.login(username='admin', password='admin')
         # if no profile attribute error will raise
-        self.assertRaises(AttributeError,
-                          lambda: self.client.get(
-                              reverse('hello:edit_profile')
-                          ))
+        response = self.client.get(
+            reverse('hello:edit_profile')
+        )
+        # test if in template show no profile message
+        self.assertIn('No profile in db', response.content)
 
     def test_edit_non_exist_profile(self):
         """
@@ -241,11 +242,11 @@ class EditProfileTests(TestCase):
         # login
         self.client.login(username='admin', password='admin')
         # if no profile attribute error will raise
-        self.assertRaises(AttributeError,
-                          lambda: self.client.post(
-                              reverse('hello:edit_profile'),
-                              form_data
-                          ))
+        response = self.client.post(
+            reverse('hello:edit_profile'),
+            form_data
+        )
+        self.assertIn('error', response.content)
 
 
 class EditProfileImageFieldTests(TestCase):
