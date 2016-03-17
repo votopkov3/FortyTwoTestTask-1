@@ -16,3 +16,4 @@ static
 *.dat
 .env
 *.log
+uploads
