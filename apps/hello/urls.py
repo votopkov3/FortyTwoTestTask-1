@@ -14,6 +14,4 @@ urlpatterns = patterns('',
                        url(r'^logout/$', auth_views.logout, {
                            'next_page': '/'
                        }, name='logout'),
-                       url(r'^update_profile/$', views.update_profile,
-                           name='update_profile'),
                        )
