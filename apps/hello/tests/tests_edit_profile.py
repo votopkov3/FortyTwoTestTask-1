@@ -41,7 +41,7 @@ class EditProfileTests(TestCase):
         self.assertTrue('<h1>42 Coffee Cups Test Assignment</h1>'
                         in response.content)
         # test form on the page
-        self.assertTrue('<form action="/update_profile/" method="post"'
+        self.assertTrue('<form action="/edit_profile/" method="post"'
                         ' id="update-profile-form" '
                         'enctype="multipart/form-data">'
                         in response.content)
@@ -63,7 +63,7 @@ class EditProfileTests(TestCase):
         response = self.client.get(reverse('hello:edit_profile'))
         self.assertEqual(response.status_code, 200)
 
-    def test_send_post_data_update_profile(self):
+    def test_send_post_data_edit_profile(self):
         """
         Testing update profile
         """
@@ -71,33 +71,63 @@ class EditProfileTests(TestCase):
             'id': 2,
             'name': 'admin',
             'last_name': 'admin',
-            'bio': 'my bio',
             'date_of_birth': '1993-11-29',
+            'bio': 'my bio',
             'email': 'mail@mail.ua',
             'jabber': 'jabber@jabber.ua',
             'skype': 'skype',
         }
         # test login required
         test_login_req_response = self.client.post(
-            reverse('hello:update_profile'), form_data
+            reverse('hello:edit_profile'), form_data
         )
         self.assertEqual(test_login_req_response.status_code, 302)
         # login
         self.client.login(username='admin', password='admin')
-        # test method (get not allowed)
-        test_method_response = self.client.get(
-            reverse('hello:update_profile')
-        )
-        self.assertEqual(test_method_response.status_code, 405)
         # update Vasiliy Petrov
-        self.client.post(reverse('hello:update_profile'), form_data)
+        self.client.post(reverse('hello:edit_profile'), form_data)
         # get Vasiliy Petrov profile
         profile = Profile.objects.get(id=2)
         # test if it is updated
+        # Vasiliy Petrov's name was Василий, email mail@mail.ru
+        # if form data is valid Vasiliy Petrov's name will be
+        # admin, email - mail@mail.ua
         self.assertEqual(profile.name, 'admin')
         self.assertEqual(profile.email, 'mail@mail.ua')
 
-    def test_send_unvalid_post_data_update_profile(self):
+    def test_edit_profile_with_not_valid_field(self):
+        """
+        Testing edit profile if form is not valid
+        """
+        form_data = {
+            'id': 2,
+            'name': 'ad',  # not valid field
+            'last_name': 'admin',
+            'date_of_birth': '1993-11-29',
+            'bio': 'my bio',
+            'email': 'mail@mail.ua',
+            'jabber': 'jabber@jabber.ua',
+            'skype': 'skype',
+        }
+        # test login required
+        test_login_req_response = self.client.post(
+            reverse('hello:edit_profile'), form_data
+        )
+        self.assertEqual(test_login_req_response.status_code, 302)
+        # login
+        self.client.login(username='admin', password='admin')
+        # update Vasiliy Petrov
+        self.client.post(reverse('hello:edit_profile'), form_data)
+        # get Vasiliy Petrov profile
+        profile = Profile.objects.get(id=2)
+        # test if it is updated
+        # Vasiliy Petrov's name was Василий, email mail@mail.ru
+        # if form data is valid Vasiliy Petrov's name will be
+        # admin, email - mail@mail.ua
+        self.assertNotEqual(profile.name, 'admin')
+        self.assertNotEqual(profile.email, 'mail@mail.ua')
+
+    def test_send_unvalid_post_data_edit_profile(self):
         """
         Testing not update profile unvalid data
         """
@@ -129,7 +159,7 @@ class EditProfileTests(TestCase):
         self.assertIn(u'Ensure this value has at least 3 characters',
                       str(form['bio'].errors))
 
-    def test_send_no_post_data_update_profile(self):
+    def test_send_no_post_data_edit_profile(self):
         """
         Testing not update profile unvalid data
         """
@@ -171,11 +201,52 @@ class EditProfileTests(TestCase):
             'photo': bad_file  # only this bad field
         }
         self.client.login(username='admin', password='admin')
-        response = self.client.post(reverse('hello:update_profile'), form_data)
+        response = self.client.post(reverse('hello:edit_profile'), form_data)
         self.assertIn("error", response.content)
 
         # delete file from app
         default_storage.delete(bad_file_path)
+
+    def test_no_profile_in_db_edit_profile_test(self):
+        """
+        Test get edit profile page get method with no Profile
+        objects
+        """
+        # delete Profile objects from db
+        Profile.objects.all().delete()
+        # login
+        self.client.login(username='admin', password='admin')
+        # if no profile attribute error will raise
+        response = self.client.get(
+            reverse('hello:edit_profile')
+        )
+        # test if in template show no profile message
+        self.assertIn('No profile in db', response.content)
+
+    def test_edit_non_exist_profile(self):
+        """
+        test non exist profile edit
+        """
+        # create valid data
+        form_data = {
+            'id': 2,
+            'name': 'admin',
+            'last_name': 'admin',
+            'date_of_birth': '1993-11-29',
+            'bio': 'my bio',
+            'email': 'mail@mail.ua',
+            'jabber': 'jabber@jabber.ua',
+            'skype': 'skype',
+        }
+        Profile.objects.all().delete()
+        # login
+        self.client.login(username='admin', password='admin')
+        # if no profile attribute error will raise
+        response = self.client.post(
+            reverse('hello:edit_profile'),
+            form_data
+        )
+        self.assertIn('error', response.content)
 
 
 class EditProfileImageFieldTests(TestCase):
@@ -196,7 +267,7 @@ class EditProfileImageFieldTests(TestCase):
         # delete image
         self.profile_obj.photo.delete()
 
-    def test_send_valid_image_update_profile(self):
+    def test_send_valid_image_edit_profile(self):
         """
         Testing valid image in profile form
         """
@@ -231,7 +302,7 @@ class EditProfileImageFieldTests(TestCase):
         self.client.login(username='admin', password='admin')
 
         self.client.post(
-            reverse('hello:update_profile'),
+            reverse('hello:edit_profile'),
             form_data,
         )
 
@@ -246,7 +317,7 @@ class EditProfileImageFieldTests(TestCase):
         # test image height
         self.assertEqual(profile_image.height, 200)
 
-    def test_aspect_ratio_update_profile(self):
+    def test_aspect_ratio_edit_profile(self):
         """
         Testing valid image in profile form
         """
@@ -283,7 +354,7 @@ class EditProfileImageFieldTests(TestCase):
         self.client.login(username='admin', password='admin')
 
         self.client.post(
-            reverse('hello:update_profile'),
+            reverse('hello:edit_profile'),
             form_data,
         )
 
