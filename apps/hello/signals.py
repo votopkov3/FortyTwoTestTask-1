@@ -8,14 +8,13 @@ exclude_models_name = ['LogEntrry', 'ContentType',
 
 @receiver(post_save)
 def post_save_signal(sender, created, **kwargs):
-    if created and sender.__name__ not in exclude_models_name:
-        LogEntrry.objects.create(title=sender.__name__, status='Create')
-    elif not created:
-        LogEntrry.objects.create(title=sender.__name__, status='Update')
-    return None
+    if created and sender.__name__ in exclude_models_name:
+        return
+    status = 'Create' if created else 'Update'
+    LogEntrry.objects.create(title=sender.__name__, status=status)
 
 
 @receiver(post_delete)
 def post_delete_signal(sender, **kwargs):
     LogEntrry.objects.create(title=sender.__name__, status='Delete')
-    return None
+    return
