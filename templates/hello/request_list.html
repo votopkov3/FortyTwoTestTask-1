@@ -16,15 +16,16 @@
                 {% if requests %}
                     <table class="table table-bordered text-center">
                     <thead>
-                    <tr><th>ID</th><th>Date</th><th>Path</th></tr>
+                    <tr><th>ID</th><th>Date</th><th>Path</th><th>Priority</th></tr>
                         <tr></tr>
                     </thead>
                         <tbody class="result">
                         {% for request in requests %}
                         <tr>
-                            <td><span last_request="{{ request.id }}">{{ request.id }}</span></td>
+                            <td><span last_request="{{ last_request }}">{{ request.id }}</span></td>
                             <td>{{ request.pub_date|date:"o-m-d H:i:s" }}</td>
                             <td>{{ request.path }}</td>
+                            <td>{{ request.priority }}</td>
                         </tr>
                         {% endfor %}
                         </tbody>

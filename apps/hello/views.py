@@ -52,12 +52,21 @@ def edit_profile(request):
 
 def request_list(request):
     if request.is_ajax():
-        last_request = int(request.GET.get('last_request'))
-        data = serializers.serialize(
+        requests_data = serializers.serialize(
             "json",
-            Requests.objects.filter(id__gt=last_request).order_by('pk')[:10]
+            Requests.objects.all()[:10]
         )
-        return HttpResponse(data, content_type="application/json")
+        requests_data = json.loads(requests_data)
+        last_request = Requests.objects.order_by('-pk')[:1]
+        last_request_id = [item.id for item in last_request][0]
+        data = json.dumps(
+            {'last_request_id': last_request_id,
+             'requests_data': requests_data})
+        return HttpResponse(data,
+                            content_type="application/json")
     requests = Requests.objects.all()[:10]
-    context = {'requests': requests}
+    last_request = Requests.objects.order_by('-pk')[:1]
+    last_request = [item.id for item in last_request][0]
+    context = {'requests': requests,
+               'last_request': last_request}
     return render(request, 'hello/request_list.html', context)
