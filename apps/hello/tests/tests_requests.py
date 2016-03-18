@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import json
-from django.core import serializers
 from django.core.urlresolvers import reverse
 from django.test import Client, RequestFactory
 from django.test import TestCase
@@ -42,14 +41,7 @@ class SaveHttpRequestTests(TestCase):
         # get json response and loads it
         response_list = json.loads(response.content)
         # test if 10 requests in response
-        self.assertEqual(len(response_list), 10)
-
-        # test queryset
-        requests = serializers.serialize(
-            "json",
-            Requests.objects.filter(id__gt=0).order_by('pk')[:10]
-        )
-        self.assertEqual(response.content, requests)
+        self.assertEqual(len(response_list['requests_data']), 10)
 
     def test_last_requests(self):
         """
@@ -120,4 +112,4 @@ class SaveHttpRequestNoDataTests(TestCase):
         # get request_list
         response = client.get(reverse('hello:request_list'))
         # test entering the page
-        self.assertContains(response, 'last_request="1"')
+        self.assertContains(response, 'last_request="2"')

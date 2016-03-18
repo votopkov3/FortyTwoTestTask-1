@@ -58,7 +58,10 @@ def request_list(request):
         )
         requests_data = json.loads(requests_data)
         last_request = Requests.objects.order_by('-pk')[:1]
-        last_request_id = [item.id for item in last_request][0]
+        try:
+            last_request_id = [item.id for item in last_request][0]
+        except IndexError:
+            last_request_id = 0
         data = json.dumps(
             {'last_request_id': last_request_id,
              'requests_data': requests_data})
