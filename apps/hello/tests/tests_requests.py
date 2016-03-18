@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import json
-from django.core import serializers
 from django.core.urlresolvers import reverse
 from django.test import Client, RequestFactory
 from django.test import TestCase
@@ -15,15 +14,6 @@ class SaveHttpRequestTests(TestCase):
     def setUp(self):
         Requests.objects.create(request='request_1')
         Requests.objects.create(request='request_2')
-
-    def test_request_list(self):
-        """
-        Testing request list view function
-        """
-        # get request_list
-        response = client.get(reverse('hello:request_list'))
-        # test entering the page
-        self.assertEquals(response.status_code, 200)
 
     def test_request_list_ajax(self):
         """
@@ -51,14 +41,7 @@ class SaveHttpRequestTests(TestCase):
         # get json response and loads it
         response_list = json.loads(response.content)
         # test if 10 requests in response
-        self.assertEqual(len(response_list), 10)
-
-        # test queryset
-        requests = serializers.serialize(
-            "json",
-            Requests.objects.filter(id__gt=0).order_by('pk')[:10]
-        )
-        self.assertEqual(response.content, requests)
+        self.assertEqual(len(response_list['requests_data']), 10)
 
     def test_last_requests(self):
         """
@@ -81,17 +64,22 @@ class SaveHttpRequestTests(TestCase):
         # test saving request to DB
         self.assertEqual(Requests.objects.all().count(), 3)
 
+    def test_ajax_request_not_save(self):
+        """
+        Test that ajax requests not save to the DB
+        """
+        # 2 requests in in DB
+        self.assertEqual(Requests.objects.count(), 2)
+        # get request_list by ajax
+        client.get(reverse('hello:request_list'),
+                   {'last_request': 0},
+                   content_type='application/json',
+                   HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        # Test if new ajax request not save to DB
+        self.assertEqual(Requests.objects.count(), 2)
+
 
 class SaveHttpRequestNoDataTests(TestCase):
-
-    def test_request_list(self):
-        """
-        Testing request list view function
-        """
-        # get request_list
-        response = client.get(reverse('hello:request_list'))
-        # test entering the page
-        self.assertEquals(response.status_code, 200)
 
     def test_request_list_ajax(self):
         """
@@ -124,4 +112,4 @@ class SaveHttpRequestNoDataTests(TestCase):
         # get request_list
         response = client.get(reverse('hello:request_list'))
         # test entering the page
-        self.assertContains(response, 'last_request="1"')
+        self.assertContains(response, 'last_request="2"')

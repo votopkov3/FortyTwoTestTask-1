@@ -56,7 +56,10 @@ class RequestPriorityFieldTest(TestCase):
                               content_type='application/json')
         response_list = json.loads(response.content)
         # set the last request priority 1
-        self.assertEqual(response_list[9]['fields']['priority'], 1)
+        self.assertEqual(
+            response_list['requests_data'][0]['fields']['priority'], 1)
         # Test if other priority has default values
-        self.assertEqual(response_list[1]['fields']['priority'], 0)
-        self.assertEqual(response_list[2]['fields']['priority'], 0)
+        self.assertEqual(
+            response_list['requests_data'][1]['fields']['priority'], 0)
+        self.assertEqual(
+            response_list['requests_data'][2]['fields']['priority'], 0)

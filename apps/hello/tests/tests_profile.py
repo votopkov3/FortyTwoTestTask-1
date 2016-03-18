@@ -31,13 +31,6 @@ class ProfileMethodTests(TestCase):
         self.assertEqual(self.response.context['profile'],
                          profile)
 
-    def test_enter_main_page(self):
-        """
-        Test entering main page
-        """
-        # if index page exists
-        self.assertEqual(self.response.status_code, 200)
-
     def test_profile_static_html(self):
         """
         Testing profile shown on the page
@@ -62,34 +55,11 @@ class ProfileMethodTests(TestCase):
         """
         Test if exist another profile in the page
         """
+        an_profile = Profile.objects.get(id=2)
         # test if not another profile on index
         self.assertNotEqual(self.response.context['profile'],
-                            Profile.objects.get(id=2))
-        self.assertNotIn('Василий', self.response.content)
-
-    def test_db_entries_count(self):
-        """
-        Test db entries
-        """
-        profile = Profile.objects.all().count()
-        # one profile in fixtures and one in setUp
-        self.assertEqual(profile, 2)
-
-    def test_admin(self):
-        """
-        Test getting admin page
-        """
-        response = self.client.get(reverse('admin:index'))
-        self.assertEqual(response.status_code, 200)
-
-    def test_admin_login(self):
-        """
-        Testing admin login
-        """
-        admin = {'name': 'admin',
-                 'password': 'admin'}
-        response = self.client.post(reverse('admin:index'), admin)
-        self.assertEqual(response.status_code, 200)
+                            an_profile)
+        self.assertNotIn(an_profile.name, self.response.content)
 
     def test_index_html(self):
         """
@@ -123,35 +93,12 @@ class ProfileMethodTests(TestCase):
         response = self.client.get(reverse('hello:edit_profile'))
         self.assertTemplateUsed(response, 'hello/edit_profile.html')
 
-
-class ProfileNoDataMethodTests(TestCase):
-
-    def setUp(self):
-        Profile.objects.all().delete()
-        # get main page
-        self.response = self.client.get(reverse('hello:index'))
-
-    def test_enter_main_page(self):
+    def test_profile_unicode(self):
         """
-        Test entering main page
-        """
-        # if index page exists
-        self.assertEqual(self.response.status_code, 200)
-
-    def test_profile(self):
-        """
-        Testing profile shown in the page
+        Testing unicode profile data shown on the page
         """
         # get profile
-        profile = Profile.objects.all().count()
-        self.assertEqual(profile, 0)
+        self.response = self.client.get(reverse('hello:index'))
         # test profile data exist on the main page
-        self.assertNotContains(self.response, u'Отопков')
-        self.assertNotContains(self.response, u'Владимир')
-
-    def test_db_entries_count(self):
-        """
-        Test db entries
-        """
-        profile = Profile.objects.all().count()
-        self.assertEqual(profile, 0)
+        self.assertNotIn(self.response.content, u'Отопков')
+        self.assertNotIn(self.response.content, u'Владимир')
