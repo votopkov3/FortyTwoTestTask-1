@@ -1,35 +1,45 @@
 // get 10 requests
 $(document).ready(function() {
-    var new_requests = 0;
+    var new_req = 0;
+    var last_request_identify = 0;
+
+    var old_request = 0;
     // load 10 last request ordering by pub_date
     load_requests = function () {
+        if ($('span[last_request]').attr('last_request') == '') {
+            var last_request = old_request;
+        } else {
+            var last_request = $('span[last_request]').attr('last_request'); // get id of the last request
+            old_request = $('span[last_request]').attr('last_request'); // get id of the last request
 
-        var last_request = $('span[last_request]').attr('last_request'); // get id of the last request
+        }
         $.ajax({
             type: 'GET',
             url: '/request_list/',
             context: {last_request: last_request},
-            data: {last_request: last_request},
+            data:{'old_request': old_request},
             success: function (data) {
-                // count how much tr need to remove
-                remove_tr = 9 - data.length;
-
                 // remove tr's
-                $('.result').find('tr:gt(' + remove_tr + ')').remove();
-
+                var new_request = " ";
                 // put new requests on the page
-                $.each(data, function(key, value){
-                    var new_request = '<tr>' +
-                    '<td><span last_request="' + value.pk + '">' + value.pk + '</span></td>' +
+                $.each(data.requests_data, function(key, value){
+                    new_request += '<tr>' +
+                    '<td><span last_request="">' + value.pk + '</span></td>' +
                     '<td>' + value.fields.pub_date.slice(0, 19).replace("T"," ") + '</td>' +
-                    '<td>' + value.fields.path + '</td></tr>';
-                    $('.result').prepend(new_request);
+                    '<td>' + value.fields.path + '</td>' +
+                        '<td>' + value.fields.priority + '</td></tr>';
                 });
-                new_requests += data.length;
+                $('.result').html(new_request);
                 // update title count of new requests
-                if (new_requests > 0) {
-                    document.title = '(' + new_requests + ')';
+
+                new_req = parseInt(data.last_request_id) - parseInt(old_request);
+
+                last_request_identify = data.last_request_id;
+
+                if (new_req > 0) {
+                    document.title = '(' + new_req + ')';
                 }
+
 
                 // load function every 3 seconds.
                 setTimeout(load_requests, 3000);
@@ -40,8 +50,8 @@ $(document).ready(function() {
     load_requests();
 
     // when user see page, title become Request list
-    $(window).on('focus', function (){
+    $(window).on('focus click', function (){
         document.title = "Request list";
-        new_requests = 0;
+        ($('span[last_request]').attr('last_request', last_request_identify));
     });
 });
