@@ -59,7 +59,6 @@ class ProfileMethodTests(TestCase):
         # test if not another profile on index
         self.assertNotEqual(self.response.context['profile'],
                             an_profile)
-        self.assertNotIn('Владимир', self.response.content)
 
     def test_index_html(self):
         """
